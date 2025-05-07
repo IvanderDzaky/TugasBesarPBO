@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -29,7 +29,7 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -46,12 +46,13 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li class="active"><a href="reservation.html">Reservation</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="accounts.jsp">Account</a></li>
+                        <li><a href="rooms.jsp">Rooms</a></li>
+                        <li><a href="about.jsp">About</a></li>
+                        <li><a href="events.jsp">Events</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
+                        <li class="active"><a href="reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -70,7 +71,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Reservation Form</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.jsp">Home</a></li>
               <li>&bullet;</li>
               <li>Reservation</li>
             </ul>
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <a class="mouse smoothscroll" href="reservation.html#next">
+      <a class="mouse smoothscroll" href="reservation.jsp#next">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -91,7 +92,7 @@
         <div class="row">
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             
-            <form action="reservation.html#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
+            <form action="reservation.jsp#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="name">Name</label>
@@ -268,7 +269,7 @@
               <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
           </div>
         </div>
@@ -279,18 +280,18 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="reservation.html#">About Us</a></li>
-              <li><a href="reservation.html#">Terms &amp; Conditions</a></li>
-              <li><a href="reservation.html#">Privacy Policy</a></li>
-             <li><a href="reservation.html#">Rooms</a></li>
+              <li><a href="reservation.jsp#">About Us</a></li>
+              <li><a href="reservation.jsp#">Terms &amp; Conditions</a></li>
+              <li><a href="reservation.jsp#">Privacy Policy</a></li>
+             <li><a href="reservation.jsp#">Rooms</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="reservation.html#">The Rooms &amp; Suites</a></li>
-              <li><a href="reservation.html#">About Us</a></li>
-              <li><a href="reservation.html#">Contact Us</a></li>
-              <li><a href="reservation.html#">Restaurant</a></li>
+              <li><a href="reservation.jsp#">The Rooms &amp; Suites</a></li>
+              <li><a href="reservation.jsp#">About Us</a></li>
+              <li><a href="reservation.jsp#">Contact Us</a></li>
+              <li><a href="reservation.jsp#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -301,7 +302,7 @@
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>
-            <form action="reservation.html#" class="footer-newsletter">
+            <form action="reservation.jsp#" class="footer-newsletter">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email...">
                 <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
@@ -317,11 +318,11 @@
           </p>
             
           <p class="col-md-6 text-right social">
-            <a href="reservation.html#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="reservation.html#"><span class="fa fa-facebook"></span></a>
-            <a href="reservation.html#"><span class="fa fa-twitter"></span></a>
-            <a href="reservation.html#"><span class="fa fa-linkedin"></span></a>
-            <a href="reservation.html#"><span class="fa fa-vimeo"></span></a>
+            <a href="reservation.jsp#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="reservation.jsp#"><span class="fa fa-facebook"></span></a>
+            <a href="reservation.jsp#"><span class="fa fa-twitter"></span></a>
+            <a href="reservation.jsp#"><span class="fa fa-linkedin"></span></a>
+            <a href="reservation.jsp#"><span class="fa fa-vimeo"></span></a>
           </p>
         </div>
       </div>

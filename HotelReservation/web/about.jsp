@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -29,7 +29,7 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -46,12 +46,13 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li class="active"><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="accounts.jsp">Account</a></li>
+                        <li><a href="rooms.jsp">Rooms</a></li>
+                        <li class="active"><a href="about.jsp">About</a></li>
+                        <li><a href="events.jsp">Events</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -70,7 +71,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">About Us</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.jsp">Home</a></li>
               <li>&bullet;</li>
               <li>About</li>
             </ul>
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <a class="mouse smoothscroll" href="about.html#next">
+      <a class="mouse smoothscroll" href="about.jsp#next">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -98,7 +99,7 @@
           <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
             <h2 class="heading">Welcome!</h2>
             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="about.html#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
+            <p><a href="about.jsp#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
           </div>
           
         </div>
@@ -279,7 +280,7 @@
               <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
           </div>
         </div>
@@ -290,18 +291,18 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="about.html#">About Us</a></li>
-              <li><a href="about.html#">Terms &amp; Conditions</a></li>
-              <li><a href="about.html#">Privacy Policy</a></li>
-             <li><a href="about.html#">Rooms</a></li>
+              <li><a href="about.jsp#">About Us</a></li>
+              <li><a href="about.jsp#">Terms &amp; Conditions</a></li>
+              <li><a href="about.jsp#">Privacy Policy</a></li>
+             <li><a href="about.jsp#">Rooms</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="about.html#">The Rooms &amp; Suites</a></li>
-              <li><a href="about.html#">About Us</a></li>
-              <li><a href="about.html#">Contact Us</a></li>
-              <li><a href="about.html#">Restaurant</a></li>
+              <li><a href="about.jsp#">The Rooms &amp; Suites</a></li>
+              <li><a href="about.jsp#">About Us</a></li>
+              <li><a href="about.jsp#">Contact Us</a></li>
+              <li><a href="about.jsp#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -312,7 +313,7 @@
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>
-            <form action="about.html#" class="footer-newsletter">
+            <form action="about.jsp#" class="footer-newsletter">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email...">
                 <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
@@ -328,11 +329,11 @@
           </p>
             
           <p class="col-md-6 text-right social">
-            <a href="about.html#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="about.html#"><span class="fa fa-facebook"></span></a>
-            <a href="about.html#"><span class="fa fa-twitter"></span></a>
-            <a href="about.html#"><span class="fa fa-linkedin"></span></a>
-            <a href="about.html#"><span class="fa fa-vimeo"></span></a>
+            <a href="about.jsp#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="about.jsp#"><span class="fa fa-facebook"></span></a>
+            <a href="about.jsp#"><span class="fa fa-twitter"></span></a>
+            <a href="about.jsp#"><span class="fa fa-linkedin"></span></a>
+            <a href="about.jsp#"><span class="fa fa-vimeo"></span></a>
           </p>
         </div>
       </div>

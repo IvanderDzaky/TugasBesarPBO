@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -29,7 +29,7 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -46,12 +46,13 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="rooms.html">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="accounts.jsp">Account</a></li>
+                        <li class="active"><a href="rooms.jsp">Rooms</a></li>
+                        <li><a href="about.jsp">About</a></li>
+                        <li><a href="events.jsp">Events</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -70,7 +71,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Rooms</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.jsp">Home</a></li>
               <li>&bullet;</li>
               <li>Rooms</li>
             </ul>
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <a class="mouse smoothscroll" href="rooms.html#next">
+      <a class="mouse smoothscroll" href="rooms.jsp#next">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -92,7 +93,7 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form action="rooms.html#">
+            <form action="rooms.jsp#">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
@@ -154,7 +155,7 @@
         
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -166,7 +167,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -178,7 +179,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -190,7 +191,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -202,7 +203,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -214,7 +215,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-            <a href="rooms.html#" class="room">
+            <a href="rooms.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -240,21 +241,21 @@
         </div>
       
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-          <a href="rooms.html#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
+          <a href="rooms.jsp#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
           <div class="text">
             <span class="d-block mb-4"><span class="display-4 text-primary">$199</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
             <h2 class="mb-4">Family Room</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="rooms.html#" class="btn btn-primary text-white">Book Now</a></p>
+            <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
           </div>
         </div>
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-          <a href="rooms.html#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
+          <a href="rooms.jsp#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
           <div class="text order-1">
             <span class="d-block mb-4"><span class="display-4 text-primary">$299</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
             <h2 class="mb-4">Presidential Room</h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="rooms.html#" class="btn btn-primary text-white">Book Now</a></p>
+            <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
           </div>
         </div>
 
@@ -268,7 +269,7 @@
             <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
           </div>
           <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+            <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
           </div>
         </div>
       </div>
@@ -279,18 +280,18 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="rooms.html#">About Us</a></li>
-              <li><a href="rooms.html#">Terms &amp; Conditions</a></li>
-              <li><a href="rooms.html#">Privacy Policy</a></li>
-             <li><a href="rooms.html#">Rooms</a></li>
+              <li><a href="rooms.jsp#">About Us</a></li>
+              <li><a href="rooms.jsp#">Terms &amp; Conditions</a></li>
+              <li><a href="rooms.jsp#">Privacy Policy</a></li>
+             <li><a href="rooms.jsp#">Rooms</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="rooms.html#">The Rooms &amp; Suites</a></li>
-              <li><a href="rooms.html#">About Us</a></li>
-              <li><a href="rooms.html#">Contact Us</a></li>
-              <li><a href="rooms.html#">Restaurant</a></li>
+              <li><a href="rooms.jsp#">The Rooms &amp; Suites</a></li>
+              <li><a href="rooms.jsp#">About Us</a></li>
+              <li><a href="rooms.jsp#">Contact Us</a></li>
+              <li><a href="rooms.jsp#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -301,7 +302,7 @@
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>
-            <form action="rooms.html#" class="footer-newsletter">
+            <form action="rooms.jsp#" class="footer-newsletter">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email...">
                 <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
@@ -317,11 +318,11 @@
           </p>
             
           <p class="col-md-6 text-right social">
-            <a href="rooms.html#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="rooms.html#"><span class="fa fa-facebook"></span></a>
-            <a href="rooms.html#"><span class="fa fa-twitter"></span></a>
-            <a href="rooms.html#"><span class="fa fa-linkedin"></span></a>
-            <a href="rooms.html#"><span class="fa fa-vimeo"></span></a>
+            <a href="rooms.jsp#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="rooms.jsp#"><span class="fa fa-facebook"></span></a>
+            <a href="rooms.jsp#"><span class="fa fa-twitter"></span></a>
+            <a href="rooms.jsp#"><span class="fa fa-linkedin"></span></a>
+            <a href="rooms.jsp#"><span class="fa fa-vimeo"></span></a>
           </p>
         </div>
       </div>

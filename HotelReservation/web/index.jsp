@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HOME</title>
+    <title>Sogo Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -29,7 +29,7 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">HOME</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">HOME</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -46,13 +46,13 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="accounts.html">Account</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Payments</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li><a href="accounts.jsp">Account</a></li>
+                        <li><a href="rooms.jsp">Rooms</a></li>
+                        <li><a href="about.jsp">About</a></li>
+                        <li><a href="events.jsp">Payments</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <a class="mouse smoothscroll" href="index.html#next">
+      <a class="mouse smoothscroll" href="index.jsp#next">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -89,7 +89,7 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form action="index.html#">
+            <form action="index.jsp#">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
@@ -157,7 +157,7 @@
           <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
             <h2 class="heading">Welcome!</h2>
             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="index.html#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
+            <p><a href="index.jsp#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
           </div>
           
         </div>
@@ -174,7 +174,7 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="index.html#" class="room">
+            <a href="index.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -186,7 +186,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="index.html#" class="room">
+            <a href="index.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -198,7 +198,7 @@
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="index.html#" class="room">
+            <a href="index.jsp#" class="room">
               <figure class="img-wrap">
                 <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
@@ -267,13 +267,13 @@
         <div class="food-menu-tabs" data-aos="fade">
           <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="index.html#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
+              <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="index.jsp#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="index.html#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
+              <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="index.jsp#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="index.html#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
+              <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="index.jsp#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
             </li>
           </ul>
           <div class="tab-content py-5" id="myTabContent">
@@ -284,34 +284,34 @@
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$20.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Murgh Tikka Masala</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Murgh Tikka Masala</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$35.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Fish Moilee</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Fish Moilee</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$15.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Safed Gosht</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Safed Gosht</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$10.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">French Toast Combo</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">French Toast Combo</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$8.35</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Vegie Omelet</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Vegie Omelet</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Chorizo &amp; Egg Omelet</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Chorizo &amp; Egg Omelet</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
@@ -325,34 +325,34 @@
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$11.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Banana Split</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Banana Split</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$72.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Sticky Toffee Pudding</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Sticky Toffee Pudding</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$26.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Pecan</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Pecan</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$42.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Apple Strudel</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Apple Strudel</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$7.35</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Pancakes</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Pancakes</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Ice Cream Sundae</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Ice Cream Sundae</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
@@ -363,34 +363,34 @@
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$32.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Spring Water</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Spring Water</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$14.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Coke, Diet Coke, Coke Zero</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Coke, Diet Coke, Coke Zero</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$93.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Orange Fanta</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Orange Fanta</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$18.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Lemonade, Lemon Squash</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Lemonade, Lemon Squash</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$38.35</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Sparkling Mineral Water</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Sparkling Mineral Water</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                   <div class="food-menu mb-5">
                     <span class="d-block text-primary h4 mb-3">$69.00</span>
-                    <h3 class="text-white"><a href="index.html#" class="text-white">Lemon, Lime &amp; Bitters</a></h3>
+                    <h3 class="text-white"><a href="index.jsp#" class="text-white">Lemon, Lime &amp; Bitters</a></h3>
                     <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                   </div>
                 </div>
@@ -497,10 +497,10 @@
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
 
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="index.html#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="index.jsp#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="index.html#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
+                <h2 class="mt-0 mb-3"><a href="index.jsp#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               </div>
             </div>
@@ -508,20 +508,20 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="index.html#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="index.jsp#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="index.html#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
+                <h2 class="mt-0 mb-3"><a href="index.jsp#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
                 <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="index.html#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="index.jsp#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="index.html#">30 Great Ideas On Gifts For Travelers</a></h2>
+                <h2 class="mt-0 mb-3"><a href="index.jsp#">30 Great Ideas On Gifts For Travelers</a></h2>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
               </div>
             </div>
@@ -537,7 +537,7 @@
               <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
           </div>
         </div>
@@ -548,18 +548,18 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="index.html#">About Us</a></li>
-              <li><a href="index.html#">Terms &amp; Conditions</a></li>
-              <li><a href="index.html#">Privacy Policy</a></li>
-             <li><a href="index.html#">Rooms</a></li>
+              <li><a href="index.jsp#">About Us</a></li>
+              <li><a href="index.jsp#">Terms &amp; Conditions</a></li>
+              <li><a href="index.jsp#">Privacy Policy</a></li>
+             <li><a href="index.jsp#">Rooms</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="index.html#">The Rooms &amp; Suites</a></li>
-              <li><a href="index.html#">About Us</a></li>
-              <li><a href="index.html#">Contact Us</a></li>
-              <li><a href="index.html#">Restaurant</a></li>
+              <li><a href="index.jsp#">The Rooms &amp; Suites</a></li>
+              <li><a href="index.jsp#">About Us</a></li>
+              <li><a href="index.jsp#">Contact Us</a></li>
+              <li><a href="index.jsp#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -570,7 +570,7 @@
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>
-            <form action="index.html#" class="footer-newsletter">
+            <form action="index.jsp#" class="footer-newsletter">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email...">
                 <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
@@ -586,11 +586,11 @@
           </p>
             
           <p class="col-md-6 text-right social">
-            <a href="index.html#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="index.html#"><span class="fa fa-facebook"></span></a>
-            <a href="index.html#"><span class="fa fa-twitter"></span></a>
-            <a href="index.html#"><span class="fa fa-linkedin"></span></a>
-            <a href="index.html#"><span class="fa fa-vimeo"></span></a>
+            <a href="index.jsp#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="index.jsp#"><span class="fa fa-facebook"></span></a>
+            <a href="index.jsp#"><span class="fa fa-twitter"></span></a>
+            <a href="index.jsp#"><span class="fa fa-linkedin"></span></a>
+            <a href="index.jsp#"><span class="fa fa-vimeo"></span></a>
           </p>
         </div>
       </div>

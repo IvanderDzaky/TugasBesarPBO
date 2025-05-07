@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -29,7 +29,7 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -46,12 +46,13 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li class="active"><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="accounts.jsp">Account</a></li>
+                        <li><a href="rooms.jsp">Rooms</a></li>
+                        <li><a href="about.jsp">About</a></li>
+                        <li class="active"><a href="events.jsp">Events</a></li>
+                        <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -70,7 +71,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Events</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.jsp">Home</a></li>
               <li>&bullet;</li>
               <li>Events</li>
             </ul>
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <a class="mouse smoothscroll" href="events.html#next">
+      <a class="mouse smoothscroll" href="events.jsp#next">
         <div class="mouse-icon">
           <span class="mouse-wheel"></span>
         </div>
@@ -93,10 +94,10 @@
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="100">
 
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               </div>
             </div>
@@ -104,20 +105,20 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="200">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
                 <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="300">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">30 Great Ideas On Gifts For Travelers</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">30 Great Ideas On Gifts For Travelers</a></h2>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
               </div>
             </div>
@@ -126,10 +127,10 @@
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="100">
 
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_4.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_4.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               </div>
             </div>
@@ -137,20 +138,20 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="200">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
                 <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="300">
             <div class="media media-custom d-block mb-4 h-100">
-              <a href="events.html#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+              <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
               <div class="media-body">
                 <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="events.html#">30 Great Ideas On Gifts For Travelers</a></h2>
+                <h2 class="mt-0 mb-3"><a href="events.jsp#">30 Great Ideas On Gifts For Travelers</a></h2>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
               </div>
             </div>
@@ -162,10 +163,10 @@
             <div class="custom-pagination">
               <ul class="list-unstyled">
                 <li class="active"><span>1</span></li>
-                <li><a href="events.html#">2</a></li>
-                <li><a href="events.html#">3</a></li>
+                <li><a href="events.jsp#">2</a></li>
+                <li><a href="events.jsp#">3</a></li>
                 <li><span>...</span></li>
-                <li><a href="events.html#">30</a></li>
+                <li><a href="events.jsp#">30</a></li>
               </ul>
             </div>
           </div>
@@ -182,7 +183,7 @@
               <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
           </div>
         </div>
@@ -193,18 +194,18 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="events.html#">About Us</a></li>
-              <li><a href="events.html#">Terms &amp; Conditions</a></li>
-              <li><a href="events.html#">Privacy Policy</a></li>
-             <li><a href="events.html#">Rooms</a></li>
+              <li><a href="events.jsp#">About Us</a></li>
+              <li><a href="events.jsp#">Terms &amp; Conditions</a></li>
+              <li><a href="events.jsp#">Privacy Policy</a></li>
+             <li><a href="events.jsp#">Rooms</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="events.html#">The Rooms &amp; Suites</a></li>
-              <li><a href="events.html#">About Us</a></li>
-              <li><a href="events.html#">Contact Us</a></li>
-              <li><a href="events.html#">Restaurant</a></li>
+              <li><a href="events.jsp#">The Rooms &amp; Suites</a></li>
+              <li><a href="events.jsp#">About Us</a></li>
+              <li><a href="events.jsp#">Contact Us</a></li>
+              <li><a href="events.jsp#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -215,7 +216,7 @@
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>
-            <form action="events.html#" class="footer-newsletter">
+            <form action="events.jsp#" class="footer-newsletter">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email...">
                 <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
@@ -231,11 +232,11 @@
           </p>
             
           <p class="col-md-6 text-right social">
-            <a href="events.html#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="events.html#"><span class="fa fa-facebook"></span></a>
-            <a href="events.html#"><span class="fa fa-twitter"></span></a>
-            <a href="events.html#"><span class="fa fa-linkedin"></span></a>
-            <a href="events.html#"><span class="fa fa-vimeo"></span></a>
+            <a href="events.jsp#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="events.jsp#"><span class="fa fa-facebook"></span></a>
+            <a href="events.jsp#"><span class="fa fa-twitter"></span></a>
+            <a href="events.jsp#"><span class="fa fa-linkedin"></span></a>
+            <a href="events.jsp#"><span class="fa fa-vimeo"></span></a>
           </p>
         </div>
       </div>
