@@ -21,9 +21,11 @@
 
         <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
         <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+        
 
         <!-- Theme Style -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
     <body>
         <jsp:include page="header-footer/header.jsp" />
@@ -597,6 +599,6 @@
 
             gtag('config', 'UA-23581568-13');
         </script>
-
+        
     </body>
 </html>
