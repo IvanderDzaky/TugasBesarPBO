@@ -25,12 +25,15 @@
    ================================ */
 
     .account-page {
+        margin-top: 100px; /* TAMBAH INI */
         background: linear-gradient(to right, #e2e2e2, #c9d6ff);
         font-family: 'Montserrat', sans-serif;
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        min-height: 100vh;
+        z-index: 1;
     }
 
     .account-page * {
@@ -46,6 +49,7 @@
         width: 768px;
         max-width: 100%;
         min-height: 480px;
+        z-index: 1;
     }
 
     .account-page .container p {
@@ -231,7 +235,7 @@
        END: Account Page Styles
        ================================ */
 </style>
-<div class="account-page">
+<div class="account-page pb-0">
     <div class="container active" id="account-container">
 
         <!-- Sign Up -->
