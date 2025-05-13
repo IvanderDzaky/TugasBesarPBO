@@ -73,7 +73,7 @@
 
                                 <% if (loggedIn) { %>
                                 <li>
-                                    <a href="AccountController?action=logout">Logout</a>
+                                    <a href="UserController?action=logout">Logout</a>
                                 </li>
                                 <% } %>
                             </ul>

@@ -239,7 +239,7 @@
     <div class="container active" id="account-container">
         <!-- Sign Up -->
         <div class="form-container sign-up">
-            <form method = "post" action="AccountController">
+            <form method = "post" action="UserController?action=register">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -256,7 +256,7 @@
         </div>
         <!-- Sign In -->
         <div class="form-container sign-in">
-            <form method = "post" action="AccountController">
+            <form method = "post" action="UserController?action-login">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
