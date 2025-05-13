@@ -65,7 +65,7 @@
             <div class="container">
                 <div class="row site-hero-inner justify-content-center align-items-center">
                     <div class="col-md-10 text-center" data-aos="fade-up">
-                        <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To Hotel <span class="fa fa-star text-primary"></span>   Hotel Reservation</span>
+                        <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To Grizzlane <span class="fa fa-star text-primary"></span>   Hotel Reservation</span>
                         <h1 class="heading">Search A Best Place To Stay</h1>
                     </div>
                 </div>
