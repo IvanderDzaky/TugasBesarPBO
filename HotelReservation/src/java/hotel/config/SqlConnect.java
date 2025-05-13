@@ -5,20 +5,21 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class SqlConnect {
-    private static Connection conn;
-    
-    public static Connection getConnection() {
-        if (conn == null) {
-            try {
-                String url = "jdbc:mysql://localhost:3306/HotelReservation";
-                String user = "root";
-                String pass = "";
-                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-                conn = (Connection) DriverManager.getConnection(url, user, pass);
-            } catch (Exception err) {
-                Logger.getLogger(SqlConnect.class.getName()).log(Level.SEVERE,null,err);
-            }
+
+    private static final String URL = "jdbc:mysql://localhost:3306/HotelReservation";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    static {
+        try {
+            // Register MySQL JDBC driver (opsional sejak JDBC 4.0)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return conn;
+    }
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

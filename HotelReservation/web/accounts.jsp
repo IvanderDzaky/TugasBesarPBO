@@ -237,10 +237,9 @@
 </style>
 <div class="account-page pb-0">
     <div class="container active" id="account-container">
-
         <!-- Sign Up -->
         <div class="form-container sign-up">
-            <form>
+            <form method = "post" action="AccountController">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -249,16 +248,15 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <input type="text" name="nama" placeholder="Name">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <button name="action" value="register">Sign Up</button>
             </form>
         </div>
-
         <!-- Sign In -->
         <div class="form-container sign-in">
-            <form>
+            <form method = "post" action="AccountController">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -267,13 +265,12 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name ="password" placeholder="Password">
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button name="action" value="login">Sign In</button>
             </form>
         </div>
-
         <!-- Toggle -->
         <div class="toggle-container">
             <div class="toggle">
@@ -292,8 +289,6 @@
 
     </div>
 </div>
-
-
 <!-- Script untuk toggle login/register -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {

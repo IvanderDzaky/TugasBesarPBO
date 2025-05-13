@@ -21,7 +21,7 @@
 
         <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
         <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-        
+
 
         <!-- Theme Style -->
         <link rel="stylesheet" href="css/style.css">
@@ -35,21 +35,47 @@
                 <div class="container">
                     <div class="row full-height align-items-center">
                         <div class="col-md-6 mx-auto">
+                            <%
+                                HttpSession sess = request.getSession(false);
+                                boolean loggedIn = (sess != null && sess.getAttribute("userId") != null);
+                            %>
+
                             <ul class="list-unstyled menu">
                                 <li class="<%= "home".equals(request.getParameter("page")) || request.getParameter("page") == null ? "active" : ""%>">
-                                    <a href="index.jsp?page=home">Home</a></li>
+                                    <a href="index.jsp?page=home">Home</a>
+                                </li>
+
+                                <% if (!loggedIn) {%>
                                 <li class="<%= "accounts".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=accounts">Accounts</a></li>
+                                    <a href="index.jsp?page=accounts">Accounts</a>
+                                </li>
+                                <% } else {%>
+                                <li class="<%= "dashboard".equals(request.getParameter("page")) ? "active" : ""%>">
+                                    <a href="index.jsp?page=dashboard">Dashboard</a>
+                                </li>
+                                <% }%>
+
                                 <li class="<%= "rooms".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=rooms">Rooms</a></li>
+                                    <a href="index.jsp?page=rooms">Rooms</a>
+                                </li>
                                 <li class="<%= "about".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=about">About</a></li>
+                                    <a href="index.jsp?page=about">About</a>
+                                </li>
                                 <li class="<%= "events".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=events">Events</a></li>
+                                    <a href="index.jsp?page=events">Events</a>
+                                </li>
                                 <li class="<%= "contact".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=contact">Contact</a></li>
+                                    <a href="index.jsp?page=contact">Contact</a>
+                                </li>
                                 <li class="<%= "reservation".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=reservation">Reservation</a></li>
+                                    <a href="index.jsp?page=reservation">Reservation</a>
+                                </li>
+
+                                <% if (loggedIn) { %>
+                                <li>
+                                    <a href="AccountController?action=logout">Logout</a>
+                                </li>
+                                <% } %>
                             </ul>
                         </div>
                     </div>
@@ -57,6 +83,42 @@
             </nav>
         </div>
         <!-- END head -->
+        <%-- Toast Notification Container --%>
+        <div id="toast" style="display:none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #f44336; color: white; padding: 16px 24px; border-radius: 8px; z-index: 1000; box-shadow: 0 2px 6px rgba(0,0,0,0.3); text-align: center;">
+            <span id="toast-msg"></span>
+        </div>
+        <script>
+            function showToast(message, isSuccess = false) {
+                const toast = document.getElementById("toast");
+                const toastMsg = document.getElementById("toast-msg");
+
+                toastMsg.innerText = message;
+                toast.style.backgroundColor = isSuccess ? "#4CAF50" : "#f44336"; // hijau / merah
+                toast.style.display = "block";
+
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 3000);
+            }
+        </script>
+        <%
+            String errorMsg = (String) request.getAttribute("errorMsg");
+            String successMsg = (String) session.getAttribute("successMsg");
+            if (successMsg != null) {
+                session.removeAttribute("successMsg"); // agar tidak tampil lagi di refresh
+            }
+            if (errorMsg != null) {
+        %>
+
+        <script> showToast("<%= errorMsg.replace("\"", "\\\"")%>");</script>
+        <%
+        } else if (successMsg != null) {
+        %>
+
+        <script> showToast("<%= successMsg.replace("\"", "\\\"")%>", true);</script>
+        <%
+            }
+        %>
         <%
             String p = request.getParameter("page");
             if ("home".equals(p) || p == null) {
@@ -598,7 +660,19 @@
             gtag('js', new Date());
 
             gtag('config', 'UA-23581568-13');
+            function showToast(message, isSuccess = false) {
+                const toast = document.getElementById("toast");
+                const toastMsg = document.getElementById("toast-msg");
+
+                toastMsg.innerText = message;
+                toast.style.backgroundColor = isSuccess ? "#4CAF50" : "#f44336"; // hijau / merah
+                toast.style.display = "block";
+
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 3000);
+            }
         </script>
-        
+
     </body>
 </html>
