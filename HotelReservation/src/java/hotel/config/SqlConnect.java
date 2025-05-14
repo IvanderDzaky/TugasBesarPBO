@@ -12,7 +12,6 @@ public class SqlConnect {
 
     static {
         try {
-            // Register MySQL JDBC driver (opsional sejak JDBC 4.0)
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
