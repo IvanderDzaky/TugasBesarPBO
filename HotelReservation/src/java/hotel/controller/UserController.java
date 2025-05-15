@@ -47,8 +47,9 @@ public class UserController extends HttpServlet {
                 User user = User.login(email, password);
                 if (user != null) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("userId", user.getId());
+                    session.setAttribute("userId", user.getIdUser());
                     session.setAttribute("userName", user.getNama());
+                    session.setAttribute("userEmail", user.getEmail());
                     session.setAttribute("isAdmin", user instanceof Admin);
                     session.setAttribute("successMsg", "Selamat datang, " + user.getNama());
                     response.sendRedirect("index.jsp?page=home");

@@ -8,6 +8,6 @@ package hotel.model;
  *
  * @author ASUS
  */
-public class Customer {
+public class Reservasi {
     
 }

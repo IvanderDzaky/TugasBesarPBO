@@ -4,7 +4,7 @@ import hotel.config.SqlConnect;
 import java.sql.*;
 
 public abstract class User {
-    protected int id;
+    protected int idUser;
     protected String nama;
     protected String email;
     protected String password;
@@ -18,12 +18,12 @@ public abstract class User {
     }
 
     // Getters & Setters
-    public int getId() { return id; }
+    public int getIdUser() { return idUser; }
     public String getNama() { return nama; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
 
-    public void setId(int id) { this.id = id; }
+    public void setIdUser(int idUser) { this.idUser = idUser; }
     public void setNama(String nama) { this.nama = nama; }
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
@@ -50,7 +50,7 @@ public abstract class User {
                     user = new Customer(rs.getString("nama"), email, password);
                 }
 
-                user.setId(rs.getInt("id"));
+                user.setIdUser(rs.getInt("id_User"));
                 return user;
             }
         }

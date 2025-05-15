@@ -1,6 +1,6 @@
 package hotel.controller;
 
-import hotel.model.Customer;
+import hotel.model.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;

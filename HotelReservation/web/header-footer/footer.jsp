@@ -1,3 +1,8 @@
+<%
+    HttpSession sess = request.getSession(false);
+    boolean loggedIn = (sess != null && sess.getAttribute("userName") != null);
+    String userEmail = loggedIn ? (String) sess.getAttribute("userEmail") : "";
+%>
 <footer class="section footer-section">
     <div class="container">
         <div class="row mb-4">
@@ -24,13 +29,21 @@
                 <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> SogoHotel@gmail.com</a></span></p>
             </div>
             <div class="col-md-3 mb-5">
+                <% if (!loggedIn) {%>
                 <p>Sign up for our newsletter</p>
-                <form onsubmit="location.href='index.jsp?page=accounts'; return false;" class="footer-newsletter">
+                <form onsubmit="location.href = 'index.jsp?page=accounts'; return false;" class="footer-newsletter">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Email...">
                         <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
                     </div>
                 </form>
+                <% } else {%>
+                <form class="footer-newsletter">
+                    <div class="form-group">
+                        <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> <%= userEmail%></a></span></p>
+                    </div>
+                </form>
+                <% }%>
             </div>
         </div>
     </div>
