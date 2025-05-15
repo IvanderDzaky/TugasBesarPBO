@@ -16,137 +16,89 @@
 <!-- END Hero Section -->
 
 <!-- Reservations Management Section -->
-<section class="section contact-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="mb-4">Manage Hotel Reservations</h2>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addReservationModal">Add Reservation</button>
-                <table class="table table-bordered mt-4">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Check-in Date</th>
-                            <th>Check-out Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data reservations will be populated here from the database -->
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>2023-10-01</td>
-                            <td>2023-10-05</td>
-                            <td>
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#editReservationModal">Edit</button>
-                                <button class="btn btn-danger" onclick="deleteReservation(1)">Delete</button>
-                            </td>
-                        </tr>
-                        <!-- Repeat for other reservations -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="container mt-5 mb-5">
+    <h2 class="mb-4">Panel Admin</h2>
 
-<!-- Add Reservation Modal -->
-<div class="modal fade" id="addReservationModal" tabindex="-1" role="dialog" aria-labelledby="addReservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addReservationModalLabel">Add Reservation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="addReservationForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="checkin">Check-in Date</label>
-                        <input type="date" id="checkin" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="checkout">Check-out Date</label>
-                        <input type="date" id="checkout" class="form-control" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="addReservation()">Save Reservation</button>
-            </div>
-        </div>
-    </div>
-</div>
+    <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="customer-tab" data-toggle="tab" href="#customer" role="tab">Customer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="kamar-tab" data-toggle="tab" href="#kamar" role="tab">Kamar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="reservasi-tab" data-toggle="tab" href="#reservasi" role="tab">Reservasi</a>
+        </li>
+    </ul>
 
-<!-- Edit Reservation Modal -->
-<div class="modal fade" id="editReservationModal" tabindex="-1" role="dialog" aria-labelledby="editReservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editReservationModalLabel">Edit Reservation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="tab-content" id="adminTabsContent">
+        <!-- Customer Tab -->
+        <div class="tab-pane fade show active" id="customer" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4>Data Customer</h4>
+                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahCustomerModal">Tambah Customer</button>
             </div>
-            <div class="modal-body">
-                <form id="editReservationForm">
-                    <div class="form-group">
-                        <label for="editName">Name</label>
-                        <input type="text" id="editName" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editEmail">Email</label>
-                        <input type="email" id="editEmail" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editCheckin">Check-in Date</label>
-                        <input type="date" id="editCheckin" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editCheckout">Check-out Date</label>
-                        <input type="date" id="editCheckout" class="form-control" required>
-                    </div>
-                </form>
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>Nama</th><th>Email</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Amanda</td>
+                        <td>amanda@mail.com</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning">Edit</button>
+                            <button class="btn btn-sm btn-danger">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Kamar Tab -->
+        <div class="tab-pane fade" id="kamar" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4>Data Kamar</h4>
+                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahKamarModal">Tambah Kamar</button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="updateReservation()">Update Reservation</button>
-            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>Nomor</th><th>Tipe</th><th>Harga</th><th>Status</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>Deluxe</td>
+                        <td>Rp500.000</td>
+                        <td><span class="badge badge-success">Tersedia</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-warning">Edit</button>
+                            <button class="btn btn-sm btn-danger">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Reservasi Tab -->
+        <div class="tab-pane fade" id="reservasi" role="tabpanel">
+            <h4>Data Reservasi</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>ID</th><th>Customer</th><th>Kamar</th><th>Status</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>R00123</td>
+                        <td>Amanda</td>
+                        <td>101</td>
+                        <td><span class="badge badge-warning">Dipesan</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-                    function addReservation() {
-                        // Logic to add reservation
-                        alert("Reservation added!");
-                        $('#addReservationModal').modal('hide');
-                    }
-
-                    function updateReservation() {
-                        // Logic to update reservation
-                        alert("Reservation updated!");
-                        $('#editReservationModal').modal('hide');
-                    }
-
-                    function deleteReservation(id) {
-                        // Logic to delete reservation
-                        alert("Reservation with ID " + id + " deleted!");
-                    }
-</script>

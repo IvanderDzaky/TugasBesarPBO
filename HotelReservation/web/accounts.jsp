@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <a class="mouse smoothscroll" href="index.jsp?page=accounts#next">
+    <a class="mouse smoothscroll" href="index.jsp?page=accounts#account-container">
         <div class="mouse-icon">
             <span class="mouse-wheel"></span>
         </div>

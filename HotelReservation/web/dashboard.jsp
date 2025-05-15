@@ -14,53 +14,86 @@
     </div>
 </section>
 <!-- END Hero Section -->
+<div class="container mt-5 mb-5" style="margin-top: 50px;" style= "background-image: url(images/foto_1.jpg)">
+    <h3 class="mb-4">Riwayat Reservasi</h3>
+    <table class="table table-hover shadow-sm">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Tipe Kamar</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Status</th>
+                <th>Pembayaran</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Contoh data dummy -->
+            <tr>
+                <td>R00123</td>
+                <td>Deluxe</td>
+                <td>2025-06-10</td>
+                <td>2025-06-15</td>
+                <td><span class="badge badge-warning">Dipesan</span></td>
+                <td><span class="badge badge-danger">Belum Bayar</span></td>
+                <td>
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubahModal">Ubah</button>
+                    <button class="btn btn-sm btn-danger">Batalkan</button>
+                    <button class="btn btn-sm btn-success">Bayar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>R00110</td>
+                <td>Suite</td>
+                <td>2025-04-01</td>
+                <td>2025-04-05</td>
+                <td><span class="badge badge-secondary">Selesai</span></td>
+                <td><span class="badge badge-success">Lunas</span></td>
+                <td>
+                    <button class="btn btn-sm btn-outline-secondary" disabled>Ubah</button>
+                    <button class="btn btn-sm btn-outline-secondary" disabled>Batalkan</button>
+                    <button class="btn btn-sm btn-outline-secondary" disabled>Bayar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-<!-- User Information Section -->
-<section class="section contact-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <form action="profile.jsp#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" value="[User   Name]">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" id="phone" class="form-control" value="[User   Phone]">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" value="[User   Email]">
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12 form-group">
-                            <label for="message">Write Message</label>
-                            <textarea name="message" id="message" class="form-control" cols="30" rows="8"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <input type="submit" value="Update Profile" class="btn btn-primary text-white font-weight-bold">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="row">
-                    <div class="col-md-10 ml-auto contact-info">
-                        <p><span class="d-block">Address:</span> <span>98 West 21th Street, Suite 721 New York NY 10016</span></p>
-                        <p><span class="d-block">Phone:</span> <span>(+1) 234 4567 8910</span></p>
-                        <p><span class="d-block">Email:</span> <span><a href="mailto:[User   Email]">[User   Email]</a></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Modal Ubah Reservasi -->
+<div class="modal fade" id="ubahModal" tabindex="-1" role="dialog" aria-labelledby="ubahModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ubahModalLabel">Ubah Reservasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="tanggalBaruCheckIn">Tanggal Check-In Baru</label>
+                  <input type="date" class="form-control" id="tanggalBaruCheckIn">
+              </div>
+              <div class="form-group">
+                  <label for="tanggalBaruCheckOut">Tanggal Check-Out Baru</label>
+                  <input type="date" class="form-control" id="tanggalBaruCheckOut">
+              </div>
+              <div class="form-group">
+                  <label for="tipeBaru">Tipe Kamar</label>
+                  <select class="form-control" id="tipeBaru">
+                      <option>Standar</option>
+                      <option>Deluxe</option>
+                      <option>Suite</option>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+          </div>
+      </form>
     </div>
-</section>
+  </div>
+</div>
