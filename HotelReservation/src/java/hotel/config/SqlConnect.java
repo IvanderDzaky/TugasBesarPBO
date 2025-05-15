@@ -1,8 +1,6 @@
 package hotel.config;
 
 import java.sql.*;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class SqlConnect {
 
