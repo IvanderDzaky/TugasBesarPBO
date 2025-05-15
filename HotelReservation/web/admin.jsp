@@ -1,123 +1,152 @@
+<!-- Hero Section -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
             <div class="col-md-10 text-center" data-aos="fade">
-                <h1 class="heading mb-3">Events</h1>
+                <h1 class="heading mb-3">Admin Dashboard</h1>
                 <ul class="custom-breadcrumbs mb-4">
                     <li><a href="index.jsp">Home</a></li>
                     <li>&bullet;</li>
-                    <li>Events</li>
+                    <li>Admin Dashboard</li>
                 </ul>
             </div>
         </div>
     </div>
-
-    <a class="mouse smoothscroll" href="events.jsp#next">
-        <div class="mouse-icon">
-            <span class="mouse-wheel"></span>
-        </div>
-    </a>
 </section>
-<!-- END section -->
+<!-- END Hero Section -->
 
-<section class="section blog-post-entry bg-light" id="next">
+<!-- Reservations Management Section -->
+<section class="section contact-section">
     <div class="container">
-
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
-                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="300">
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">30 Great Ideas On Gifts For Travelers</a></h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_4.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
-                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="300">
-                <div class="media media-custom d-block mb-4 h-100">
-                    <a href="events.jsp#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="media-body">
-                        <span class="meta-post">February 26, 2018</span>
-                        <h2 class="mt-0 mb-3"><a href="events.jsp#">30 Great Ideas On Gifts For Travelers</a></h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" data-aos="fade">
-            <div class="col-12">
-                <div class="custom-pagination">
-                    <ul class="list-unstyled">
-                        <li class="active"><span>1</span></li>
-                        <li><a href="events.jsp#">2</a></li>
-                        <li><a href="events.jsp#">3</a></li>
-                        <li><span>...</span></li>
-                        <li><a href="events.jsp#">30</a></li>
-                    </ul>
-                </div>
+            <div class="col-md-12" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="mb-4">Manage Hotel Reservations</h2>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addReservationModal">Add Reservation</button>
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Check-in Date</th>
+                            <th>Check-out Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data reservations will be populated here from the database -->
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>2023-10-01</td>
+                            <td>2023-10-05</td>
+                            <td>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#editReservationModal">Edit</button>
+                                <button class="btn btn-danger" onclick="deleteReservation(1)">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- Repeat for other reservations -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </section>
 
-
-
-<section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-    <div class="container" >
-        <div class="row align-items-center">
-            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-                <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+<!-- Add Reservation Modal -->
+<div class="modal fade" id="addReservationModal" tabindex="-1" role="dialog" aria-labelledby="addReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addReservationModalLabel">Add Reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+            <div class="modal-body">
+                <form id="addReservationForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin">Check-in Date</label>
+                        <input type="date" id="checkin" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Check-out Date</label>
+                        <input type="date" id="checkout" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addReservation()">Save Reservation</button>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<!-- Edit Reservation Modal -->
+<div class="modal fade" id="editReservationModal" tabindex="-1" role="dialog" aria-labelledby="editReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editReservationModalLabel">Edit Reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editReservationForm">
+                    <div class="form-group">
+                        <label for="editName">Name</label>
+                        <input type="text" id="editName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email</label>
+                        <input type="email" id="editEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCheckin">Check-in Date</label>
+                        <input type="date" id="editCheckin" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCheckout">Check-out Date</label>
+                        <input type="date" id="editCheckout" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="updateReservation()">Update Reservation</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+                    function addReservation() {
+                        // Logic to add reservation
+                        alert("Reservation added!");
+                        $('#addReservationModal').modal('hide');
+                    }
+
+                    function updateReservation() {
+                        // Logic to update reservation
+                        alert("Reservation updated!");
+                        $('#editReservationModal').modal('hide');
+                    }
+
+                    function deleteReservation(id) {
+                        // Logic to delete reservation
+                        alert("Reservation with ID " + id + " deleted!");
+                    }
+</script>
