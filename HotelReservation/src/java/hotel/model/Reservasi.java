@@ -1,17 +1,18 @@
 package hotel.model;
 
-import java.sql.Date;
+import java.sql.*;
+import java.util.*;
 
 public class Reservasi {
 
     private int idReservasi;
     private int idUser;
     private int idKamar;
-    private Date checkIn;
-    private Date checkOut;
+    private Timestamp checkIn;
+    private Timestamp checkOut;
     private String status;
 
-    public Reservasi(int idReservasi, int idUser, int idKamar, Date checkIn, Date checkOut, String status) {
+    public Reservasi(int idReservasi, int idUser, int idKamar, Timestamp checkIn, Timestamp checkOut, String status) {
         this.idReservasi = idReservasi;
         this.idUser = idUser;
         this.idKamar = idKamar;
@@ -45,19 +46,19 @@ public class Reservasi {
         this.idKamar = idKamar;
     }
 
-    public Date getCheckIn() {
+    public Timestamp getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(Timestamp checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public Timestamp getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(Timestamp checkOut) {
         this.checkOut = checkOut;
     }
 

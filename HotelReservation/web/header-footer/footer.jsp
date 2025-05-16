@@ -1,7 +1,14 @@
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
     HttpSession sess = request.getSession(false);
     boolean loggedIn = (sess != null && sess.getAttribute("userName") != null);
+
     String userEmail = loggedIn ? (String) sess.getAttribute("userEmail") : "";
+
+    Timestamp createdAt = loggedIn ? (Timestamp) sess.getAttribute("userCreatedAt") : null;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm");
+    String userCreatedAtStr = (createdAt != null) ? sdf.format(createdAt) : "-";
 %>
 <footer class="section footer-section">
     <div class="container">
@@ -40,7 +47,18 @@
                 <% } else {%>
                 <form class="footer-newsletter">
                     <div class="form-group">
-                        <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> <%= userEmail%></a></span></p>
+                        <p>
+                            <span class="d-block">
+                                <span class="ion-ios-email h5 mr-3 text-primary"></span>Email:
+                            </span>
+                            <span> <%= userEmail%></a></span>
+                        </p>
+                        <p>
+                            <span class="d-block">
+                                <span class="ion-ios-calendar h5 mr-3 text-primary"></span>Akun Dibuat:
+                            </span> 
+                            <span><%= userCreatedAtStr%></span>
+                        </p>
                     </div>
                 </form>
                 <% }%>

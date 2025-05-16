@@ -51,6 +51,7 @@ public class UserController extends HttpServlet {
                     session.setAttribute("userName", user.getNama());
                     session.setAttribute("userEmail", user.getEmail());
                     session.setAttribute("isAdmin", user instanceof Admin);
+                    session.setAttribute("userCreatedAt", user.getCreatedAt());
                     session.setAttribute("successMsg", "Selamat datang, " + user.getNama());
                     response.sendRedirect("index.jsp?page=home");
                 } else {
@@ -64,9 +65,7 @@ public class UserController extends HttpServlet {
 
         } else if ("logout".equals(action)) {
             HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
+            User.logout(session);
             response.sendRedirect("index.jsp?page=accounts");
         }
     }
