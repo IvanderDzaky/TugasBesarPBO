@@ -12,6 +12,7 @@ public abstract class User {
     protected String password;
     protected Timestamp createdAt;
 
+    // Constructor
     public User() {
     }
 
@@ -61,7 +62,8 @@ public abstract class User {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
-
+    
+    // method
     public abstract void info();
 
     public static User login(String email, String password) throws SQLException {

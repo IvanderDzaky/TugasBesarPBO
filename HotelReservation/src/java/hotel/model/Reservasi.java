@@ -1,20 +1,20 @@
 package hotel.model;
 
 import java.sql.*;
-import java.util.*;
 
 public class Reservasi {
 
     private int idReservasi;
-    private int idUser;
     private int idKamar;
-    private Timestamp checkIn;
-    private Timestamp checkOut;
+    private Date checkIn;
+    private Date checkOut;
+    private Customer Customer;
     private String status;
-
-    public Reservasi(int idReservasi, int idUser, int idKamar, Timestamp checkIn, Timestamp checkOut, String status) {
+    
+    // Constructor
+    public Reservasi(int idReservasi, int idUser, int idKamar, Date checkIn, Date checkOut, String status) {
         this.idReservasi = idReservasi;
-        this.idUser = idUser;
+        this.Customer.idUser = idUser;
         this.idKamar = idKamar;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -31,11 +31,11 @@ public class Reservasi {
     }
 
     public int getIdUser() {
-        return idUser;
+        return Customer.idUser;
     }
 
     public void setIdUser(int idUser) {
-        this.idUser = idUser;
+        this.Customer.idUser = idUser;
     }
 
     public int getIdKamar() {
@@ -46,19 +46,19 @@ public class Reservasi {
         this.idKamar = idKamar;
     }
 
-    public Timestamp getCheckIn() {
+    public Date getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Timestamp checkIn) {
+    public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Timestamp getCheckOut() {
+    public Date getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Timestamp checkOut) {
+    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -69,4 +69,7 @@ public class Reservasi {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    //method
+
 }

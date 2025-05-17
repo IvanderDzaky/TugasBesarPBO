@@ -6,14 +6,14 @@ import java.util.*;
 
 public class Customer extends User {
 
-    private List<Reservasi> reservasiList = new ArrayList<>();
+    private Reservasi Reservasi;
 
     public Customer(String nama, String email, String password) {
         super(nama, email, password);
     }
 
-    public List<Reservasi> getReservasiList() {
-        return reservasiList;
+    public Reservasi getReservasiList() {
+        return Reservasi;
     }
 
     @Override
@@ -32,4 +32,18 @@ public class Customer extends User {
             return stmt.executeUpdate() > 0;
         }
     }
+    
+    public boolean buatReservasi() throws SQLException {
+        String sql = "INSERT INTO reservasi (id_user, id_kamar, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, Reservasi.getIdUser());
+            stmt.setInt(2, Reservasi.getIdKamar());
+            stmt.setDate(3, Reservasi.getCheckIn());
+            stmt.setDate(4, Reservasi.getCheckOut());
+
+            return stmt.executeUpdate() > 0;
+        }
+    }
+    
 }

@@ -1,13 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    HttpSession sess = request.getSession(false);
-    boolean loggedIn = (sess != null && sess.getAttribute("userId") != null);
-    boolean isAdmin = false;
-
-    if (loggedIn && sess.getAttribute("isAdmin") != null) {
-        isAdmin = (Boolean) sess.getAttribute("isAdmin");
-    }
-%>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -38,50 +29,6 @@
     </head>
     <body>
         <jsp:include page="header-footer/header.jsp" />
-        <!-- END menu-toggle -->
-        <div class="site-navbar js-site-navbar">
-            <nav role="navigation">
-                <div class="container">
-                    <div class="row full-height align-items-center">
-                        <div class="col-md-6 mx-auto">
-                            <ul class="list-unstyled menu">
-                                <li class="<%= "home".equals(request.getParameter("page")) || request.getParameter("page") == null ? "active" : ""%>">
-                                    <a href="index.jsp?page=home">Home</a>
-                                </li>
-                                <% if (!loggedIn) {%>
-                                <li class="<%= "accounts".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=accounts">Accounts</a>
-                                </li>
-                                <% } else if (!isAdmin) {%>
-                                <li class="<%= "dashboard".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=dashboard">Dashboard</a>
-                                </li>
-                                <% } else {%>
-                                <li class="<%= "admin".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=admin">Admins</a>
-                                </li>
-                                <% }%>
-                                <li class="<%= "rooms".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=rooms">Rooms</a>
-                                </li>
-                                <li class="<%= "about".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=about">About</a>
-                                </li>
-                                <li class="<%= "reservation".equals(request.getParameter("page")) ? "active" : ""%>">
-                                    <a href="index.jsp?page=reservation">Reservation</a>
-                                </li>
-                                <% if (loggedIn) { %>
-                                <li>
-                                    <a href="UserController?action=logout">Logout</a>
-                                </li>
-                                <% } %>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <!-- END head -->
         <%-- Toast Notification Container --%>
         <div id="toast" style="display:none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #f44336; color: white; padding: 16px 24px; border-radius: 8px; z-index: 1000; box-shadow: 0 2px 6px rgba(0,0,0,0.3); text-align: center;">
             <span id="toast-msg"></span>
@@ -122,7 +69,7 @@
             String p = request.getParameter("page");
             if ("home".equals(p) || p == null) {
         %>
-        <section class="site-hero overlay" style="background-image: url(images/foto_1.jpg)" data-stellar-background-ratio="0.5">
+        <section class="site-hero overlay" style="background-image: url(images/foto_2.jpg)" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="row site-hero-inner justify-content-center align-items-center">
                     <div class="col-md-10 text-center" data-aos="fade-up">
@@ -143,7 +90,7 @@
         <section class="py-5 bg-light">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
+                    <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up" id="next">
                         <figure class="img-absolute">
                             <img src="images/foods_1.jpg" alt="Image" class="img-fluid">
                         </figure>
@@ -203,8 +150,9 @@
                             </div>
                         </a>
                     </div>
-
-
+                </div>
+                <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
+                    <a href="index.jsp?page=rooms" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Room >>></a>
                 </div>
             </div>
         </section>
@@ -245,7 +193,6 @@
                         </div>
                         <!-- END slider -->
                     </div>
-
                 </div>
             </div>
         </section>
@@ -262,18 +209,16 @@
                 <div class="food-menu-tabs" data-aos="fade">
                     <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="index.jsp?page=home#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
+                            <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="index.jsp?page=home#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
+                            <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="index.jsp?page=home#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
+                            <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
                         </li>
                     </ul>
                     <div class="tab-content py-5" id="myTabContent">
-
-
                         <div class="tab-pane fade show active text-left" id="mains" role="tabpanel" aria-labelledby="mains-tab">
                             <div class="row">
                                 <div class="col-md-6">
@@ -284,12 +229,12 @@
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$35.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Fish Moilee</a></h3>
+                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Fish Moile</a></h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$15.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Safed Gosht</a></h3>
+                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Safed Ghost</a></h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
@@ -400,7 +345,7 @@
             <div class="container">
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-md-7">
-                        <h2 class="heading" data-aos="fade-up">People Says</h2>
+                        <h2 class="heading" data-aos="fade-up">Testimonial Says</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -547,22 +492,22 @@
         <%
         } else if ("admin".equals(p)) {
         %>
-        <jsp:include page="admin.jsp" flush="false"></jsp:include>
+        <jsp:include page="admin.jsp" flush="true"></jsp:include>
         <%
         } else if ("about".equals(p)) {
         %>
         <jsp:include page="about.jsp" flush="false"></jsp:include>
         <%
-        } else if ("reservation".equals(p)) {
+        } else if ("facilities".equals(p)) {
         %>
-        <jsp:include page="reservation.jsp" flush="false"></jsp:include>
+        <jsp:include page="facilities.jsp" flush="false"></jsp:include>
         <%
         } else if ("rooms".equals(p)) {
         %>
         <jsp:include page="rooms.jsp" flush="false"></jsp:include>
         <% } else {
         %>
-        <h2>404 - Halaman tidak ditemukan</h2>
+        <h2>Halaman tidak ditemukan</h2>
         <%
             }
         %>
@@ -576,17 +521,10 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.stellar.min.js"></script>
         <script src="js/jquery.fancybox.min.js"></script>
-
-
         <script src="js/aos.js"></script>
-
         <script src="js/bootstrap-datepicker.js"></script> 
         <script src="js/jquery.timepicker.min.js"></script> 
-
-
-
         <script src="js/main.js"></script>
-
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
         <script>
@@ -628,3 +566,8 @@
 
     </body>
 </html>
+<script>
+  $('#ubahModal').on('shown.bs.modal', function () {
+    $('#tanggalBaruCheckIn').trigger('focus');
+  });
+</script>

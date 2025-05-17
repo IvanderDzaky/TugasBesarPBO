@@ -1,3 +1,4 @@
+
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -19,76 +20,85 @@
     </a>
 </section>
 <!-- END section -->
-
 <section class="section pb-4">
     <div class="container">
-
         <div class="row check-availabilty" id="next">
             <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-                <form action="rooms.jsp#">
-                    <div class="row">
-                        <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                <form action="rooms.html#">
+                    <div class="row align-items-end">
+                        <!-- Check In -->
+                        <div class="col-md-6 col-lg-2 mb-3">
                             <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkin_date" class="form-control">
+                                <input type="date" id="checkin_date" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                        <!-- Check Out -->
+                        <div class="col-md-6 col-lg-2 mb-3">
                             <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkout_date" class="form-control">
+                                <input type="date" id="checkout_date" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
-                            <div class="row">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label for="adults" class="font-weight-bold text-black">Adults</label>
-                                    <div class="field-icon-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="adults" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4+</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label for="children" class="font-weight-bold text-black">Children</label>
-                                    <div class="field-icon-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="children" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4+</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        <!-- Adults -->
+                        <div class="col-md-6 col-lg-2 mb-3">
+                            <label for="adults" class="font-weight-bold text-black">Adults</label>
+                            <div class="field-icon-wrap">
+                                <div class="icon">=</div>
+                                <select id="adults" class="form-control">
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4+</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 align-self-end">
-                            <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                        <!-- Children -->
+                        <div class="col-md-6 col-lg-2 mb-3">
+                            <label for="children" class="font-weight-bold text-black">Children</label>
+                            <div class="field-icon-wrap">
+                                <div class="icon">=</div>
+                                <select id="children" class="form-control">
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Facilities -->
+                        <div class="col-md-6 col-lg-2 mb-3">
+                            <label for="facilities" class="font-weight-bold text-black">Facilities</label>
+                            <div class="field-icon-wrap">
+                                <div class="icon">=</div>
+                                <select id="facilities" class="form-control">
+                                    <option value="">Wifi, Television, Air Conditioner, Water Heater, Cleaning</option>
+                                    <option value="">Wifi, Air Conditioner, Water Heater, Cleaning</option>
+                                    <option value="">Wifi, Air Conditioner, Cleaning</option>
+                                    <option value="">Air Conditioner, Cleaning</option>
+                                    <option value="">Air Conditioner</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <div class="col-md-6 col-lg-2 mb-3">
+                            <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
                         </div>
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </section>
-
 
 <section class="section">
     <div class="container">
 
         <div class="row">
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -100,7 +110,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -112,7 +122,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -124,37 +134,37 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/img_4.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
-                        <h2>Single Room</h2>
-                        <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                        <h2>Suite</h2>
+                        <span class="text-uppercase letter-spacing-1">300$ / per night</span>
                     </div>
                 </a>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/slider-1.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
-                        <h2>Family Room</h2>
-                        <span class="text-uppercase letter-spacing-1">120$ / per night</span>
+                        <h2>VIP Suite</h2>
+                        <span class="text-uppercase letter-spacing-1">350 / per night</span>
                     </div>
                 </a>
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.jsp#" class="room">
+                <a href="rooms.html#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/slider-4.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
-                        <h2>Presidential Room</h2>
-                        <span class="text-uppercase letter-spacing-1">250$ / per night</span>
+                        <h2>Deluxe Suite</h2>
+                        <span class="text-uppercase letter-spacing-1">400$ / per night</span>
                     </div>
                 </a>
             </div>
@@ -164,7 +174,6 @@
 </section>
 
 <section class="section bg-light">
-
     <div class="container">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
@@ -172,25 +181,40 @@
                 <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             </div>
         </div>
-
+        <!-- Family Room -->
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
             <a href="rooms.jsp#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
             <div class="text">
-                <span class="d-block mb-4"><span class="display-4 text-primary">$199</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-                <h2 class="mb-4">Family Room</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <span class="d-block mb-4">
+                    <span class="display-4 text-primary">$199</span>
+                    <span class="text-uppercase letter-spacing-2">/ per night</span>
+                </span>
+                <h2 class="mb-3">Family Room</h2>
+                <p><strong>Features:</strong> 2 Queen Beds, Private Balcony</p>
+                <p><strong>Facilities:</strong> Free Wifi, Air Conditioner, Flat-screen TV, Hot Shower</p>
+                <p><strong>Max Guests:</strong> 4 Adults</p>
+                <p class="mt-3">Perfect for a relaxing family getaway, this room offers a peaceful stay with a touch of luxury near nature and the beach.</p>
                 <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
             </div>
         </div>
+
+        <!-- Presidential Room -->
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
             <a href="rooms.jsp#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
             <div class="text order-1">
-                <span class="d-block mb-4"><span class="display-4 text-primary">$299</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-                <h2 class="mb-4">Presidential Room</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <span class="d-block mb-4">
+                    <span class="display-4 text-primary">$299</span>
+                    <span class="text-uppercase letter-spacing-2">/ per night</span>
+                </span>
+                <h2 class="mb-3">Presidential Room</h2>
+                <p><strong>Features:</strong> King Bed, Ocean View, Lounge Area</p>
+                <p><strong>Facilities:</strong> High-Speed Wifi, Jacuzzi, 55" Smart TV, Coffee Machine, Mini Bar</p>
+                <p><strong>Max Guests:</strong> 2 Adults + 1 Child</p>
+                <p class="mt-3">Experience ultimate comfort and elegance in our most luxurious suite, designed for guests seeking premium amenities and stunning views.</p>
                 <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
             </div>
         </div>
+
 
     </div>
 </section>
@@ -207,3 +231,4 @@
         </div>
     </div>
 </section>
+
