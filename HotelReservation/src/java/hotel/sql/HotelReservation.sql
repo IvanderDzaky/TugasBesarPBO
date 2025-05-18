@@ -81,20 +81,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `isAdmin`, `createdAt`) VALUES
 (17, 'ADMIN', 'admin@yahoo.com', 'admin123', 1, '2025-04-30 17:00:00'),
 (20, 'MAHMUD', 'mahmud@gmail.com', '123', 0, '2025-05-01 17:00:00'),
-(22, 'jawa', 'jawa@gmail.com', '123', 0, '2025-05-16 17:26:53'),
-(23, 'kanjut', 'kanjut@mail.com', '123', 0, '2025-05-17 06:55:26'),
-(26, 'kanjut', 'memeg@maik', '123', 0, '2025-05-17 07:02:31'),
-(31, 'jawir', 'jawir@yahoo.com', '123', 0, '2025-05-17 07:18:33'),
-(36, 'kanjut', 'adas2@12', '123', 0, '2025-05-17 07:30:08'),
-(40, 'jawa', 'asdsa@12312321', '123', 0, '2025-05-17 07:34:59'),
-(41, 'kanjut', 'adasdsaasdad@222', '123', 0, '2025-05-17 07:37:05'),
-(42, 'kanjut', 'memeg@222', '123', 0, '2025-05-17 07:37:15'),
-(43, 'xx knjut', 'keenan@22', '123', 0, '2025-05-17 07:39:04'),
-(44, 'fater', 'fater@mail.com', '123', 0, '2025-05-17 07:41:22'),
-(45, 'adsada', 'asdasdaq232123@1231', '123', 0, '2025-05-17 07:44:08'),
-(46, 'tolol', 'tolol123@123', '123', 0, '2025-05-18 07:01:31'),
-(47, 'jok', 'jokowi@123', '123', 0, '2025-05-18 07:02:21'),
-(54, 'tes', 'bapakkau@maikl', 'admin123', 0, '2025-05-18 07:11:39');
 
 --
 -- Indexes for dumped tables
