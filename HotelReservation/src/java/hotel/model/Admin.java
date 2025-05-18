@@ -63,5 +63,47 @@ public class Admin extends User {
 
         return daftarCustomer;
     }
-    
+
+    public void hapusCustomer(int idUser) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "DELETE FROM users WHERE id_user= ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, idUser);
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public static void updateCustomer(int idUser, Customer customerBaru) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "UPDATE users SET nama = ?, email = ?, password = ? WHERE id_user = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, customerBaru.getNama());
+            stmt.setString(2, customerBaru.getEmail());
+            stmt.setString(3, customerBaru.getPassword());
+            stmt.setInt(4, idUser);
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
 }

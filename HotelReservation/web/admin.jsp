@@ -51,6 +51,7 @@
                     <input type="email" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email" required>
                     <input type="password" name="password" class="form-control mb-2 mr-sm-2" placeholder="Password" required>
                     <button type="submit" class="btn btn-success mb-2">Simpan</button>
+                    <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="hideTambahForm()">Batal</button>
                 </form>
             </div>
 
@@ -71,8 +72,12 @@
                         <td><%= c.getPassword()%></td>
                         <td><%= c.getCreatedAt()%></td>
                         <td>
-                            <a href="AdminController?action=edit&id=<%= c.getIdUser()%>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="AdminController?action=delete&id=<%= c.getIdUser()%>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                            <button class="btn btn-sm btn-warning"
+                                    onclick="showEditForm('<%= c.getIdUser()%>', '<%= c.getNama()%>', '<%= c.getEmail()%>', '<%= c.getPassword()%>')">
+                                Edit
+                            </button>
+
+                            <a href="AdminController?action=hapusCustomer&idUser=<%= c.getIdUser()%>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
                         </td>
                     </tr>
                     <%
@@ -86,6 +91,17 @@
                         }
                     %>
                 </tbody>
+                <!-- Edit Customer Form -->
+                <div id="editCustomerForm" class="form-section mb-3" style="display: none;">
+                    <form class="form-inline" action="AdminController?action=updateCustomer" method="post">
+                        <input type="hidden" id="editIdUser" name="idUser">
+                        <input type="text" id="editNama" name="nama" class="form-control mb-2 mr-sm-2" placeholder="Nama" required>
+                        <input type="email" id="editEmail" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email" required>
+                        <input type="password" id="editPassword" name="password" class="form-control mb-2 mr-sm-2" placeholder="Password" required>
+                        <button type="submit" class="btn btn-primary mb-2">Update</button>
+                        <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="hideEditForm()">Batal</button>
+                    </form>
+                </div>
 
             </table>
         </div>
@@ -158,8 +174,32 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
+                                function showEditForm(id, nama, email, password) {
+                                    document.getElementById('editIdUser').value = id;
+                                    document.getElementById('editNama').value = nama;
+                                    document.getElementById('editEmail').value = email;
+                                    document.getElementById('editPassword').value = password;
+
+                                    // Tampilkan form edit
+                                    document.getElementById('editCustomerForm').style.display = 'block';
+
+                                    // Sembunyikan form tambah (opsional)
+                                    document.getElementById('customerForm').style.display = 'none';
+                                }
+
+                                function hideEditForm() {
+                                    document.getElementById('editCustomerForm').style.display = 'none';
+                                }
+                                function hideTambahForm() {
+                                    document.getElementById('customerForm').style.display = 'none';
+                                }
                                 function toggleForm(formId) {
                                     const form = document.getElementById(formId);
-                                    form.style.display = (form.style.display === "none") ? "block" : "none";
+                                    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+
+                                    // Sembunyikan form edit kalau form tambah dibuka
+                                    if (formId === 'customerForm') {
+                                        document.getElementById('editCustomerForm').style.display = 'none';
+                                    }
                                 }
 </script>

@@ -12,24 +12,6 @@ public class UserController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
@@ -67,20 +49,23 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession(false);
             User.logout(session);
             response.sendRedirect("index.jsp?page=accounts");
+
+        } else {
+            // Aksi default jika tidak ada action yang cocok
+            response.sendRedirect("index.jsp?page=accounts");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if ("logout".equals(action)) {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
-        }
-        response.sendRedirect("index.jsp?page=accounts");
+        processRequest(request, response); // Panggil central handler
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response); // Panggil central handler
     }
 
     @Override
