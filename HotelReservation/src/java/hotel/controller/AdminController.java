@@ -4,6 +4,7 @@ import hotel.model.*;
 import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,37 +17,25 @@ public class AdminController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        // Teruskan ke view
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?page=admin");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        if ("lihatCustomer".equals(action) || action == null) {
-            try {
-                Admin admin = new Admin("Admin", "admin@mail.com", "admin123");
-                List<Customer> daftarCustomer = admin.lihatCustomer();
-                request.setAttribute("daftarCustomer", daftarCustomer);
-            } catch (Exception e) {
-                request.setAttribute("errorMsg", "Terjadi kesalahan saat melihat data Customer.");
-            }
-
-            request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
+        // Selalu jalankan lihatCustomer()
+        try {
+            Admin admin = new Admin("Admin", "admin@mail.com", "admin123");
+            List<Customer> daftarCustomer = admin.lihatCustomer();
+            request.setAttribute("daftarCustomer", daftarCustomer);
+        } catch (Exception e) {
+            request.setAttribute("errorMsg", "Terjadi kesalahan saat melihat data Customer.");
         }
+
+        // Teruskan ke halaman index.jsp?page=admin
+        request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
     }
 
     @Override
@@ -73,16 +62,13 @@ public class AdminController extends HttpServlet {
                 e.printStackTrace();
                 request.setAttribute("errorMsg", "Terjadi kesalahan saat registrasi. Silakan coba lagi.");
             }
-
-            // Tampilkan kembali data customer setelah penambahan
             try {
                 Admin admin = new Admin("Admin", "admin@mail.com", "admin123");
                 List<Customer> daftarCustomer = admin.lihatCustomer();
                 request.setAttribute("daftarCustomer", daftarCustomer);
             } catch (Exception e) {
-                request.setAttribute("errorMsg", "Gagal memuat data customer setelah registrasi.");
+                request.setAttribute("errorMsg", "Terjadi kesalahan saat melihat data Customer.");
             }
-
             request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
         }
     }

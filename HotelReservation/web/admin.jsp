@@ -22,18 +22,17 @@
     <h2 class="mb-4">Panel Admin</h2>
 
     <!-- Tabs Navigation -->
-    <ul class="nav nav-tabs mb-4" id="adminTabs">
+    <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" href="AdminController?action=lihatCustomer">Customer</a>
+            <a class="nav-link active" id="customer-tab" data-toggle="tab" href="#customer" role="tab">Customer</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="AdminController?action=lihatKamar">Kamar</a>
+            <a class="nav-link" id="kamar-tab" data-toggle="tab" href="#kamar" role="tab">Kamar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="AdminController?action=lihatSemuaReservasi">Reservasi</a>
+            <a class="nav-link" id="reservasi-tab" data-toggle="tab" href="#reservasi" role="tab">Reservasi</a>
         </li>
     </ul>
-
 
     <!-- Tab Content -->
     <div class="tab-content" id="adminTabsContent">
