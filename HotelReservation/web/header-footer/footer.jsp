@@ -16,18 +16,18 @@
         <div class="row mb-4">
             <div class="col-md-3 mb-5">
                 <ul class="list-unstyled link">
-                    <li><a href="index.jsp?page=about#">About Us</a></li>
+                    <li><a href="About">About Us</a></li>
                     <li><a href="#">Terms &amp; Conditions</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="index.jsp?page=rooms">Rooms</a></li>
+                    <li><a href="Rooms">Rooms</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mb-5">
                 <ul class="list-unstyled link">
-                    <li><a href="index.jsp?page=rooms">The Rooms &amp; Suites</a></li>
-                    <li><a href="index.jsp?page=about">About Us</a></li>
-                    <li><a href="index.jsp?page=about">Contact Us</a></li>
-                    <li><a href="index.jsp?page=home#mains">Restaurant</a></li>
+                    <li><a href="Rooms">The Rooms &amp; Suites</a></li>
+                    <li><a href="About">About Us</a></li>
+                    <li><a href="About">Contact Us</a></li>
+                    <li><a href="Home#mains">Restaurant</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -39,7 +39,7 @@
             <div class="col-md-3 mb-5">
                 <% if (!loggedIn) {%>
                 <p>Sign up for our newsletter</p>
-                <form onsubmit="location.href = 'index.jsp?page=accounts'; return false;" class="footer-newsletter">
+                <form onsubmit="location.href = 'Accounts'; return false;" class="footer-newsletter">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Email...">
                         <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>

@@ -4,7 +4,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Facilities</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp?page=home">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li>&bullet;</li>
                     <li>Facilities</li>
                 </ul>
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <a class="mouse smoothscroll" href="reservation.jsp#next">
+    <a class="mouse smoothscroll" href="#next">
         <div class="mouse-icon">
             <span class="mouse-wheel"></span>
         </div>
@@ -161,7 +161,7 @@
                 <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
         </div>
     </div>

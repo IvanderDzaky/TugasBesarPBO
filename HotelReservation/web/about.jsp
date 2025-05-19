@@ -4,7 +4,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">About Us</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li>&bullet;</li>
                     <li>About</li>
                 </ul>
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <a class="mouse smoothscroll" href="about.jsp#next">
+    <a class="mouse smoothscroll" href="#next">
         <div class="mouse-icon">
             <span class="mouse-wheel"></span>
         </div>
@@ -32,7 +32,7 @@
             <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
                 <h2 class="heading">Welcome!</h2>
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="about.jsp#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
+                <p><a href="Rooms" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://youtu.be/A3eDzR1BmEo?si=d9Ym43JyEs81oQ20"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
             </div>
 
         </div>
@@ -213,7 +213,7 @@
                 <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
         </div>
     </div>

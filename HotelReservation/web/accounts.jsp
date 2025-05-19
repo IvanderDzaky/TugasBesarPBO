@@ -4,14 +4,14 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Accounts</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp?page=home">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li>&bullet;</li>
                     <li>Accounts</li>
                 </ul>
             </div>
         </div>
     </div>
-    <a class="mouse smoothscroll" href="index.jsp?page=accounts#account-container">
+    <a class="mouse smoothscroll" href="#account-container">
         <div class="mouse-icon">
             <span class="mouse-wheel"></span>
         </div>

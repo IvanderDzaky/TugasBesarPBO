@@ -7,13 +7,18 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Admin Dashboard</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp?page=home">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li>&bullet;</li>
                     <li>Admin Dashboard</li>
                 </ul>
             </div>
         </div>
     </div>
+    <a class="mouse smoothscroll" href="#adminTabs">
+        <div class="mouse-icon">
+            <span class="mouse-wheel"></span>
+        </div>
+    </a>
 </section>
 <!-- END Hero Section -->
 
@@ -172,8 +177,8 @@
                             </span>
                         </td>
                         <td>
-                            <a href="Admin?action=edit&id=<%= k.getNomorKamar()%>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="Admin?action=delete&id=<%= k.getNomorKamar()%>" class="btn btn-sm btn-danger"
+                            <a href="Admins?action=edit&idKamar=<%= k.getNomorKamar()%>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="Admins?action=delete&idKamar=<%= k.getNomorKamar()%>" class="btn btn-sm btn-danger"
                                onclick="return confirm('Yakin hapus kamar ini?')">Hapus</a>
                         </td>
                     </tr>
@@ -195,6 +200,27 @@
         <div class="tab-pane fade" id="reservasi" role="tabpanel">
             <h4>Data Reservasi</h4>
             <table class="table table-hover">
+                <!-- Kamar Form -->
+                <div id="kamarForm" class="form-section mb-3" style="display: none;">
+                    <form class="form-inline" action="Admins?action=tambahKamar" method="post">
+                        <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
+                        <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
+                        <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
+                        <input type="number" name="Max Guest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                        <select many name="Fasilitas" class="form-control mb-2 mr-sm-2" required>
+                            <option value="AC">AC</option>
+                            <option value="Cleaning">Cleaning Service</option>
+                            <option value="Shower">Shower</option>
+                            <option value="TV">TV</option>
+                            <option value="WiFI">WiFi</option>
+                        </select>
+                        <select name="status" class="form-control mb-2 mr-sm-2" required>
+                            <option value="Tersedia">Tersedia</option>
+                            <option value="Terisi">Terisi</option>
+                        </select>
+                        <button type="submit" class="btn btn-success mb-2">Simpan</button>
+                    </form>
+                </div>
                 <thead>
                     <tr><th>ID</th><th>Customer</th><th>Kamar</th><th>Status</th><th>Aksi</th></tr>
                 </thead>
@@ -213,7 +239,17 @@
         </div>
         <!-- Fasilitas Tab -->
         <div class="tab-pane fade" id="fasilitas" role="tabpanel">
-            <h4>Data Fasilitas</h4>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4>Data Fasilitas</h4>
+                <button class="btn btn-outline-primary btn-sm" onclick="toggleForm('fasilitasForm')">Tambah</button>
+            </div>
+            <!-- Fasilitas Form -->
+            <div id="fasilitasForm" class="form-section mb-3" style="display: none;">
+                <form class="form-inline" action="Admins?action=tambahFasilitas" method="post">
+                    <input type="text" name="nama" class="form-control mb-2 mr-sm-2" placeholder="Nama Fasilitas" required>
+                    <button type="submit" class="btn btn-success mb-2">Simpan</button>
+                </form>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -232,8 +268,8 @@
                         <td><%= f.getIdFasilitas()%></td>
                         <td><%= f.getNamaFasilitas()%></td>
                         <td>
-                            <a href="Admins?action=editFasilitas&id=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="Admins?action=deleteFasilitas&id=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
+                            <a href="Admins?action=editFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="Admins?action=hapusFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
                                onclick="return confirm('Yakin ingin menghapus fasilitas ini?')">Hapus</a>
                         </td>
                     </tr>
@@ -257,32 +293,32 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-                           function showEditForm(id, nama, email, password) {
-                               document.getElementById('editIdUser').value = id;
-                               document.getElementById('editNama').value = nama;
-                               document.getElementById('editEmail').value = email;
-                               document.getElementById('editPassword').value = password;
+                                   function showEditForm(id, nama, email, password) {
+                                       document.getElementById('editIdUser').value = id;
+                                       document.getElementById('editNama').value = nama;
+                                       document.getElementById('editEmail').value = email;
+                                       document.getElementById('editPassword').value = password;
 
-                               // Tampilkan form edit
-                               document.getElementById('editCustomerForm').style.display = 'block';
+                                       // Tampilkan form edit
+                                       document.getElementById('editCustomerForm').style.display = 'block';
 
-                               // Sembunyikan form tambah (opsional)
-                               document.getElementById('customerForm').style.display = 'none';
-                           }
+                                       // Sembunyikan form tambah (opsional)
+                                       document.getElementById('customerForm').style.display = 'none';
+                                   }
 
-                           function hideEditForm() {
-                               document.getElementById('editCustomerForm').style.display = 'none';
-                           }
-                           function hideTambahForm() {
-                               document.getElementById('customerForm').style.display = 'none';
-                           }
-                           function toggleForm(formId) {
-                               const form = document.getElementById(formId);
-                               form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                                   function hideEditForm() {
+                                       document.getElementById('editCustomerForm').style.display = 'none';
+                                   }
+                                   function hideTambahForm() {
+                                       document.getElementById('customerForm').style.display = 'none';
+                                   }
+                                   function toggleForm(formId) {
+                                       const form = document.getElementById(formId);
+                                       form.style.display = form.style.display === 'none' ? 'block' : 'none';
 
-                               // Sembunyikan form edit kalau form tambah dibuka
-                               if (formId === 'customerForm') {
-                                   document.getElementById('editCustomerForm').style.display = 'none';
-                               }
-                           }
+                                       // Sembunyikan form edit kalau form tambah dibuka
+                                       if (formId === 'customerForm') {
+                                           document.getElementById('editCustomerForm').style.display = 'none';
+                                       }
+                                   }
 </script>

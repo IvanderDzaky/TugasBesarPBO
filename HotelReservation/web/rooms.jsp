@@ -5,7 +5,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li>&bullet;</li>
                     <li>Rooms</li>
                 </ul>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <a class="mouse smoothscroll" href="rooms.jsp#next">
+    <a class="mouse smoothscroll" href="#next">
         <div class="mouse-icon">
             <span class="mouse-wheel"></span>
         </div>
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row check-availabilty" id="next">
             <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-                <form action="rooms.html#">
+                <form action="Rooms">
                     <div class="row align-items-end">
                         <!-- Check In -->
                         <div class="col-md-6 col-lg-2 mb-3">
@@ -98,7 +98,7 @@
 
         <div class="row">
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -122,7 +122,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -134,7 +134,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/img_4.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -146,7 +146,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/slider-1.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -158,7 +158,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="rooms.html#" class="room">
+                <a href="#" class="room">
                     <figure class="img-wrap">
                         <img src="images/slider-4.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
@@ -183,7 +183,7 @@
         </div>
         <!-- Family Room -->
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-            <a href="rooms.jsp#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
+            <a href="#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
             <div class="text">
                 <span class="d-block mb-4">
                     <span class="display-4 text-primary">$199</span>
@@ -200,7 +200,7 @@
 
         <!-- Presidential Room -->
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-            <a href="rooms.jsp#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
+            <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
             <div class="text order-1">
                 <span class="d-block mb-4">
                     <span class="display-4 text-primary">$299</span>
@@ -211,7 +211,7 @@
                 <p><strong>Facilities:</strong> High-Speed Wifi, Jacuzzi, 55" Smart TV, Coffee Machine, Mini Bar</p>
                 <p><strong>Max Guests:</strong> 2 Adults + 1 Child</p>
                 <p class="mt-3">Experience ultimate comfort and elegance in our most luxurious suite, designed for guests seeking premium amenities and stunning views.</p>
-                <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
+                <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
             </div>
         </div>
 
@@ -226,7 +226,7 @@
                 <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
             </div>
         </div>
     </div>

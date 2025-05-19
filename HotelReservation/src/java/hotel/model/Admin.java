@@ -137,6 +137,7 @@ public class Admin extends User {
 
         return daftarKamar;
     }
+
     public List<Fasilitas> lihatFasilitas() throws SQLException {
         List<Fasilitas> daftarFasilitas = new ArrayList<>();
         Connection conn = SqlConnect.getConnection();
@@ -153,5 +154,45 @@ public class Admin extends User {
         }
 
         return daftarFasilitas;
+    }
+
+    public void tambahFasilitas(Fasilitas fasilitas) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "INSERT INTO fasilitas (nama_fasilitas) VALUES (?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, fasilitas.getNamaFasilitas());
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public void hapusFasilitas(int idFasilitas) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "DELETE FROM fasilitas WHERE id_fasilitas = ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, idFasilitas);
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 }

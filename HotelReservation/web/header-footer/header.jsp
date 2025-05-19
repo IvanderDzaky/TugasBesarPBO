@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-6 col-lg-4 site-logo" data-aos="fade">
-                <a href="index.jsp?page=home">HOME</a>
+                <a href="Home">HOME</a>
                 <% if (loggedIn) {%>
                 <div class="username-welcome mt-1">
                     <strong>${userName}</strong>
@@ -36,7 +36,7 @@
                                 <div class="col-md-6 mx-auto">
                                     <ul class="list-unstyled menu">
                                         <li class="<%= "home".equals(request.getParameter("page")) || request.getParameter("page") == null ? "active" : ""%>">
-                                            <a href="index.jsp?page=home">Home</a>
+                                            <a href="Home">Home</a>
                                         </li>
                                         <% if (!loggedIn) {%>
                                         <li class="<%= "accounts".equals(request.getParameter("page")) ? "active" : ""%>">
@@ -52,13 +52,13 @@
                                         </li>
                                         <% }%>
                                         <li class="<%= "rooms".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="index.jsp?page=rooms">Rooms</a>
+                                            <a href="Rooms">Rooms</a>
                                         </li>
                                         <li class="<%= "facilities".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="index.jsp?page=facilities">Facilities</a>
+                                            <a href="Facilities">Facilities</a>
                                         </li>
                                         <li class="<%= "about".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="index.jsp?page=about">About</a>
+                                            <a href="About">About</a>
                                         </li>
                                         <% if (loggedIn) { %>
                                         <li>

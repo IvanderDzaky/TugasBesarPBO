@@ -14,7 +14,7 @@ public class Dashboard extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("index.jsp?page=dashboard");
+         request.getRequestDispatcher("index.jsp?page=dashboard").forward(request, response);
     }
 
     @Override

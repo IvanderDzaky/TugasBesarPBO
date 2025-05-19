@@ -48,6 +48,14 @@ public class Admins extends HttpServlet {
                     handleUpdateCustomer(admin, request, response);
                     break;
 
+                case "tambahFasilitas":
+                    handleTambahFasilitas(admin, request, response);
+                    break;
+                    
+                case "hapusFasilitas":
+                    handleHapusFasilitas(admin,request,response);
+                    break;
+                    
                 default:
                     request.getSession().setAttribute("errorMsg", "Aksi tidak dikenali.");
                     response.sendRedirect("Admins");
@@ -89,7 +97,7 @@ public class Admins extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMsg", "Gagal menghapus customer.");
         }
-        response.sendRedirect("Admins");
+        response.sendRedirect("Admins#customer");
     }
 
     private void handleTambahCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -109,7 +117,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat registrasi.");
         }
 
-        response.sendRedirect("Admins");
+        response.sendRedirect("Admins#customer");
     }
 
     private void handleUpdateCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -129,9 +137,39 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Gagal memperbarui data customer.");
         }
 
-        response.sendRedirect("Admins");
+        response.sendRedirect("Admins#customer");
     }
 
+    private void handleTambahFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String nama = request.getParameter("nama");
+        try {
+            Fasilitas fasilitas = new Fasilitas(nama);
+            admin.tambahFasilitas(fasilitas);
+            request.getSession().setAttribute("successMsg", "Berhasil menambahkan fasilitas.");
+        } catch (SQLIntegrityConstraintViolationException e) {
+            request.getSession().setAttribute("errorMsg", "Fasilitas sudah tersedia.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat menambahkan fasilitas.");
+        }
+
+        response.sendRedirect("Admins#fasilitas");
+    }
+
+    private void handleHapusFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        try {
+            int idFasilitas = Integer.parseInt(request.getParameter("idFasilitas"));
+            admin.hapusFasilitas(idFasilitas);
+            request.getSession().setAttribute("successMsg", "Fasilitas berhasil dihapus.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getSession().setAttribute("errorMsg", "Gagal menghapus Fasilitas.");
+        }
+        response.sendRedirect("Admins#fasilitas");
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

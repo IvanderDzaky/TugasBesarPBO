@@ -48,7 +48,7 @@
             }
         </script>
         <%
-            String errorMsg = (String) request.getAttribute("errorMsg");
+            String errorMsg = (String) session.getAttribute("errorMsg");
             String successMsg = (String) session.getAttribute("successMsg");
             if (successMsg != null) {
                 session.removeAttribute("successMsg"); // agar tidak tampil lagi di refresh
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <a class="mouse smoothscroll" href="index.jsp?page=home#next">
+            <a class="mouse smoothscroll" href="#next">
                 <div class="mouse-icon">
                     <span class="mouse-wheel"></span>
                 </div>
@@ -99,7 +99,7 @@
                     <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
                         <h2 class="heading">Welcome!</h2>
                         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        <p><a href="index.jsp?page=rooms" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://youtu.be/A3eDzR1BmEo?si=d9Ym43JyEs81oQ20"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
+                        <p><a href="Rooms" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://youtu.be/A3eDzR1BmEo?si=d9Ym43JyEs81oQ20"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
                     </div>
 
                 </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <a href="index.jsp?page=rooms" class="room">
+                        <a href="Rooms" class="room">
                             <figure class="img-wrap">
                                 <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
                             </figure>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <a href="index.jsp?page=rooms#" class="room">
+                        <a href="Rooms" class="room">
                             <figure class="img-wrap">
                                 <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
                             </figure>
@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                        <a href="index.jsp?page=rooms" class="room">
+                        <a href="Rooms" class="room">
                             <figure class="img-wrap">
                                 <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
                             </figure>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
-                    <a href="index.jsp?page=rooms" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Room >>></a>
+                    <a href="Rooms" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Room >>></a>
                 </div>
             </div>
         </section>
@@ -224,34 +224,34 @@
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$20.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Murgh Tikka Masala</a></h3>
+                                        <h3 class="text-white">Murgh Tikka Masala</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$35.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Fish Moile</a></h3>
+                                        <h3 class="text-white">Fish Moile</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$15.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Safed Ghost</a></h3>
+                                        <h3 class="text-white">Safed Ghost</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$10.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">French Toast Combo</a></h3>
+                                        <h3 class="text-white">French Toast Combo</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$8.35</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Vegie Omelet</a></h3>
+                                        <h3 class="text-white">Vegie Omelet</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$22.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Chorizo &amp; Egg Omelet</a></h3>
+                                        <h3 class="text-white">Chorizo &amp; Egg Omelet</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
@@ -265,34 +265,34 @@
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$11.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Banana Split</a></h3>
+                                        <h3 class="text-white">Banana Split</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$72.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Sticky Toffee Pudding</a></h3>
+                                        <h3 class="text-white">Sticky Toffee Pudding</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$26.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Pecan</a></h3>
+                                        <h3 class="text-white">Pecan</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$42.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Apple Strudel</a></h3>
+                                        <h3 class="text-white">Apple Strudel</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$7.35</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Pancakes</a></h3>
+                                        <h3 class="text-white">Pancakes</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$22.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Ice Cream Sundae</a></h3>
+                                        <h3 class="text-white">Ice Cream Sundae</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
@@ -303,34 +303,34 @@
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$32.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Spring Water</a></h3>
+                                        <h3 class="text-white">Spring Water</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$14.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Coke, Diet Coke, Coke Zero</a></h3>
+                                        <h3 class="text-white">Coke, Diet Coke, Coke Zero</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$93.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Orange Fanta</a></h3>
+                                        <h3 class="text-white">Orange Fanta</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$18.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Lemonade, Lemon Squash</a></h3>
+                                        <h3 class="text-white">Lemonade, Lemon Squash</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$38.35</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Sparkling Mineral Water</a></h3>
+                                        <h3 class="text-white">Sparkling Mineral Water</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">$69.00</span>
-                                        <h3 class="text-white"><a href="index.jsp?page=home#" class="text-white">Lemon, Lime &amp; Bitters</a></h3>
+                                        <h3 class="text-white">Lemon, Lime &amp; Bitters</h3>
                                         <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                     </div>
                                 </div>
@@ -436,10 +436,10 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
 
                         <div class="media media-custom d-block mb-4 h-100">
-                            <a href="index.jsp?page=home#" class="mb-4 d-block"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                            <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
                             <div class="media-body">
                                 <span class="meta-post">February 26, 2018</span>
-                                <h2 class="mt-0 mb-3"><a href="index.jsp?page=home#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
+                                <h2 class="mt-0 mb-3"><a href="#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
                                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                             </div>
                         </div>
@@ -447,20 +447,20 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
                         <div class="media media-custom d-block mb-4 h-100">
-                            <a href="index.jsp?page=home#" class="mb-4 d-block"><img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                            <img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid">
                             <div class="media-body">
                                 <span class="meta-post">February 26, 2018</span>
-                                <h2 class="mt-0 mb-3"><a href="index.jsp?page=home#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
+                                <h2 class="mt-0 mb-3"><a href="#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
                                 <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
                         <div class="media media-custom d-block mb-4 h-100">
-                            <a href="index.jsp?page=home#" class="mb-4 d-block"><img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                           <img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid">
                             <div class="media-body">
                                 <span class="meta-post">February 26, 2018</span>
-                                <h2 class="mt-0 mb-3"><a href="index.jsp?page=home#">30 Great Ideas On Gifts For Travelers</a></h2>
+                                <h2 class="mt-0 mb-3"><a href="#">30 Great Ideas On Gifts For Travelers</a></h2>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
                             </div>
                         </div>
@@ -476,7 +476,7 @@
                         <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
                     </div>
                     <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                        <a href="index.jsp?page=reservation" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                        <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
                     </div>
                 </div>
             </div>
@@ -566,8 +566,3 @@
 
     </body>
 </html>
-<script>
-  $('#ubahModal').on('shown.bs.modal', function () {
-    $('#tanggalBaruCheckIn').trigger('focus');
-  });
-</script>

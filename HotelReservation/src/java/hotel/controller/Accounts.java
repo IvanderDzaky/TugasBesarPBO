@@ -21,7 +21,7 @@ public class Accounts extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            response.sendRedirect("index.jsp?page=accounts");
+            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
             return;
         }
 
@@ -51,34 +51,34 @@ public class Accounts extends HttpServlet {
         String password = request.getParameter("password");
 
         if (email == null || password == null || email.trim().isEmpty() || password.trim().isEmpty()) {
-            request.setAttribute("errorMsg", "Email dan password wajib diisi.");
-            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+            request.getSession().setAttribute("errorMsg", "Email dan password wajib diisi.");
+            response.sendRedirect("Accounts");
             return;
         }
 
         try {
             User user = User.login(email, password);
             if (user != null) {
-                HttpSession session = request.getSession(); 
                 user.info(request);
-                session.setAttribute("successMsg", "Selamat datang, " + user.getNama());
-                response.sendRedirect("index.jsp?page=home");
+                request.getSession().setAttribute("successMsg", "Selamat datang, " + user.getNama());
+                response.sendRedirect("Home");
+                return;
             } else {
-                request.setAttribute("errorMsg", "Email atau password salah.");
-                request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+                request.getSession().setAttribute("errorMsg", "Email atau password salah.");
             }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Terjadi kesalahan saat login.");
-            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+
         }
+        response.sendRedirect("Admins");
     }
 
     private void handleLogout(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession(false);
         User.logout(session);
-        response.sendRedirect("index.jsp?page=accounts");
+        response.sendRedirect("Accounts");
     }
 
     private void handleRegister(HttpServletRequest request, HttpServletResponse response)
@@ -90,30 +90,26 @@ public class Accounts extends HttpServlet {
 
         if (nama == null || email == null || password == null
                 || nama.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty()) {
-            request.setAttribute("errorMsg", "Nama, email, dan password wajib diisi.");
-            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+            request.getSession().setAttribute("errorMsg", "Nama, email, dan password wajib diisi.");
+            response.sendRedirect("Accounts");
             return;
         }
 
         try {
             Customer customer = new Customer(nama, email, password);
             if (customer.register()) {
-                HttpSession session = request.getSession();
-                session.setAttribute("successMsg", "Registrasi berhasil! Silakan login.");
-                response.sendRedirect("index.jsp?page=accounts");
+                request.getSession().setAttribute("successMsg", "Registrasi berhasil! Silakan login.");
             } else {
-                request.setAttribute("errorMsg", "Registrasi gagal, email sudah terdaftar.");
-                request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+                request.getSession().setAttribute("errorMsg", "Registrasi gagal, email sudah terdaftar.");
             }
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            request.setAttribute("errorMsg", "Email sudah terdaftar. Silakan gunakan email lain.");
-            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
+            request.getSession().setAttribute("errorMsg", "Email sudah terdaftar. Silakan gunakan email lain.");
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Terjadi kesalahan saat registrasi. Silakan coba lagi.");
-            request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
         }
+        response.sendRedirect("Accounts");
     }
 
     @Override
