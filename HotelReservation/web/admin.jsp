@@ -130,19 +130,27 @@
             </div>
 
             <!-- Kamar Form -->
+            <% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
             <div id="kamarForm" class="form-section mb-3" style="display: none;">
                 <form class="form-inline" action="Admins?action=tambahKamar" method="post">
                     <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
                     <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
                     <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
                     <input type="number" name="Max Guest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
-                    <select many name="Fasilitas" class="form-control mb-2 mr-sm-2" required>
-                        <option value="AC">AC</option>
-                        <option value="Cleaning">Cleaning Service</option>
-                        <option value="Shower">Shower</option>
-                        <option value="TV">TV</option>
-                        <option value="WiFI">WiFi</option>
-                    </select>
+                    <div class="form-control mb-2 mr-sm-2">
+                        <%
+                            if (daftarFasilitas != null) {
+                                for (Fasilitas f : daftarFasilitas) {
+                        %>
+                        <label>
+                            <input type="checkbox" name="fasilitas" value="<%= f.getNamaFasilitas()%>">
+                            <%= f.getNamaFasilitas()%>
+                        </label>
+                        <%
+                                }
+                            }
+                        %>
+                    </div>
                     <select name="status" class="form-control mb-2 mr-sm-2" required>
                         <option value="Tersedia">Tersedia</option>
                         <option value="Terisi">Terisi</option>
@@ -269,7 +277,6 @@
                 </thead>
                 <tbody>
                     <%
-                        List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas");
                         if (daftarFasilitas != null) {
                             for (Fasilitas f : daftarFasilitas) {
                     %>

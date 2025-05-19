@@ -1,4 +1,6 @@
-
+<%@ page import="java.util.*" %>
+<%@ page import="hotel.model.*" %>
+<% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -70,16 +72,25 @@
                         </div>
                         <!-- Facilities -->
                         <div class="col-md-6 col-lg-2 mb-3">
-                            <label for="facilities" class="font-weight-bold text-black">Facilities</label>
-                            <div class="field-icon-wrap">
-                                <div class="icon">=</div>
-                                <select id="facilities" class="form-control">
-                                    <option value="">Wifi, Television, Air Conditioner, Water Heater, Cleaning</option>
-                                    <option value="">Wifi, Air Conditioner, Water Heater, Cleaning</option>
-                                    <option value="">Wifi, Air Conditioner, Cleaning</option>
-                                    <option value="">Air Conditioner, Cleaning</option>
-                                    <option value="">Air Conditioner</option>
-                                </select>
+                            <label class="font-weight-bold text-black d-block">Facilities</label>
+                            <div class="form-control">
+                                <%
+                                    if (daftarFasilitas != null) {
+                                        for (Fasilitas f : daftarFasilitas) {
+                                %>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                           name="fasilitas" 
+                                           value="<%= f.getNamaFasilitas()%>"
+                                           id="facility_<%= f.getNamaFasilitas()%>">
+                                    <label class="form-check-label" for="facility_<%= f.getNamaFasilitas()%>">
+                                        <%= f.getNamaFasilitas()%>
+                                    </label>
+                                </div>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
                         </div>
                         <!-- Button -->
