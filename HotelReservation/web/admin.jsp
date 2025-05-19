@@ -66,7 +66,13 @@
             <!-- Customer Table -->
             <table class="table table-hover">
                 <thead>
-                    <tr><th>Nama</th><th>Email</th><th>Password</th><th>Dibuat Pada</th><th>Aksi</th></tr>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Dibuat Pada</th>
+                        <th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <%
@@ -75,25 +81,28 @@
                             for (hotel.model.Customer c : daftarCustomer) {
                     %>
                     <tr>
-                        <td><%= c.getNama()%></td>
-                        <td><%= c.getEmail()%></td>
-                        <td><%= c.getPassword()%></td>
-                        <td><%= c.getCreatedAt()%></td>
+                        <td><%= c.getNama() %></td>
+                        <td><%= c.getEmail() %></td>
+                        <td><%= c.getPassword() %></td>
+                        <td><%= c.getCreatedAt() %></td>
                         <td>
                             <button class="btn btn-sm btn-warning"
-                                    onclick="showEditForm('<%= c.getIdUser()%>', '<%= c.getNama()%>', '<%= c.getEmail()%>', '<%= c.getPassword()%>')">
+                                onclick="showEditForm('<%= c.getIdUser() %>', '<%= c.getNama() %>', '<%= c.getEmail() %>', '<%= c.getPassword() %>')">
                                 Edit
                             </button>
-
-                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser()%>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser() %>" 
+                               class="btn btn-sm btn-danger" 
+                               onclick="return confirm('Yakin hapus data ini?')">
+                               Hapus
+                            </a>
                         </td>
                     </tr>
                     <%
-                        }
-                    } else {
+                            }
+                        } else {
                     %>
                     <tr>
-                        <td colspan="3" class="text-center">Tidak ada data customer</td>
+                        <td colspan="5" class="text-center">Tidak ada data customer</td>
                     </tr>
                     <%
                         }
@@ -110,7 +119,6 @@
                         <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="hideEditForm()">Batal</button>
                     </form>
                 </div>
-
             </table>
         </div>
 
@@ -237,6 +245,7 @@
                 </tbody>
             </table>
         </div>
+        
         <!-- Fasilitas Tab -->
         <div class="tab-pane fade" id="fasilitas" role="tabpanel">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -293,32 +302,36 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-                                   function showEditForm(id, nama, email, password) {
-                                       document.getElementById('editIdUser').value = id;
-                                       document.getElementById('editNama').value = nama;
-                                       document.getElementById('editEmail').value = email;
-                                       document.getElementById('editPassword').value = password;
+    function showEditForm(id, nama, email, password) {
+    document.getElementById('editIdUser').value = id;
+    document.getElementById('editNama').value = nama;
+    document.getElementById('editEmail').value = email;
+    document.getElementById('editPassword').value = password;
 
-                                       // Tampilkan form edit
-                                       document.getElementById('editCustomerForm').style.display = 'block';
+    // Tampilkan form edit
+    document.getElementById('editCustomerForm').style.display = 'block';
 
-                                       // Sembunyikan form tambah (opsional)
-                                       document.getElementById('customerForm').style.display = 'none';
-                                   }
+    // Sembunyikan form tambah (opsional)
+    document.getElementById('customerForm').style.display = 'none';
+    }
 
-                                   function hideEditForm() {
-                                       document.getElementById('editCustomerForm').style.display = 'none';
-                                   }
-                                   function hideTambahForm() {
-                                       document.getElementById('customerForm').style.display = 'none';
-                                   }
-                                   function toggleForm(formId) {
-                                       const form = document.getElementById(formId);
-                                       form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    function hideEditForm() {
+        document.getElementById('editCustomerForm').style.display = 'none';
+    }
 
-                                       // Sembunyikan form edit kalau form tambah dibuka
-                                       if (formId === 'customerForm') {
-                                           document.getElementById('editCustomerForm').style.display = 'none';
-                                       }
-                                   }
+    function hideTambahForm() {
+        document.getElementById('customerForm').style.display = 'none';
+    }
+
+    function toggleForm(formId) {
+        const form = document.getElementById(formId);
+        // Cek current display secara lebih robust
+        const isHidden = window.getComputedStyle(form).display === 'none';
+        form.style.display = isHidden ? 'block' : 'none';
+
+        // Jika membuka form tambah, sembunyikan form edit
+        if (formId === 'customerForm') {
+            document.getElementById('editCustomerForm').style.display = 'none';
+        }
+    }
 </script>
