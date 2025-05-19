@@ -133,7 +133,14 @@
             <div id="kamarForm" class="form-section mb-3" style="display: none;">
                 <form class="form-inline" action="Admins?action=tambahKamar" method="post">
                     <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
-                    <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
+                    <select name="tipe" class="form-control mb-2 mr-sm-2" required>
+                        <option value="Single Room">Single Room</option>
+                        <option value="Family Room">Family Room</option>
+                        <option value="Presidential Room">Presidential Room</option>
+                        <option value="Suite">Suite</option>
+                        <option value="VIP Suite">VIP Suite</option>
+                        <option value="Deluxe Suite">Deluxe Suite</option>
+                    </select>
                     <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
                     <input type="number" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
                     <div class="form-control mb-2 mr-sm-2">
@@ -216,7 +223,14 @@
                     <form class="form-inline" action="Admins?action=updateKamar" method="post">
                         <input type="hidden" id="editIdKamar" name="idKamar">
                         <input type="text" id="editNomorKamar" name="nomorKamar" class="form-control mb-2 mr-sm-2" placeholder="Nomor Kamar" required>
-                        <input type="text" id="editTipeKamar" name="tipeKamar" class="form-control mb-2 mr-sm-2" placeholder="Tipe Kamar" required>
+                        <select name="tipeKamar" id="editTipeKamar" class="form-control mb-2 mr-sm-2" required>
+                            <option value="Single Room">Single Room</option>
+                            <option value="Family Room">Family Room</option>
+                            <option value="Presidential Room">Presidential Room</option>
+                            <option value="Suite">Suite</option>
+                            <option value="VIP Suite">VIP Suite</option>
+                            <option value="Deluxe Suite">Deluxe Suite</option>
+                        </select>
                         <input type="number" id="editHargaKamar" name="hargaKamar" class="form-control mb-2 mr-sm-2" placeholder="Harga Kamar" required>
                         <input type="number" id="editMaxGuest" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
                         <div class="form-control mb-2 mr-sm-2">

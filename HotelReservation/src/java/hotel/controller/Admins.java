@@ -109,7 +109,7 @@ public class Admins extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMsg", "Gagal menghapus customer.");
         }
-        response.sendRedirect("Admins#customer");
+        response.sendRedirect("Admins");
     }
 
     private void handleTambahCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -129,7 +129,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat registrasi.");
         }
 
-        response.sendRedirect("Admins#customer");
+        response.sendRedirect("Admins");
     }
 
     private void handleUpdateCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -149,7 +149,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Gagal memperbarui data customer.");
         }
 
-        response.sendRedirect("Admins#customer");
+        response.sendRedirect("Admins");
     }
 
     private void handleTambahKamar(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -192,7 +192,7 @@ public class Admins extends HttpServlet {
         } else {
             request.getSession().setAttribute("errorMsg", "Nomor kamar sama, gunakan ruangan lain");
         }
-        response.sendRedirect("Admins#kamar");
+        response.sendRedirect("Admins");
     }
 
     private void handleHapusKamar(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -220,7 +220,7 @@ public class Admins extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan sistem.");
         }
-        response.sendRedirect("Admins#kamar");
+        response.sendRedirect("Admins");
     }
 
     private void handleUpdateKamar(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -234,8 +234,6 @@ public class Admins extends HttpServlet {
             int maxGuest = Integer.parseInt(request.getParameter("maxGuest"));
             String status = request.getParameter("status");
             boolean isTersedia = status.equalsIgnoreCase("Tersedia");
-
-            System.out.println(">> UPDATE KAMAR: ID = " + idKamar);
 
             // Ambil fasilitas dari checkbox
             String[] fasilitasParam = request.getParameterValues("fasilitas");
@@ -272,7 +270,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat update.");
         }
 
-        response.sendRedirect("Admins#kamar");
+        response.sendRedirect("Admins");
     }
 
     private void handleTambahFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -289,7 +287,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat menambahkan fasilitas.");
         }
 
-        response.sendRedirect("Admins#fasilitas");
+        response.sendRedirect("Admins");
     }
 
     private void handleHapusFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -302,7 +300,7 @@ public class Admins extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMsg", "Gagal menghapus Fasilitas.");
         }
-        response.sendRedirect("Admins#fasilitas");
+        response.sendRedirect("Admins");
     }
 
     @Override
