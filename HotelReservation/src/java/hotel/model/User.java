@@ -3,6 +3,7 @@ package hotel.model;
 import hotel.config.SqlConnect;
 import java.sql.*;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 public abstract class User {
 
@@ -62,9 +63,9 @@ public abstract class User {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
-    
+
     // method
-    public abstract void info();
+    public abstract void info(HttpServletRequest request);
 
     public static User login(String email, String password) throws SQLException {
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";

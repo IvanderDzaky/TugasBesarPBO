@@ -1,6 +1,8 @@
 package hotel.model;
 
 import hotel.config.SqlConnect;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.*;
 
@@ -9,14 +11,20 @@ public class Admin extends User {
     private List<Customer> daftarCustomer;
     private List<Kamar> daftarKamar;
     private List<Reservasi> daftarReservasi;
+    private List<Fasilitas> daftarFasilitas;
 
     public Admin(String nama, String email, String password) {
         super(nama, email, password);
     }
 
     @Override
-    public void info() {
-        System.out.println("Admin: " + nama + " (" + email + ")");
+    public void info(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", getIdUser());
+        session.setAttribute("userName", getNama());
+        session.setAttribute("userEmail", getEmail());
+        session.setAttribute("isAdmin", this instanceof Admin);
+        session.setAttribute("userCreatedAt", getCreatedAt());
     }
 
     public void tambahCustomer(Customer customer) throws SQLException {
@@ -106,4 +114,44 @@ public class Admin extends User {
         }
     }
 
+    public List<Kamar> lihatKamar() throws SQLException {
+        List<Kamar> daftarKamar = new ArrayList<>();
+        Connection conn = SqlConnect.getConnection();
+        String query = "SELECT * FROM Kamar";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Kamar k = new Kamar(
+                        rs.getString("nomor_kamar"),
+                        rs.getString("tipe"),
+                        rs.getDouble("harga"),
+                        rs.getBoolean("status"),
+                        rs.getInt("max_guest")
+                );
+                k.setIdKamar(rs.getInt("id_kamar"));
+                k.setFasilitasList(k.lihatFasilitasKamar());
+                daftarKamar.add(k);
+            }
+        }
+
+        return daftarKamar;
+    }
+    public List<Fasilitas> lihatFasilitas() throws SQLException {
+        List<Fasilitas> daftarFasilitas = new ArrayList<>();
+        Connection conn = SqlConnect.getConnection();
+        String sql = "SELECT * FROM fasilitas";
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Fasilitas fasilitas = new Fasilitas(
+                        rs.getInt("id_fasilitas"),
+                        rs.getString("nama_fasilitas")
+                );
+                daftarFasilitas.add(fasilitas);
+            }
+        }
+
+        return daftarFasilitas;
+    }
 }

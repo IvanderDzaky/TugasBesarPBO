@@ -3,6 +3,8 @@ package hotel.model;
 import hotel.config.SqlConnect;
 import java.sql.*;
 import java.util.*;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class Customer extends User {
 
@@ -17,8 +19,13 @@ public class Customer extends User {
     }
 
     @Override
-    public void info() {
-        System.out.println("Customer: " + nama + " (" + email + ")");
+    public void info(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", getIdUser());
+        session.setAttribute("userName", getNama());
+        session.setAttribute("userEmail", getEmail());
+        session.setAttribute("isAdmin", false);
+        session.setAttribute("userCreatedAt", getCreatedAt());
     }
 
     public boolean register() throws SQLException {
@@ -32,7 +39,7 @@ public class Customer extends User {
             return stmt.executeUpdate() > 0;
         }
     }
-    
+
     public boolean buatReservasi() throws SQLException {
         String sql = "INSERT INTO reservasi (id_user, id_kamar, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -45,5 +52,5 @@ public class Customer extends User {
             return stmt.executeUpdate() > 0;
         }
     }
-    
+
 }

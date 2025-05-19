@@ -40,15 +40,15 @@
                                         </li>
                                         <% if (!loggedIn) {%>
                                         <li class="<%= "accounts".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="UserController">Accounts</a>
+                                            <a href="Accounts">Accounts</a>
                                         </li>
                                         <% } else if (!isAdmin) {%>
                                         <li class="<%= "dashboard".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="index.jsp?page=dashboard">Dashboard</a>
+                                            <a href="Dashboard">Dashboard</a>
                                         </li>
                                         <% } else {%>
                                         <li class="<%= "admin".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="AdminController">Admins</a>
+                                            <a href="Admins">Admins</a>
                                         </li>
                                         <% }%>
                                         <li class="<%= "rooms".equals(request.getParameter("page")) ? "active" : ""%>">
@@ -62,7 +62,7 @@
                                         </li>
                                         <% if (loggedIn) { %>
                                         <li>
-                                            <a href="UserController?action=logout">Logout</a>
+                                            <a href="Accounts?action=logout">Logout</a>
                                         </li>
                                         <% }%>
                                     </ul>

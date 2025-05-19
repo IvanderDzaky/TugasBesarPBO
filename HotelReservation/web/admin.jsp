@@ -32,6 +32,9 @@
         <li class="nav-item">
             <a class="nav-link" id="reservasi-tab" data-toggle="tab" href="#reservasi" role="tab">Reservasi</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="fasilitas-tab" data-toggle="tab" href="#fasilitas" role="tab">Fasilitas</a>
+        </li>
     </ul>
 
     <!-- Tab Content -->
@@ -46,7 +49,7 @@
 
             <!-- Customer Form -->
             <div id="customerForm" class="form-section mb-3" style="display: none;">
-                <form class="form-inline" action="AdminController?action=tambahCustomer" method="post">
+                <form class="form-inline" action="Admins?action=tambahCustomer" method="post">
                     <input type="text" name="nama" class="form-control mb-2 mr-sm-2" placeholder="Nama" required>
                     <input type="email" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email" required>
                     <input type="password" name="password" class="form-control mb-2 mr-sm-2" placeholder="Password" required>
@@ -62,7 +65,7 @@
                 </thead>
                 <tbody>
                     <%
-                        List<hotel.model.Customer> daftarCustomer = (List<hotel.model.Customer>) request.getAttribute("daftarCustomer");
+                        List<Customer> daftarCustomer = (List<Customer>) request.getAttribute("daftarCustomer");
                         if (daftarCustomer != null && !daftarCustomer.isEmpty()) {
                             for (hotel.model.Customer c : daftarCustomer) {
                     %>
@@ -77,7 +80,7 @@
                                 Edit
                             </button>
 
-                            <a href="AdminController?action=hapusCustomer&idUser=<%= c.getIdUser()%>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser()%>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
                         </td>
                     </tr>
                     <%
@@ -93,7 +96,7 @@
                 </tbody>
                 <!-- Edit Customer Form -->
                 <div id="editCustomerForm" class="form-section mb-3" style="display: none;">
-                    <form class="form-inline" action="AdminController?action=updateCustomer" method="post">
+                    <form class="form-inline" action="Admins?action=updateCustomer" method="post">
                         <input type="hidden" id="editIdUser" name="idUser">
                         <input type="text" id="editNama" name="nama" class="form-control mb-2 mr-sm-2" placeholder="Nama" required>
                         <input type="email" id="editEmail" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email" required>
@@ -115,10 +118,18 @@
 
             <!-- Kamar Form -->
             <div id="kamarForm" class="form-section mb-3" style="display: none;">
-                <form class="form-inline" action="RoomController" method="post">
+                <form class="form-inline" action="Admins?action=tambahKamar" method="post">
                     <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
                     <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
                     <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
+                    <input type="number" name="Max Guest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                    <select many name="Fasilitas" class="form-control mb-2 mr-sm-2" required>
+                        <option value="AC">AC</option>
+                        <option value="Cleaning">Cleaning Service</option>
+                        <option value="Shower">Shower</option>
+                        <option value="TV">TV</option>
+                        <option value="WiFI">WiFi</option>
+                    </select>
                     <select name="status" class="form-control mb-2 mr-sm-2" required>
                         <option value="Tersedia">Tersedia</option>
                         <option value="Terisi">Terisi</option>
@@ -130,19 +141,52 @@
             <!-- Kamar Table -->
             <table class="table table-hover">
                 <thead>
-                    <tr><th>Nomor</th><th>Tipe</th><th>Harga</th><th>Status</th><th>Aksi</th></tr>
+                    <tr><th>Nomor</th><th>Tipe</th><th>Harga</th><th>Max Guest</th><th>Fasilitas</th><th>Status</th><th>Aksi</th></tr>
                 </thead>
                 <tbody>
+                    <%
+                        List<Kamar> daftarKamar = (List<Kamar>) request.getAttribute("daftarKamar");
+                        if (daftarKamar != null) {
+                            for (Kamar k : daftarKamar) {
+                    %>
                     <tr>
-                        <td>101</td>
-                        <td>Deluxe</td>
-                        <td>Rp500.000</td>
-                        <td><span class="badge badge-success">Tersedia</span></td>
+                        <td><%= k.getNomorKamar()%></td>
+                        <td><%= k.getTipe()%></td>
+                        <td>$<%= k.getHarga()%></td>
+                        <td><%= k.getMaxGuest()%></td>
                         <td>
-                            <a href="RoomController?action=edit&id=101" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="RoomController?action=delete&id=101" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus kamar ini?')">Hapus</a>
+                            <%
+                                List<Fasilitas> fasilitasList = k.getFasilitasList();
+                                for (int i = 0; i < fasilitasList.size(); i++) {
+                                    out.print(fasilitasList.get(i).getNamaFasilitas());
+                                    if (i < fasilitasList.size() - 1) {
+                                        out.print(", ");
+                                    }
+                                }
+                            %>
+                        </td>
+
+                        <td>
+                            <span class="badge <%= k.isTersedia() ? "badge-success" : "badge-secondary"%>">
+                                <%= k.isTersedia() ? "Tersedia" : "Terisi"%>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="Admin?action=edit&id=<%= k.getNomorKamar()%>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="Admin?action=delete&id=<%= k.getNomorKamar()%>" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Yakin hapus kamar ini?')">Hapus</a>
                         </td>
                     </tr>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <tr>
+                        <td colspan="3" class="text-center">Tidak ada data Kamar</td>
+                    </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
@@ -161,9 +205,48 @@
                         <td>101</td>
                         <td><span class="badge badge-warning">Dipesan</span></td>
                         <td>
-                            <a href="ReservationController?action=delete&id=R00123" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus reservasi ini?')">Hapus</a>
+                            <a href="Admins?action=delete&id=R00123" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus reservasi ini?')">Hapus</a>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Fasilitas Tab -->
+        <div class="tab-pane fade" id="fasilitas" role="tabpanel">
+            <h4>Data Fasilitas</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID Fasilitas</th>
+                        <th>Nama Fasilitas</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas");
+                        if (daftarFasilitas != null) {
+                            for (Fasilitas f : daftarFasilitas) {
+                    %>
+                    <tr>
+                        <td><%= f.getIdFasilitas()%></td>
+                        <td><%= f.getNamaFasilitas()%></td>
+                        <td>
+                            <a href="Admins?action=editFasilitas&id=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="Admins?action=deleteFasilitas&id=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Yakin ingin menghapus fasilitas ini?')">Hapus</a>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <tr>
+                        <td colspan="3">Tidak ada fasilitas ditemukan.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
@@ -174,32 +257,32 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-                                function showEditForm(id, nama, email, password) {
-                                    document.getElementById('editIdUser').value = id;
-                                    document.getElementById('editNama').value = nama;
-                                    document.getElementById('editEmail').value = email;
-                                    document.getElementById('editPassword').value = password;
+                           function showEditForm(id, nama, email, password) {
+                               document.getElementById('editIdUser').value = id;
+                               document.getElementById('editNama').value = nama;
+                               document.getElementById('editEmail').value = email;
+                               document.getElementById('editPassword').value = password;
 
-                                    // Tampilkan form edit
-                                    document.getElementById('editCustomerForm').style.display = 'block';
+                               // Tampilkan form edit
+                               document.getElementById('editCustomerForm').style.display = 'block';
 
-                                    // Sembunyikan form tambah (opsional)
-                                    document.getElementById('customerForm').style.display = 'none';
-                                }
+                               // Sembunyikan form tambah (opsional)
+                               document.getElementById('customerForm').style.display = 'none';
+                           }
 
-                                function hideEditForm() {
-                                    document.getElementById('editCustomerForm').style.display = 'none';
-                                }
-                                function hideTambahForm() {
-                                    document.getElementById('customerForm').style.display = 'none';
-                                }
-                                function toggleForm(formId) {
-                                    const form = document.getElementById(formId);
-                                    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                           function hideEditForm() {
+                               document.getElementById('editCustomerForm').style.display = 'none';
+                           }
+                           function hideTambahForm() {
+                               document.getElementById('customerForm').style.display = 'none';
+                           }
+                           function toggleForm(formId) {
+                               const form = document.getElementById(formId);
+                               form.style.display = form.style.display === 'none' ? 'block' : 'none';
 
-                                    // Sembunyikan form edit kalau form tambah dibuka
-                                    if (formId === 'customerForm') {
-                                        document.getElementById('editCustomerForm').style.display = 'none';
-                                    }
-                                }
+                               // Sembunyikan form edit kalau form tambah dibuka
+                               if (formId === 'customerForm') {
+                                   document.getElementById('editCustomerForm').style.display = 'none';
+                               }
+                           }
 </script>
