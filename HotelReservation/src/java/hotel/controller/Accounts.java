@@ -39,7 +39,7 @@ public class Accounts extends HttpServlet {
                 break;
 
             default:
-                response.sendRedirect("index.jsp?page=accounts");
+                response.sendRedirect("Accounts");
                 break;
         }
     }
@@ -71,7 +71,7 @@ public class Accounts extends HttpServlet {
             request.setAttribute("errorMsg", "Terjadi kesalahan saat login.");
 
         }
-        response.sendRedirect("Admins");
+        response.sendRedirect("Accounts");
     }
 
     private void handleLogout(HttpServletRequest request, HttpServletResponse response)
