@@ -117,7 +117,7 @@ public class Admin extends User {
     public List<Kamar> lihatKamar() throws SQLException {
         List<Kamar> daftarKamar = new ArrayList<>();
         Connection conn = SqlConnect.getConnection();
-        String query = "SELECT * FROM Kamar";
+        String query = "SELECT * FROM Kamar ORDER BY nomor_kamar";
 
         try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 
@@ -136,6 +136,21 @@ public class Admin extends User {
         }
 
         return daftarKamar;
+    }
+
+    // Tambah Kamar
+    public boolean tambahKamar(Kamar kamar) throws SQLException {
+        return kamar.saveToDB();
+    }
+
+    // Update Kamar
+    public boolean updateKamar(Kamar kamar) throws SQLException {
+        return kamar.updateToDB();
+    }
+
+    // Hapus Kamar
+    public boolean hapusKamar(int idKamar) throws SQLException {
+        return Kamar.deleteFromDB(idKamar);
     }
 
     public List<Fasilitas> lihatFasilitas() throws SQLException {

@@ -1,8 +1,6 @@
 package hotel.controller;
 
-import hotel.model.Admin;
-import hotel.model.Customer;
-import hotel.model.User;
+import hotel.model.*;
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import jakarta.servlet.ServletException;

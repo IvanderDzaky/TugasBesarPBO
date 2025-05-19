@@ -12,6 +12,7 @@ public abstract class User {
     protected String email;
     protected String password;
     protected Timestamp createdAt;
+    protected boolean isAdmin;
 
     // Constructor
     public User() {
@@ -43,11 +44,15 @@ public abstract class User {
     public Timestamp getCreatedAt() {
         return createdAt;
     }
-
+    
+    public boolean getIsAdmin() {
+        return isAdmin;
+    } 
+    
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
-
+    
     public void setNama(String nama) {
         this.nama = nama;
     }
@@ -63,7 +68,11 @@ public abstract class User {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
-
+    
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
     // method
     public abstract void info(HttpServletRequest request);
 

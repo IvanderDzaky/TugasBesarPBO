@@ -59,7 +59,6 @@
                     <input type="email" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email" required>
                     <input type="password" name="password" class="form-control mb-2 mr-sm-2" placeholder="Password" required>
                     <button type="submit" class="btn btn-success mb-2">Simpan</button>
-                    <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="hideTambahForm()">Batal</button>
                 </form>
             </div>
 
@@ -78,28 +77,28 @@
                     <%
                         List<Customer> daftarCustomer = (List<Customer>) request.getAttribute("daftarCustomer");
                         if (daftarCustomer != null && !daftarCustomer.isEmpty()) {
-                            for (hotel.model.Customer c : daftarCustomer) {
+                            for (Customer c : daftarCustomer) {
                     %>
                     <tr>
-                        <td><%= c.getNama() %></td>
-                        <td><%= c.getEmail() %></td>
-                        <td><%= c.getPassword() %></td>
-                        <td><%= c.getCreatedAt() %></td>
+                        <td style="max-width: 200px; word-wrap: break-word; white-space: normal;"><%= c.getNama()%></td>
+                        <td style="max-width: 200px; word-wrap: break-word; white-space: normal;"><%= c.getEmail()%></td>
+                        <td style="max-width: 200px; word-wrap: break-word; white-space: normal;"><%= c.getPassword()%></td>
+                        <td><%= c.getCreatedAt()%></td>
                         <td>
                             <button class="btn btn-sm btn-warning"
-                                onclick="showEditForm('<%= c.getIdUser() %>', '<%= c.getNama() %>', '<%= c.getEmail() %>', '<%= c.getPassword() %>')">
+                                    onclick="showEditForm('<%= c.getIdUser()%>', '<%= c.getNama()%>', '<%= c.getEmail()%>', '<%= c.getPassword()%>')">
                                 Edit
                             </button>
-                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser() %>" 
+                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser()%>" 
                                class="btn btn-sm btn-danger" 
                                onclick="return confirm('Yakin hapus data ini?')">
-                               Hapus
+                                Hapus
                             </a>
                         </td>
                     </tr>
                     <%
-                            }
-                        } else {
+                        }
+                    } else {
                     %>
                     <tr>
                         <td colspan="5" class="text-center">Tidak ada data customer</td>
@@ -136,20 +135,16 @@
                     <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
                     <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
                     <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
-                    <input type="number" name="Max Guest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                    <input type="number" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
                     <div class="form-control mb-2 mr-sm-2">
-                        <%
-                            if (daftarFasilitas != null) {
-                                for (Fasilitas f : daftarFasilitas) {
-                        %>
+                        <% if (daftarFasilitas != null) {
+                                for (Fasilitas f : daftarFasilitas) {%>
                         <label>
-                            <input type="checkbox" name="fasilitas" value="<%= f.getNamaFasilitas()%>">
+                            <input type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>">
                             <%= f.getNamaFasilitas()%>
                         </label>
-                        <%
-                                }
-                            }
-                        %>
+                        <%  }
+                            } %>
                     </div>
                     <select name="status" class="form-control mb-2 mr-sm-2" required>
                         <option value="Tersedia">Tersedia</option>
@@ -162,12 +157,14 @@
             <!-- Kamar Table -->
             <table class="table table-hover">
                 <thead>
-                    <tr><th>Nomor</th><th>Tipe</th><th>Harga</th><th>Max Guest</th><th>Fasilitas</th><th>Status</th><th>Aksi</th></tr>
+                    <tr>
+                        <th>Nomor</th><th>Tipe</th><th>Harga</th><th>Max Guest</th><th>Fasilitas</th><th>Status</th><th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <%
                         List<Kamar> daftarKamar = (List<Kamar>) request.getAttribute("daftarKamar");
-                        if (daftarKamar != null) {
+                        if (daftarKamar != null && !daftarKamar.isEmpty()) {
                             for (Kamar k : daftarKamar) {
                     %>
                     <tr>
@@ -175,7 +172,7 @@
                         <td><%= k.getTipe()%></td>
                         <td>$<%= k.getHarga()%></td>
                         <td><%= k.getMaxGuest()%></td>
-                        <td>
+                        <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
                             <%
                                 List<Fasilitas> fasilitasList = k.getFasilitasList();
                                 for (int i = 0; i < fasilitasList.size(); i++) {
@@ -186,37 +183,70 @@
                                 }
                             %>
                         </td>
-
                         <td>
                             <span class="badge <%= k.isTersedia() ? "badge-success" : "badge-secondary"%>">
                                 <%= k.isTersedia() ? "Tersedia" : "Terisi"%>
                             </span>
                         </td>
                         <td>
-                            <a href="Admins?action=edit&idKamar=<%= k.getNomorKamar()%>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="Admins?action=delete&idKamar=<%= k.getNomorKamar()%>" class="btn btn-sm btn-danger"
+                            <button class="btn btn-sm btn-warning"
+                                    data-id="<%= k.getIdKamar()%>"
+                                    data-nomor="<%= k.getNomorKamar()%>"
+                                    data-tipe="<%= k.getTipe()%>"
+                                    data-harga="<%= k.getHarga()%>"
+                                    data-maxguest="<%= k.getMaxGuest()%>"
+                                    data-status="<%= k.isTersedia() ? "Tersedia" : "Terisi"%>"
+                                    data-fasilitas="<%= String.join(",", k.getFasilitasList().stream().map(f -> String.valueOf(f.getIdFasilitas())).toArray(String[]::new))%>"
+                                    onclick="showEditKamarForm(this)">
+                                Edit
+                            </button>
+                            <a href="Admins?action=hapusKamar&idKamar=<%= k.getIdKamar()%>" class="btn btn-sm btn-danger"
                                onclick="return confirm('Yakin hapus kamar ini?')">Hapus</a>
                         </td>
                     </tr>
-                    <%
-                        }
-                    } else {
-                    %>
+                    <%  }
+                    } else { %>
                     <tr>
-                        <td colspan="3" class="text-center">Tidak ada data Kamar</td>
+                        <td colspan="7" class="text-center">Tidak ada data Kamar</td>
                     </tr>
-                    <%
-                        }
-                    %>
+                    <% } %>
                 </tbody>
+                <!-- Edit Kamar Form (Form tambah kamar hilang dan ini keluar tabel) -->
+                <div id="editKamarForm" class="form-section mb-3" style="display: none;">
+                    <form class="form-inline" action="Admins?action=updateKamar" method="post">
+                        <input type="hidden" id="editIdKamar" name="idKamar">
+                        <input type="text" id="editNomorKamar" name="nomorKamar" class="form-control mb-2 mr-sm-2" placeholder="Nomor Kamar" required>
+                        <input type="text" id="editTipeKamar" name="tipeKamar" class="form-control mb-2 mr-sm-2" placeholder="Tipe Kamar" required>
+                        <input type="number" id="editHargaKamar" name="hargaKamar" class="form-control mb-2 mr-sm-2" placeholder="Harga Kamar" required>
+                        <input type="number" id="editMaxGuest" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                        <div class="form-control mb-2 mr-sm-2">
+                            <% if (daftarFasilitas != null) {
+                                    for (Fasilitas f : daftarFasilitas) {%>
+                            <label>
+                                <input type="checkbox" class="editFasilitas" name="fasilitas" value="<%= f.getIdFasilitas()%>">
+                                <%= f.getNamaFasilitas()%>
+                            </label>
+                            <%  }
+                                } %>
+                        </div>
+                        <select id="editStatus" name="status" class="form-control mb-2 mr-sm-2" required>
+                            <option value="Tersedia">Tersedia</option>
+                            <option value="Terisi">Terisi</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary mb-2">Update</button>
+                        <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="hideEditForm()">Batal</button>
+                    </form>
+                </div>
             </table>
         </div>
+
+
 
         <!-- Reservasi Tab -->
         <div class="tab-pane fade" id="reservasi" role="tabpanel">
             <h4>Data Reservasi</h4>
             <table class="table table-hover">
-                <!-- Kamar Form -->
+                <!-- Reservasi Form -->
                 <div id="kamarForm" class="form-section mb-3" style="display: none;">
                     <form class="form-inline" action="Admins?action=tambahKamar" method="post">
                         <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
@@ -253,7 +283,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Fasilitas Tab -->
         <div class="tab-pane fade" id="fasilitas" role="tabpanel">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -284,7 +314,6 @@
                         <td><%= f.getIdFasilitas()%></td>
                         <td><%= f.getNamaFasilitas()%></td>
                         <td>
-                            <a href="Admins?action=editFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-warning">Edit</a>
                             <a href="Admins?action=hapusFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
                                onclick="return confirm('Yakin ingin menghapus fasilitas ini?')">Hapus</a>
                         </td>
@@ -309,36 +338,65 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-    function showEditForm(id, nama, email, password) {
-    document.getElementById('editIdUser').value = id;
-    document.getElementById('editNama').value = nama;
-    document.getElementById('editEmail').value = email;
-    document.getElementById('editPassword').value = password;
+                                   function showEditForm(id, nama, email, password) {
+                                       document.getElementById('editIdUser').value = id;
+                                       document.getElementById('editNama').value = nama;
+                                       document.getElementById('editEmail').value = email;
+                                       document.getElementById('editPassword').value = password;
 
-    // Tampilkan form edit
-    document.getElementById('editCustomerForm').style.display = 'block';
+                                       // Tampilkan form edit
+                                       document.getElementById('editCustomerForm').style.display = 'block';
 
-    // Sembunyikan form tambah (opsional)
-    document.getElementById('customerForm').style.display = 'none';
-    }
+                                       // Sembunyikan form tambah (opsional)
+                                       document.getElementById('customerForm').style.display = 'none';
+                                   }
 
-    function hideEditForm() {
-        document.getElementById('editCustomerForm').style.display = 'none';
-    }
+                                   function hideEditForm() {
+                                       document.getElementById('editCustomerForm').style.display = 'none';
+                                       document.getElementById('editKamarForm').style.display = 'none';
+                                   }
 
-    function hideTambahForm() {
-        document.getElementById('customerForm').style.display = 'none';
-    }
+                                   function hideTambahForm() {
+                                       document.getElementById('customerForm').style.display = 'none';
+                                       document.getElementById('kamarForm').style.display = 'none';
+                                   }
 
-    function toggleForm(formId) {
-        const form = document.getElementById(formId);
-        // Cek current display secara lebih robust
-        const isHidden = window.getComputedStyle(form).display === 'none';
-        form.style.display = isHidden ? 'block' : 'none';
+                                   function toggleForm(formId) {
+                                       const form = document.getElementById(formId);
+                                       const isHidden = window.getComputedStyle(form).display === 'none';
+                                       form.style.display = isHidden ? 'block' : 'none';
 
-        // Jika membuka form tambah, sembunyikan form edit
-        if (formId === 'customerForm') {
-            document.getElementById('editCustomerForm').style.display = 'none';
-        }
-    }
+                                       // Sembunyikan form edit saat membuka form tambah
+                                       if (formId === 'kamarForm') {
+                                           document.getElementById('editKamarForm').style.display = 'none';
+                                       } else if (formId === 'customerForm') {
+                                           document.getElementById('editCustomerForm').style.display = 'none';
+                                       }
+                                   }
+                                   function showEditKamarForm(button) {
+                                       document.getElementById('editKamarForm').style.display = 'block';
+
+                                       document.getElementById('editIdKamar').value = button.getAttribute('data-id');
+                                       document.getElementById('editNomorKamar').value = button.getAttribute('data-nomor');
+                                       document.getElementById('editTipeKamar').value = button.getAttribute('data-tipe');
+                                       document.getElementById('editHargaKamar').value = button.getAttribute('data-harga');
+                                       document.getElementById('editMaxGuest').value = button.getAttribute('data-maxguest');
+                                       document.getElementById('editStatus').value = button.getAttribute('data-status');
+
+                                       // Uncheck semua fasilitas dulu
+                                       document.querySelectorAll('.editFasilitas').forEach(cb => cb.checked = false);
+
+                                       // Tambahkan logika untuk men-check fasilitas yang sesuai jika ingin realtime (misal lewat data-fasilitas dari tombol)
+                                       const fasilitasStr = button.getAttribute('data-fasilitas');
+                                       if (fasilitasStr) {
+                                           const ids = fasilitasStr.split(',');
+                                           document.querySelectorAll('.editFasilitas').forEach(cb => {
+                                               if (ids.includes(cb.value))
+                                                   cb.checked = true;
+                                           });
+                                       }
+                                       // Sembunyikan form tambah (opsional)
+                                       document.getElementById('kamarForm').style.display = 'none';
+                                   }
+
 </script>
