@@ -4,6 +4,11 @@ import hotel.config.SqlConnect;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fasilitas {
 
@@ -44,5 +49,23 @@ public class Fasilitas {
         HttpSession session = request.getSession();
         session.setAttribute("idFasilitas", getIdFasilitas());
         session.setAttribute("idFasilitas", getNamaFasilitas());
+    }
+
+    public static List<Fasilitas> lihatFasilitas() throws SQLException {
+        List<Fasilitas> daftarFasilitas = new ArrayList<>();
+        Connection conn = SqlConnect.getConnection();
+        String sql = "SELECT * FROM fasilitas";
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Fasilitas fasilitas = new Fasilitas(
+                        rs.getInt("id_fasilitas"),
+                        rs.getString("nama_fasilitas")
+                );
+                daftarFasilitas.add(fasilitas);
+            }
+        }
+
+        return daftarFasilitas;
     }
 }

@@ -22,18 +22,19 @@
     </a>
 </section>
 <!-- END section -->
+<!-- END section -->
 <section class="section pb-4">
     <div class="container">
-        <div class="row check-availabilty" id="next">
-            <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-                <form action="Rooms">
+        <div class="row check-availability" id="next">
+            <div class="block-32 col-12" data-aos="fade-up" data-aos-offset="-200">
+                <form action="Rooms?action=checkAvailability" method="post">
                     <div class="row align-items-end">
                         <!-- Check In -->
                         <div class="col-md-6 col-lg-2 mb-3">
                             <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkin_date" class="form-control">
+                                <input type="text" id="checkin_date" name="checkin" class="form-control" placeholder="Select date">
                             </div>
                         </div>
                         <!-- Check Out -->
@@ -41,7 +42,7 @@
                             <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkout_date" class="form-control">
+                                <input type="text" id="checkout_date" name="checkout" class="form-control" placeholder="Select date">
                             </div>
                         </div>
                         <!-- Adults -->
@@ -49,11 +50,11 @@
                             <label for="adults" class="font-weight-bold text-black">Adults</label>
                             <div class="field-icon-wrap">
                                 <div class="icon">=</div>
-                                <select id="adults" class="form-control">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <select id="adults" name="adults" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4+</option>
                                 </select>
                             </div>
                         </div>
@@ -62,39 +63,33 @@
                             <label for="children" class="font-weight-bold text-black">Children</label>
                             <div class="field-icon-wrap">
                                 <div class="icon">=</div>
-                                <select id="children" class="form-control">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <select id="children" name="children" class="form-control">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4+</option>
                                 </select>
                             </div>
                         </div>
                         <!-- Facilities -->
-                        <div class="col-md-6 col-lg-2 mb-3">
+                        <div class="col-md-12 col-lg-2 mb-3">
                             <label class="font-weight-bold text-black d-block">Facilities</label>
-                            <div class="form-control">
-                                <%
-                                    if (daftarFasilitas != null) {
-                                        for (Fasilitas f : daftarFasilitas) {
-                                %>
+                            <div class="form-control" style="height:auto; overflow-y:auto; max-height:150px;">
+                                <% if (daftarFasilitas != null) {
+                                        for (Fasilitas f : daftarFasilitas) {%>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" 
-                                           name="fasilitas" 
-                                           value="<%= f.getNamaFasilitas()%>"
-                                           id="facility_<%= f.getNamaFasilitas()%>">
-                                    <label class="form-check-label" for="facility_<%= f.getNamaFasilitas()%>">
+                                    <input class="form-check-input" type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>" id="facility<%= f.getIdFasilitas()%>">
+                                    <label class="form-check-label" for="facility<%= f.getIdFasilitas()%>">
                                         <%= f.getNamaFasilitas()%>
                                     </label>
                                 </div>
-                                <%
-                                        }
-                                    }
-                                %>
+                                <% }
+                                    }%>
                             </div>
                         </div>
                         <!-- Button -->
-                        <div class="col-md-6 col-lg-2 mb-3">
+                        <div class="col-md-6 col-lg-2 mb-3 ms-auto d-flex justify-content-end align-items-end">
                             <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
                         </div>
                     </div>
@@ -103,6 +98,9 @@
         </div>
     </div>
 </section>
+
+
+
 
 <section class="section">
     <div class="container">
@@ -201,11 +199,11 @@
                     <span class="text-uppercase letter-spacing-2">/ per night</span>
                 </span>
                 <h2 class="mb-3">Family Room</h2>
-                <p><strong>Features:</strong> 2 Queen Beds, Private Balcony</p>
+                <p><strong>Features:</strong> 20 Room available with 2 Queen Beds, Private Balcony</p>
                 <p><strong>Facilities:</strong> Free Wifi, Air Conditioner, Flat-screen TV, Hot Shower</p>
                 <p><strong>Max Guests:</strong> 4 Adults</p>
                 <p class="mt-3">Perfect for a relaxing family getaway, this room offers a peaceful stay with a touch of luxury near nature and the beach.</p>
-                <p><a href="rooms.jsp#" class="btn btn-primary text-white">Book Now</a></p>
+                <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
             </div>
         </div>
 
@@ -218,7 +216,7 @@
                     <span class="text-uppercase letter-spacing-2">/ per night</span>
                 </span>
                 <h2 class="mb-3">Presidential Room</h2>
-                <p><strong>Features:</strong> King Bed, Ocean View, Lounge Area</p>
+                <p><strong>Features:</strong> 15 Room available with King Bed, Ocean View, Lounge Area</p>
                 <p><strong>Facilities:</strong> High-Speed Wifi, Jacuzzi, 55" Smart TV, Coffee Machine, Mini Bar</p>
                 <p><strong>Max Guests:</strong> 2 Adults + 1 Child</p>
                 <p class="mt-3">Experience ultimate comfort and elegance in our most luxurious suite, designed for guests seeking premium amenities and stunning views.</p>
