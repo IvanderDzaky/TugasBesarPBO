@@ -1,7 +1,19 @@
 <%@ page import="java.util.*" %>
 <%@ page import="hotel.model.*" %>
 <%@ page import="hotel.helper.*" %>
-<% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
+<%
+    List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas");
+    List<KamarTersedia> hasil = (List<KamarTersedia>) session.getAttribute("hasilKamar");
+
+    String errorMsg = (String) session.getAttribute("errorMsg");
+    String successMsg = (String) session.getAttribute("successMsg");
+
+    // Remove setelah ditampilkan
+    session.removeAttribute("errorMsg");
+    session.removeAttribute("successMsg");
+%>
+
+<!-- HERO SECTION -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -15,15 +27,12 @@
             </div>
         </div>
     </div>
-
     <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-            <span class="mouse-wheel"></span>
-        </div>
+        <div class="mouse-icon"><span class="mouse-wheel"></span></div>
     </a>
 </section>
-<!-- END section -->
 
+<!-- FORM CHECK AVAILABILITY -->
 <section class="section pb-4">
     <div class="container">
         <div class="row check-availability" id="next">
@@ -32,65 +41,51 @@
                     <div class="row align-items-end">
                         <!-- Check In -->
                         <div class="col-md-6 col-lg-2 mb-3">
-                            <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                            <label class="font-weight-bold text-black">Check In</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkin_date" name="checkin" class="form-control" placeholder="Select date">
+                                <input type="text" name="checkin" class="form-control" placeholder="Select date">
                             </div>
                         </div>
                         <!-- Check Out -->
                         <div class="col-md-6 col-lg-2 mb-3">
-                            <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                            <label class="font-weight-bold text-black">Check Out</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkout_date" name="checkout" class="form-control" placeholder="Select date">
+                                <input type="text" name="checkout" class="form-control" placeholder="Select date">
                             </div>
                         </div>
                         <!-- Adults -->
                         <div class="col-md-6 col-lg-2 mb-3">
-                            <label for="adults" class="font-weight-bold text-black">Adults</label>
-                            <div class="field-icon-wrap">
-                                <div class="icon">=</div>
-                                <select id="adults" name="adults" class="form-control">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
-                            </div>
+                            <label class="font-weight-bold text-black">Adults</label>
+                            <select name="adults" class="form-control">
+                                <option value="1">1</option><option value="2">2</option>
+                                <option value="3">3</option><option value="4">4+</option>
+                            </select>
                         </div>
                         <!-- Children -->
                         <div class="col-md-6 col-lg-2 mb-3">
-                            <label for="children" class="font-weight-bold text-black">Children</label>
-                            <div class="field-icon-wrap">
-                                <div class="icon">=</div>
-                                <select id="children" name="children" class="form-control">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
-                            </div>
+                            <label class="font-weight-bold text-black">Children</label>
+                            <select name="children" class="form-control">
+                                <option value="0">0</option><option value="1">1</option>
+                                <option value="2">2</option><option value="3">3</option><option value="4">4+</option>
+                            </select>
                         </div>
                         <!-- Facilities -->
                         <div class="col-md-12 col-lg-2 mb-3">
                             <label class="font-weight-bold text-black d-block">Facilities</label>
                             <div class="form-control" style="height:auto; overflow-y:auto; max-height:150px;">
                                 <% if (daftarFasilitas != null) {
-                                        for (Fasilitas f : daftarFasilitas) {%>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>" id="facility<%= f.getIdFasilitas()%>">
-                                    <label class="form-check-label" for="facility<%= f.getIdFasilitas()%>">
-                                        <%= f.getNamaFasilitas()%>
-                                    </label>
-                                </div>
-                                <% }
-                                    }%>
+                                       for (Fasilitas f : daftarFasilitas) { %>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>">
+                                        <label class="form-check-label"><%= f.getNamaFasilitas()%></label>
+                                    </div>
+                                <% }} %>
                             </div>
                         </div>
                         <!-- Button -->
-                        <div class="col-md-6 col-lg-2 mb-3 ms-auto d-flex justify-content-end align-items-end">
+                        <div class="col-md-6 col-lg-2 mb-3 d-flex justify-content-end align-items-end">
                             <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
                         </div>
                     </div>
@@ -100,110 +95,58 @@
     </div>
 </section>
 
+<% if (hasil == null) { %>
+<!-- DEFAULT ROOMS - hanya tampil jika belum cari kamar -->
 <section class="section">
     <div class="container">
-
         <div class="row">
+            <%
+                String[] roomNames = {"Single Room", "Family Room", "Presidential Room", "Suite", "VIP Suite", "Deluxe Suite"};
+                String[] roomImages = {"single_room.jpg", "family_room.jpg", "presidential_room.jpg", "suite.jpg", "vip_suite.jpg", "deluxe_suite.jpg"};
+                String[] prices = {"90", "120", "250", "300", "350", "400"};
+
+                for (int i = 0; i < roomNames.length; i++) {
+            %>
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                 <a href="#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/single_room.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/<%= roomImages[i] %>" alt="room image" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
-                        <h2>Single Room</h2>
-                        <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                        <h2><%= roomNames[i] %></h2>
+                        <span class="text-uppercase letter-spacing-1"><%= prices[i] %>$ / per night</span>
                     </div>
                 </a>
             </div>
-
-            <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="#" class="room">
-                    <figure class="img-wrap">
-                        <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
-                    </figure>
-                    <div class="p-3 text-center room-info">
-                        <h2>Family Room</h2>
-                        <span class="text-uppercase letter-spacing-1">120$ / per night</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="#" class="room">
-                    <figure class="img-wrap">
-                        <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
-                    </figure>
-                    <div class="p-3 text-center room-info">
-                        <h2>Presidential Room</h2>
-                        <span class="text-uppercase letter-spacing-1">250$ / per night</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="#" class="room">
-                    <figure class="img-wrap">
-                        <img src="images/img_4.jpg" alt="Free website template" class="img-fluid mb-3">
-                    </figure>
-                    <div class="p-3 text-center room-info">
-                        <h2>Suite</h2>
-                        <span class="text-uppercase letter-spacing-1">300$ / per night</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="#" class="room">
-                    <figure class="img-wrap">
-                        <img src="images/presidential_room.jpg" alt="Free website template" class="img-fluid mb-3">
-                    </figure>
-                    <div class="p-3 text-center room-info">
-                        <h2>VIP Suite</h2>
-                        <span class="text-uppercase letter-spacing-1">350 / per night</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                <a href="#" class="room">
-                    <figure class="img-wrap">
-                        <img src="images/slider-4.jpg" alt="Free website template" class="img-fluid mb-3">
-                    </figure>
-                    <div class="p-3 text-center room-info">
-                        <h2>Deluxe Suite</h2>
-                        <span class="text-uppercase letter-spacing-1">400$ / per night</span>
-                    </div>
-                </a>
-            </div>
-
+            <% } %>
         </div>
     </div>
 </section>
+<% } %>
 
+<% if (hasil != null && !hasil.isEmpty()) { %>
+<!-- HASIL PENCARIAN KAMAR TERSEDIA -->
 <section class="section bg-light" id="kamar-tersedia">
     <div class="container">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-                <h2 class="heading" data-aos="fade">Great Offers</h2>
-                <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <h2 class="heading" data-aos="fade">Kamar Tersedia</h2>
+                <p data-aos="fade">Berikut hasil kamar yang cocok dengan pencarian Anda.</p>
             </div>
         </div>
-        <!-- Kode agar diperlihatkan kamar yang tersedia -->
         <%
-            List<KamarTersedia> hasil = (List<KamarTersedia>) request.getAttribute("hasilKamar");
-            if (hasil != null && !hasil.isEmpty()) {
-                int delay = 100;
-                for (KamarTersedia k : hasil) {
+            int delay = 100;
+            for (KamarTersedia k : hasil) {
         %>
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="<%= delay%>">
-            <a href="#" class="image d-block bg-image-2" style="background-image: url('images/<%= k.getTipe().toLowerCase().replace(" ", "_")%>.jpg');"></a>
+        <div class="site-block-half d-block d-lg-flex bg-white mb-4" data-aos="fade" data-aos-delay="<%= delay %>">
+            <a href="#" class="image d-block bg-image-2" style="background-image: url('images/<%= k.getTipe().toLowerCase().replace(" ", "_") %>.jpg');"></a>
             <div class="text">
                 <span class="d-block mb-4">
-                    <span class="display-4 text-primary">$<%= k.getHarga()%></span>
+                    <span class="display-4 text-primary">$<%= k.getHarga() %></span>
                     <span class="text-uppercase letter-spacing-2">/ per night</span>
                 </span>
-                <h2 class="mb-3"><%= k.getTipe()%></h2>
-                <p><strong>Features:</strong> <%= k.getJumlahTersedia()%> Room available</p>
+                <h2 class="mb-3"><%= k.getTipe() %></h2>
+                <p><strong>Features:</strong> <%= k.getJumlahTersedia() %> Room available</p>
                 <p><strong>Facilities:</strong>
                     <%
                         List<Fasilitas> fasilitasList = k.getFasilitasList();
@@ -215,69 +158,26 @@
                         }
                     %>
                 </p>
-                <p><strong>Max Guests:</strong> <%= k.getMaxGuest()%> Guests</p>
-                <p class="mt-3">Nikmati kenyamanan menginap di kamar <%= k.getTipe()%> kami dengan fasilitas terbaik untuk Anda dan keluarga.</p>
+                <p><strong>Max Guests:</strong> <%= k.getMaxGuest() %> Guests</p>
+                <p class="mt-3">Nikmati kenyamanan menginap di kamar <%= k.getTipe() %> kami dengan fasilitas terbaik.</p>
                 <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
             </div>
         </div>
-        <%
-                delay += 100; // supaya animasi beda tiap baris
-            }
-        } else {
-        %>
-        <p class="text-center">Tidak ada kamar tersedia sesuai pencarian Anda.</p>
-        <%
-            }
-        %>
-
-        <!-- contoh : Family Room -->
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-            <a href="#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
-            <div class="text">
-                <span class="d-block mb-4">
-                    <span class="display-4 text-primary">$199</span>
-                    <span class="text-uppercase letter-spacing-2">/ per night</span>
-                </span>
-                <h2 class="mb-3">Family Room</h2>
-                <p><strong>Features:</strong> 20 Room available with 2 Queen Beds, Private Balcony</p>
-                <p><strong>Facilities:</strong> Free Wifi, Air Conditioner, Flat-screen TV, Hot Shower</p>
-                <p><strong>Max Guests:</strong> 4 Adults</p>
-                <p class="mt-3">Perfect for a relaxing family getaway, this room offers a peaceful stay with a touch of luxury near nature and the beach.</p>
-                <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-            </div>
-        </div>
-
-        <!-- Presidential Room -->
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-            <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
-            <div class="text order-1">
-                <span class="d-block mb-4">
-                    <span class="display-4 text-primary">$299</span>
-                    <span class="text-uppercase letter-spacing-2">/ per night</span>
-                </span>
-                <h2 class="mb-3">Presidential Room</h2>
-                <p><strong>Features:</strong> 15 Room available with King Bed, Ocean View, Lounge Area</p>
-                <p><strong>Facilities:</strong> High-Speed Wifi, Jacuzzi, 55" Smart TV, Coffee Machine, Mini Bar</p>
-                <p><strong>Max Guests:</strong> 2 Adults + 1 Child</p>
-                <p class="mt-3">Experience ultimate comfort and elegance in our most luxurious suite, designed for guests seeking premium amenities and stunning views.</p>
-                <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-            </div>
-        </div>
-
-
+        <% delay += 100; } %>
     </div>
 </section>
+<% } %>
 
+<!-- CTA SECTION -->
 <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-    <div class="container" >
+    <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
                 <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="Rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve</a>
             </div>
         </div>
     </div>
 </section>
-

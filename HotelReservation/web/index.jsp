@@ -69,7 +69,7 @@
             String p = request.getParameter("page");
             if ("home".equals(p) || p == null) {
         %>
-        <section class="site-hero overlay" style="background-image: url(images/foto_2.jpg)" data-stellar-background-ratio="0.5">
+        <section class="site-hero overlay" style="background-image: url(images/slider-7.jpg)" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="row site-hero-inner justify-content-center align-items-center">
                     <div class="col-md-10 text-center" data-aos="fade-up">
@@ -173,16 +173,16 @@
                                 <a href="images/presidential_room.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/presidential_room.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/VIP_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/VIP_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/img_1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
                                 <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/Deluxe_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Deluxe_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/deluxe_suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/deluxe_suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
                                 <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>

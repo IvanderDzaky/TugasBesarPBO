@@ -141,16 +141,16 @@
                         <a href="images/presidential_room.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/presidential_room.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
-                        <a href="images/Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
-                        <a href="images/VIP_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/VIP_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/img_1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
                         <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
-                        <a href="images/Deluxe_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Deluxe_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/deluxe_suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/deluxe_suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
                         <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>

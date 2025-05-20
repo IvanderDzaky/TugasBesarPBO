@@ -280,6 +280,112 @@ public class Kamar {
         return success;
     }
 
+    public static List<Fasilitas> getFasilitasByTipe(String tipe) {
+        List<Fasilitas> list = new ArrayList<>();
+        try (Connection conn = SqlConnect.getConnection()) {
+            String sql = "SELECT f.id_fasilitas, f.nama_fasilitas FROM fasilitas f "
+                    + "JOIN kamar_fasilitas kf ON f.id_fasilitas = kf.id_fasilitas "
+                    + "JOIN kamar k ON kf.id_kamar = k.id_kamar "
+                    + "WHERE k.tipe = ? "
+                    + "GROUP BY f.id_fasilitas, f.nama_fasilitas";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, tipe);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Fasilitas f = new Fasilitas();
+                    f.setIdFasilitas(rs.getInt("id_fasilitas"));
+                    f.setNamaFasilitas(rs.getString("nama_fasilitas"));
+                    list.add(f);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
+    public static List<KamarTersedia> cariKamarTersedia(Date checkIn, Date checkOut, int guest, List<Integer> idFasilitas) {
+        List<KamarTersedia> hasil = new ArrayList<>();
+
+        try (Connection conn = SqlConnect.getConnection()) {
+            // Buat placeholder ? sebanyak jumlah fasilitas untuk IN clause
+            StringBuilder fasilitasPlaceholder = new StringBuilder();
+            if (idFasilitas != null && !idFasilitas.isEmpty()) {
+                for (int i = 0; i < idFasilitas.size(); i++) {
+                    fasilitasPlaceholder.append("?");
+                    if (i < idFasilitas.size() - 1) {
+                        fasilitasPlaceholder.append(", ");
+                    }
+                }
+            }
+
+            String sql = "SELECT "
+                    + "    k.tipe, "
+                    + "    k.harga, "
+                    + "    k.max_guest, "
+                    + "    COUNT(k.id_kamar) AS jumlah_tersedia "
+                    + "FROM "
+                    + "    kamar k "
+                    + "WHERE "
+                    + "    k.status = 1 "
+                    + "    AND k.max_guest >= ? "
+                    + "    AND k.id_kamar NOT IN ( "
+                    + "        SELECT r.id_kamar FROM reservasi r "
+                    + "        WHERE NOT (r.check_out <= ? OR r.check_in >= ?) "
+                    + "        AND r.status = 'Dipesan' "
+                    + "    ) ";
+
+            if (idFasilitas != null && !idFasilitas.isEmpty()) {
+                sql += " AND k.id_kamar IN ( "
+                        + "    SELECT kf.id_kamar "
+                        + "    FROM kamar_fasilitas kf "
+                        + "    WHERE kf.id_fasilitas IN (" + fasilitasPlaceholder + ") "
+                        + "    GROUP BY kf.id_kamar "
+                        + "    HAVING COUNT(DISTINCT kf.id_fasilitas) = ? "
+                        + ") ";
+            }
+
+            sql += "GROUP BY k.tipe, k.harga, k.max_guest";
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                int paramIndex = 1;
+
+                // 1. set max_guest
+                stmt.setInt(paramIndex++, guest);
+
+                // 2. set checkIn (untuk cek reservasi overlap)
+                stmt.setDate(paramIndex++, checkIn);
+
+                // 3. set checkOut (untuk cek reservasi overlap)
+                stmt.setDate(paramIndex++, checkOut);
+
+                // 4. set idFasilitas jika ada
+                if (idFasilitas != null && !idFasilitas.isEmpty()) {
+                    for (Integer id : idFasilitas) {
+                        stmt.setInt(paramIndex++, id);
+                    }
+                    // 5. set jumlah fasilitas untuk HAVING count()
+                    stmt.setInt(paramIndex++, idFasilitas.size());
+                }
+
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    KamarTersedia kt = new KamarTersedia();
+                    kt.setTipe(rs.getString("tipe"));
+                    kt.setHarga(rs.getDouble("harga"));
+                    kt.setMaxGuest(rs.getInt("max_guest"));
+                    kt.setJumlahTersedia(rs.getInt("jumlah_tersedia"));
+                    List<Fasilitas> fasilitasList = getFasilitasByTipe(kt.getTipe());
+                    kt.setFasilitasList(fasilitasList);
+                    hasil.add(kt);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return hasil;
+    }
 
 }

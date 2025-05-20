@@ -3,26 +3,24 @@ package hotel.controller;
 import hotel.helper.*;
 import hotel.model.*;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.*;
-import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 @WebServlet(name = "Rooms", urlPatterns = {"/Rooms"})
 public class Rooms extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
 
         try {
             String action = request.getParameter("action");
@@ -31,20 +29,21 @@ public class Rooms extends HttpServlet {
                 request.getRequestDispatcher("index.jsp?page=rooms").forward(request, response);
                 return;
             }
+
             switch (action) {
                 case "checkAvailability":
-                    handleCheckAvailability(request, response);
+                    handleCheckAvailability(request, response, session);
                     break;
                 default:
-                    request.getSession().setAttribute("errorMsg", "Aksi tidak dikenali.");
-                    response.sendRedirect("Admins");
+                    session.setAttribute("errorMsg", "Aksi tidak dikenali.");
+                    response.sendRedirect("Rooms");
                     break;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Terjadi kesalahan saat memproses permintaan.");
-            request.getRequestDispatcher("index.jsp?page=rooms").forward(request, response);
+            session.setAttribute("errorMsg", "Terjadi kesalahan saat memproses permintaan.");
+            response.sendRedirect("Rooms");
         }
     }
 
@@ -54,62 +53,80 @@ public class Rooms extends HttpServlet {
         request.setAttribute("daftarFasilitas", daftar);
     }
 
-    private void handleCheckAvailability(HttpServletRequest request, HttpServletResponse response)
+    private void handleCheckAvailability(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException, SQLException {
         try {
-            // Ambil parameter dari form
             String checkInStr = request.getParameter("checkin");
             String checkOutStr = request.getParameter("checkout");
-            int adults = Integer.parseInt(request.getParameter("adults"));
-            int children = Integer.parseInt(request.getParameter("children"));
+            String adultsStr = request.getParameter("adults");
+            String childrenStr = request.getParameter("children");
             String[] fasilitasArr = request.getParameterValues("fasilitas");
+
+            if (checkInStr == null || checkOutStr == null || adultsStr == null || childrenStr == null
+                    || checkInStr.isEmpty() || checkOutStr.isEmpty() || adultsStr.isEmpty() || childrenStr.isEmpty()) {
+                session.setAttribute("errorMsg", "Semua field harus diisi.");
+                response.sendRedirect("Rooms");
+                return;
+            }
+
+            int adults = Integer.parseInt(adultsStr);
+            int children = Integer.parseInt(childrenStr);
+
+            if (adults < 0 || children < 0) {
+                session.setAttribute("errorMsg", "Jumlah tamu tidak boleh negatif.");
+                response.sendRedirect("Rooms");
+                return;
+            }
 
             int totalGuest = adults + children;
 
-            // Format tanggal yang diinput, contoh: "15 May, 2025"
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
-            sdf.setLenient(false); // supaya validasi tanggal lebih ketat
+            sdf.setLenient(false);
 
-            java.util.Date parsedCheckIn = sdf.parse(checkInStr);
-            java.util.Date parsedCheckOut = sdf.parse(checkOutStr);
+            Date parsedCheckIn = sdf.parse(checkInStr);
+            Date parsedCheckOut = sdf.parse(checkOutStr);
 
-            // Konversi ke java.sql.Date
+            if (!parsedCheckOut.after(parsedCheckIn)) {
+                session.setAttribute("errorMsg", "Tanggal check-out harus setelah check-in.");
+                response.sendRedirect("Rooms");
+                return;
+            }
+
             java.sql.Date checkIn = new java.sql.Date(parsedCheckIn.getTime());
             java.sql.Date checkOut = new java.sql.Date(parsedCheckOut.getTime());
 
-            // Konversi fasilitas menjadi List<Integer>
             List<Integer> fasilitasIdList = new ArrayList<>();
             if (fasilitasArr != null) {
                 for (String fId : fasilitasArr) {
-                    fasilitasIdList.add(Integer.parseInt(fId));
+                    try {
+                        fasilitasIdList.add(Integer.parseInt(fId));
+                    } catch (NumberFormatException ignored) {}
                 }
             }
 
-            // Panggil method model
             List<KamarTersedia> hasilKamar = Kamar.cariKamarTersedia(checkIn, checkOut, totalGuest, fasilitasIdList);
 
-            // Simpan data ke attribute
-            request.setAttribute("hasilKamar", hasilKamar);
-            request.setAttribute("checkin", checkInStr);
-            request.setAttribute("checkout", checkOutStr);
-            request.setAttribute("adults", adults);
-            request.setAttribute("children", children);
-            request.setAttribute("fasilitasDipilih", fasilitasArr); // supaya bisa ditampilkan ulang di form
+            session.setAttribute("hasilKamar", hasilKamar);
+            session.setAttribute("checkin", checkInStr);
+            session.setAttribute("checkout", checkOutStr);
+            session.setAttribute("adults", adults);
+            session.setAttribute("children", children);
+            session.setAttribute("fasilitasDipilih", fasilitasArr);
+            session.setAttribute("successMsg", "Kamar tersedia broski.");
 
-            // Forward ke JSP
-            request.getRequestDispatcher("index.jsp?page=rooms#kamar-tersedia").forward(request, response);
-
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-            request.getSession().setAttribute("errorMsg", "Format tanggal tidak valid. Harap gunakan format seperti '15 May, 2025'.");
             response.sendRedirect("Rooms");
-        } catch (NullPointerException e) {
+
+        } catch (ParseException e) {
             e.printStackTrace();
-            request.getSession().setAttribute("errorMsg", "Kesalahan sistem: Ada data yang kosong.");
+            session.setAttribute("errorMsg", "Format tanggal tidak valid. Gunakan format seperti '15 May, 2025'.");
+            response.sendRedirect("Rooms");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            session.setAttribute("errorMsg", "Input jumlah tamu atau fasilitas tidak valid.");
             response.sendRedirect("Rooms");
         } catch (Exception e) {
             e.printStackTrace();
-            request.getSession().setAttribute("errorMsg", "Terjadi kesalahan: " + e.getClass().getSimpleName());
+            session.setAttribute("errorMsg", "Terjadi kesalahan: " + e.getMessage());
             response.sendRedirect("Rooms");
         }
     }
@@ -128,7 +145,6 @@ public class Rooms extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Rooms controller";
     }
-
 }
