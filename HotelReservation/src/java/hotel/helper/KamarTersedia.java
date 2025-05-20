@@ -4,58 +4,29 @@ import java.util.List;
 import hotel.model.*;
 public class KamarTersedia {
 
-    private String tipe;
-    private double harga;
-    private int maxGuest;
     private int jumlahTersedia;
-    private List<Fasilitas> fasilitasList;
+    private List<Kamar> kamarTersedia;
 
     public KamarTersedia() {
         // constructor kosong
     }
 
-    public KamarTersedia(String tipe, int harga, int maxGuest, int jumlahTersedia, List<Fasilitas> fasilitasList) {
-        this.tipe = tipe;
-        this.harga = harga;
-        this.maxGuest = maxGuest;
+    public KamarTersedia(int jumlahTersedia, List<Kamar> kamarTersedia) {
         this.jumlahTersedia = jumlahTersedia;
-        this.fasilitasList = fasilitasList;
+        this.kamarTersedia = kamarTersedia;
     }
 
-    public void setFasilitasList(List<Fasilitas> fasilitasList) {
-        this.fasilitasList = fasilitasList;
-    }
-
-    public List<Fasilitas> getFasilitasList() {
-        return fasilitasList;
-    }
-
-    public String getTipe() {
-        return tipe;
-    }
-
-    public double getHarga() {
-        return harga;
-    }
-
-    public int getMaxGuest() {
-        return maxGuest;
-    }
 
     public int getJumlahTersedia() {
         return jumlahTersedia;
     }
 
-    public void setTipe(String tipe) {
-        this.tipe = tipe;
+    public void setKamarTersedia(List<Kamar> kamarTersedia) {
+        this.kamarTersedia = kamarTersedia;
     }
 
-    public void setHarga(double harga) {
-        this.harga = harga;
-    }
-
-    public void setMaxGuest(int maxGuest) {
-        this.maxGuest = maxGuest;
+    public List<Kamar> getKamarTersedia() {
+        return kamarTersedia;
     }
 
     public void setJumlahTersedia(int jumlahTersedia) {
