@@ -1,10 +1,13 @@
 package hotel.model;
 
+import hotel.helper.Fasilitas;
+import hotel.helper.KamarTersedia;
 import hotel.config.SqlConnect;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.util.*;
 import java.sql.*;
+import java.sql.Date;
 
 public class Kamar {
 
@@ -17,6 +20,9 @@ public class Kamar {
     private List<Fasilitas> fasilitasList;
 
     // Constructor
+    public Kamar() {
+    }
+
     public Kamar(String nomorKamar, String tipe, double harga, boolean isTersedia, int maxGuest) {
         this.nomorKamar = nomorKamar;
         this.tipe = tipe;

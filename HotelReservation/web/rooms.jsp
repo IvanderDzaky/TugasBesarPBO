@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="hotel.model.*" %>
+<%@ page import="hotel.helper.*" %>
 <% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -22,7 +23,7 @@
     </a>
 </section>
 <!-- END section -->
-<!-- END section -->
+
 <section class="section pb-4">
     <div class="container">
         <div class="row check-availability" id="next">
@@ -99,9 +100,6 @@
     </div>
 </section>
 
-
-
-
 <section class="section">
     <div class="container">
 
@@ -109,7 +107,7 @@
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                 <a href="#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/single_room.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
                         <h2>Single Room</h2>
@@ -157,7 +155,7 @@
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                 <a href="#" class="room">
                     <figure class="img-wrap">
-                        <img src="images/slider-1.jpg" alt="Free website template" class="img-fluid mb-3">
+                        <img src="images/presidential_room.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
                         <h2>VIP Suite</h2>
@@ -182,7 +180,7 @@
     </div>
 </section>
 
-<section class="section bg-light">
+<section class="section bg-light" id="kamar-tersedia">
     <div class="container">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
@@ -190,7 +188,49 @@
                 <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             </div>
         </div>
-        <!-- Family Room -->
+        <!-- Kode agar diperlihatkan kamar yang tersedia -->
+        <%
+            List<KamarTersedia> hasil = (List<KamarTersedia>) request.getAttribute("hasilKamar");
+            if (hasil != null && !hasil.isEmpty()) {
+                int delay = 100;
+                for (KamarTersedia k : hasil) {
+        %>
+        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="<%= delay%>">
+            <a href="#" class="image d-block bg-image-2" style="background-image: url('images/<%= k.getTipe().toLowerCase().replace(" ", "_")%>.jpg');"></a>
+            <div class="text">
+                <span class="d-block mb-4">
+                    <span class="display-4 text-primary">$<%= k.getHarga()%></span>
+                    <span class="text-uppercase letter-spacing-2">/ per night</span>
+                </span>
+                <h2 class="mb-3"><%= k.getTipe()%></h2>
+                <p><strong>Features:</strong> <%= k.getJumlahTersedia()%> Room available</p>
+                <p><strong>Facilities:</strong>
+                    <%
+                        List<Fasilitas> fasilitasList = k.getFasilitasList();
+                        for (int i = 0; i < fasilitasList.size(); i++) {
+                            out.print(fasilitasList.get(i).getNamaFasilitas());
+                            if (i < fasilitasList.size() - 1) {
+                                out.print(", ");
+                            }
+                        }
+                    %>
+                </p>
+                <p><strong>Max Guests:</strong> <%= k.getMaxGuest()%> Guests</p>
+                <p class="mt-3">Nikmati kenyamanan menginap di kamar <%= k.getTipe()%> kami dengan fasilitas terbaik untuk Anda dan keluarga.</p>
+                <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
+            </div>
+        </div>
+        <%
+                delay += 100; // supaya animasi beda tiap baris
+            }
+        } else {
+        %>
+        <p class="text-center">Tidak ada kamar tersedia sesuai pencarian Anda.</p>
+        <%
+            }
+        %>
+
+        <!-- contoh : Family Room -->
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
             <a href="#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
             <div class="text">

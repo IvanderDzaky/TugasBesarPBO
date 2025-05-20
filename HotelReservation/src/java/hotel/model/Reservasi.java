@@ -1,6 +1,9 @@
 package hotel.model;
 
+import hotel.config.SqlConnect;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reservasi {
 
@@ -10,7 +13,7 @@ public class Reservasi {
     private Date checkOut;
     private Customer Customer;
     private String status;
-    
+
     // Constructor
     public Reservasi(int idReservasi, int idUser, int idKamar, Date checkIn, Date checkOut, String status) {
         this.idReservasi = idReservasi;
@@ -69,7 +72,8 @@ public class Reservasi {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     //method
+   
 
 }

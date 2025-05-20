@@ -1,4 +1,4 @@
-package hotel.model;
+package hotel.helper;
 
 import hotel.config.SqlConnect;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,11 +45,6 @@ public class Fasilitas {
         this.namaFasilitas = namaFasilitas;
     }
 
-    public void info(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.setAttribute("idFasilitas", getIdFasilitas());
-        session.setAttribute("idFasilitas", getNamaFasilitas());
-    }
 
     public static List<Fasilitas> lihatFasilitas() throws SQLException {
         List<Fasilitas> daftarFasilitas = new ArrayList<>();

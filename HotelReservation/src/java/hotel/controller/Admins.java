@@ -1,5 +1,6 @@
 package hotel.controller;
 
+import hotel.helper.Fasilitas;
 import hotel.model.*;
 import java.io.IOException;
 import java.io.PrintWriter;

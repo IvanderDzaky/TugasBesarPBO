@@ -94,7 +94,7 @@
                         <figure class="img-absolute">
                             <img src="images/foods_1.jpg" alt="Image" class="img-fluid">
                         </figure>
-                        <img src="images/foto_2.jpg" alt="Image" class="img-fluid rounded">
+                        <img src="images/family_room.jpg" alt="Image" class="img-fluid rounded">
                     </div>
                     <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
                         <h2 class="heading">Welcome!</h2>
@@ -118,7 +118,7 @@
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
                         <a href="Rooms" class="room">
                             <figure class="img-wrap">
-                                <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
+                                <img src="images/single_room.jpg" alt="Free website template" class="img-fluid mb-3">
                             </figure>
                             <div class="p-3 text-center room-info">
                                 <h2>Single Room</h2>
@@ -170,19 +170,19 @@
                     <div class="col-md-12">
                         <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
                             <div class="slider-item">
-                                <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/presidential_room.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/presidential_room.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/VIP_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/VIP_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
                                 <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
-                                <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
+                                <a href="images/Deluxe_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Deluxe_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                             </div>
                             <div class="slider-item">
                                 <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
@@ -436,7 +436,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
 
                         <div class="media media-custom d-block mb-4 h-100">
-                            <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+                            <img src="images/single_room.jpg" alt="Image placeholder" class="img-fluid">
                             <div class="media-body">
                                 <span class="meta-post">February 26, 2018</span>
                                 <h2 class="mt-0 mb-3"><a href="#">Travel Hacks to Make Your Flight More Comfortable</a></h2>

@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="hotel.model.*" %>
+<%@ page import="hotel.helper.*" %>
 <!-- Hero Section -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">

@@ -1,5 +1,6 @@
 package hotel.model;
 
+import hotel.helper.Fasilitas;
 import hotel.config.SqlConnect;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
