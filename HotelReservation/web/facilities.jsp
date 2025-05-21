@@ -25,20 +25,24 @@
 <section class="section contact-section" id="next">
     <div class="container">
         <% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
-        <%
-            if (daftarFasilitas != null) {
-                for (Fasilitas f : daftarFasilitas) {
-        %>
-        
+
+
         <div class="row justify-content-center">
+            <%
+                if (daftarFasilitas != null) {
+                    for (Fasilitas f : daftarFasilitas) {
+            %>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi1.jpg" width="50px" class="mb-3">
+                    <img src="images/<%= f.getNamaFasilitas()%>.jpg" width="50px" class="mb-3">
                     <h5><%= f.getNamaFasilitas()%></h5>
                     <p>High-speed internet access available in all rooms and public areas.</p>
                 </div>
             </div>
         </div>
+        <%  }
+            }%>
     </div>
 </section>
 
