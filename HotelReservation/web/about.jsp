@@ -27,7 +27,7 @@
                 <figure class="img-absolute">
                     <img src="images/food-1.jpg" alt="Free Website Template by Templateux" class="img-fluid">
                 </figure>
-                <img src="images/single_room.jpg" alt="Image" class="img-fluid rounded">
+                <img src="images/single room.jpg" alt="Image" class="img-fluid rounded">
             </div>
             <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
                 <h2 class="heading">Welcome!</h2>
@@ -138,10 +138,10 @@
             <div class="col-md-12">
                 <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
                     <div class="slider-item">
-                        <a href="images/presidential_room.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/presidential_room.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/presidential room.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/presidential room.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
-                        <a href="images/Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
                         <a href="images/img_1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
@@ -150,7 +150,7 @@
                         <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
-                        <a href="images/Deluxe_Suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/Deluxe_Suite.jpg" alt="Image placeholder" class="img-fluid"></a>
+                        <a href="images/deluxe suite.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/deluxe suite.jpg" alt="Image placeholder" class="img-fluid"></a>
                     </div>
                     <div class="slider-item">
                         <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
