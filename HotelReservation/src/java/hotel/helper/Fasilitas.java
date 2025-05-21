@@ -14,7 +14,7 @@ public class Fasilitas {
 
     private int idFasilitas;
     private String namaFasilitas;
-
+    
     // Constructor
     public Fasilitas() {
     }
