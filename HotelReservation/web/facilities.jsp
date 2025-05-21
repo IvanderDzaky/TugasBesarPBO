@@ -25,7 +25,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi.svg" width="50px" class="mb-3">
+                    <img src="images/wifi1.jpg" width="50px" class="mb-3">
                     <h5>Free Wifi</h5>
                     <p>High-speed internet access available in all rooms and public areas.</p>
                 </div>
@@ -39,30 +39,30 @@
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi.svg" width="50px" class="mb-3">
-                    <h5>Free Wifi</h5>
-                    <p>High-speed internet access available in all rooms and public areas.</p>
+                    <img src="images/JPG-AC.jpg" width="50px" class="mb-3">
+                    <h5>Air Conditioner</h5>
+                    <p>Cool down your summer, warm up your winter.</p>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi.svg" width="50px" class="mb-3">
-                    <h5>Free Wifi</h5>
-                    <p>High-speed internet access available in all rooms and public areas.</p>
+                    <img src="images/Convention_hall.jpg" width="50px" class="mb-3">
+                    <h5>Convention Hall</h5>
+                    <p>The convention hall can accommodate up to 500 people.</p>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi.svg" width="50px" class="mb-3">
-                    <h5>Free Wifi</h5>
-                    <p>High-speed internet access available in all rooms and public areas.</p>
+                    <img src="images/housekeeping.jpg" width="50px" class="mb-3">
+                    <h5>House Keeping</h5>
+                    <p>Housekeeping comes to clean the room every morning.</p>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi.svg" width="50px" class="mb-3">
-                    <h5>Free Wifi</h5>
-                    <p>High-speed internet access available in all rooms and public areas.</p>
+                    <img src="images/lounge.jpg" width="50px" class="mb-3">
+                    <h5>Lounge</h5>
+                    <p>We spent the evening relaxing in the hotel lounge. </p>
                 </div>
             </div>
 
