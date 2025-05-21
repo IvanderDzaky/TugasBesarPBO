@@ -77,7 +77,7 @@ public class Admins extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Terjadi kesalahan saat memproses permintaan.");
+            request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat memproses permintaan.");
             request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
         }
     }

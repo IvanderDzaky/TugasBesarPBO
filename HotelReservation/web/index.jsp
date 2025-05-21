@@ -9,23 +9,23 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="" />
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/https://fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/aos.css">
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="css/jquery.timepicker.css">
-        <link rel="stylesheet" href="css/fancybox.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aos.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.timepicker.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/fancybox.min.css">
 
-        <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-        <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome/css/font-awesome.min.css">
 
 
         <!-- Theme Style -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
     <body>
         <jsp:include page="header-footer/header.jsp" />
@@ -514,17 +514,17 @@
 
         <jsp:include page="header-footer/footer.jsp" />
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.stellar.min.js"></script>
-        <script src="js/jquery.fancybox.min.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script> 
-        <script src="js/jquery.timepicker.min.js"></script> 
-        <script src="js/main.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.fancybox.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/aos.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script> 
+        <script src="${pageContext.request.contextPath}/js/jquery.timepicker.min.js"></script> 
+        <script src="${pageContext.request.contextPath}/js/main.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
         <script>

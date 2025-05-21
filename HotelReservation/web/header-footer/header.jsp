@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-6 col-lg-4 site-logo" data-aos="fade">
-                <a href="Home">HOME</a>
+                <a href="${pageContext.request.contextPath}/Home">HOME</a>
                 <% if (loggedIn) {%>
                 <div class="username-welcome mt-1">
                     <strong>${userName}</strong>
@@ -36,33 +36,33 @@
                                 <div class="col-md-6 mx-auto">
                                     <ul class="list-unstyled menu">
                                         <li class="<%= "home".equals(request.getParameter("page")) || request.getParameter("page") == null ? "active" : ""%>">
-                                            <a href="Home">Home</a>
+                                            <a href="${pageContext.request.contextPath}/Home">Home</a>
                                         </li>
                                         <% if (!loggedIn) {%>
                                         <li class="<%= "accounts".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="Accounts">Accounts</a>
+                                            <a href="${pageContext.request.contextPath}/Accounts">Accounts</a>
                                         </li>
                                         <% } else if (!isAdmin) {%>
                                         <li class="<%= "dashboard".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="Dashboard">Dashboard</a>
+                                            <a href="${pageContext.request.contextPath}/Dashboard">Dashboard</a>
                                         </li>
                                         <% } else {%>
                                         <li class="<%= "admin".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="Admins">Admins</a>
+                                            <a href="${pageContext.request.contextPath}/Admins">Admins</a>
                                         </li>
                                         <% }%>
                                         <li class="<%= "rooms".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="Rooms">Rooms</a>
+                                            <a href="${pageContext.request.contextPath}/Rooms">Rooms</a>
                                         </li>
                                         <li class="<%= "facilities".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="Facilities">Facilities</a>
+                                            <a href="${pageContext.request.contextPath}/Facilities">Facilities</a>
                                         </li>
                                         <li class="<%= "about".equals(request.getParameter("page")) ? "active" : ""%>">
-                                            <a href="About">About</a>
+                                            <a href="${pageContext.request.contextPath}/About">About</a>
                                         </li>
                                         <% if (loggedIn) { %>
                                         <li>
-                                            <a href="Accounts?action=logout">Logout</a>
+                                            <a href="${pageContext.request.contextPath}/Accounts?action=logout">Logout</a>
                                         </li>
                                         <% }%>
                                     </ul>
