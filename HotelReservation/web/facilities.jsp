@@ -1,3 +1,5 @@
+<%@ page import="java.util.*" %>
+<%@ page import="hotel.helper.*" %>
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -22,51 +24,25 @@
 
 <section class="section contact-section" id="next">
     <div class="container">
+        <% List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas"); %>
+
+
         <div class="row justify-content-center">
+            <%
+                if (daftarFasilitas != null) {
+                    for (Fasilitas f : daftarFasilitas) {
+            %>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/wifi1.jpg" width="50px" class="mb-3">
-                    <h5>Free Wifi</h5>
+                    <img src="images/<%= f.getNamaFasilitas()%>.jpg" width="50px" class="mb-3">
+                    <h5><%= f.getNamaFasilitas()%></h5>
                     <p>High-speed internet access available in all rooms and public areas.</p>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/food-1.jpg" width="50px" class="mb-3">
-                    <h5>Restaurant</h5>
-                    <p>Savor delicious local and international cuisine at our on-site restaurant.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/JPG-AC.jpg" width="50px" class="mb-3">
-                    <h5>Air Conditioner</h5>
-                    <p>Cool down your summer, warm up your winter.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/Convention_hall.jpg" width="50px" class="mb-3">
-                    <h5>Convention Hall</h5>
-                    <p>The convention hall can accommodate up to 500 people.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/housekeeping.jpg" width="50px" class="mb-3">
-                    <h5>House Keeping</h5>
-                    <p>Housekeeping comes to clean the room every morning.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/lounge.jpg" width="50px" class="mb-3">
-                    <h5>Lounge</h5>
-                    <p>We spent the evening relaxing in the hotel lounge. </p>
-                </div>
-            </div>
-
         </div>
+        <%  }
+            }%>
     </div>
 </section>
 
