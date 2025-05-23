@@ -163,7 +163,8 @@ public class Admin extends User {
             while (rs.next()) {
                 Fasilitas fasilitas = new Fasilitas(
                         rs.getInt("id_fasilitas"),
-                        rs.getString("nama_fasilitas")
+                        rs.getString("nama_fasilitas"),
+                        rs.getString("deskripsi_fasilitas")
                 );
                 daftarFasilitas.add(fasilitas);
             }
@@ -178,9 +179,10 @@ public class Admin extends User {
 
         try {
             conn = SqlConnect.getConnection();
-            String sql = "INSERT INTO fasilitas (nama_fasilitas) VALUES (?)";
+            String sql = "INSERT INTO fasilitas (nama_fasilitas, deskripsi_fasilitas) VALUES (?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, fasilitas.getNamaFasilitas());
+            stmt.setString(2, fasilitas.getDeskripsiFasilitas());
             stmt.executeUpdate();
         } finally {
             if (stmt != null) {

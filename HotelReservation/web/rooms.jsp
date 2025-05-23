@@ -59,16 +59,23 @@
                         <div class="col-md-6 col-lg-2 mb-3">
                             <label class="font-weight-bold text-black">Adults</label>
                             <select name="adults" class="form-control">
-                                <option value="1">1</option><option value="2">2</option>
-                                <option value="3">3</option><option value="4">4+</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                         <!-- Children -->
                         <div class="col-md-6 col-lg-2 mb-3">
                             <label class="font-weight-bold text-black">Children</label>
                             <select name="children" class="form-control">
-                                <option value="0">0</option><option value="1">1</option>
-                                <option value="2">2</option><option value="3">3</option><option value="4">4+</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                         <!-- Facilities -->
@@ -139,7 +146,7 @@
             for (KamarTersedia k : hasil) {
         %>
         <div class="site-block-half d-block d-lg-flex bg-white mb-4" data-aos="fade" data-aos-delay="<%= delay %>">
-            <a href="#" class="image d-block bg-image-2" style="background-image: url('${pageContext.request.contextPath}/images/<%= k.getTipe().toLowerCase().replace(" ", "_") %>.jpg');"></a>
+            <a href="#" class="image d-block bg-image-2" style="background-image: url('${pageContext.request.contextPath}/images/<%= k.getTipe().toLowerCase() %>.jpg');"></a>
             <div class="text">
                 <span class="d-block mb-4">
                     <span class="display-4 text-primary">$<%= k.getHarga() %></span>

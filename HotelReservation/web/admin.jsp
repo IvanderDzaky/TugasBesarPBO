@@ -309,14 +309,15 @@
             <div id="fasilitasForm" class="form-section mb-3" style="display: none;">
                 <form class="form-inline" action="Admins?action=tambahFasilitas" method="post">
                     <input type="text" name="nama" class="form-control mb-2 mr-sm-2" placeholder="Nama Fasilitas" required>
+                    <input type="text" name="deskripsi" class="form-control mb-2 mr-sm-2" placeholder="Deskripsi Fasilitas" required>
                     <button type="submit" class="btn btn-success mb-2">Simpan</button>
                 </form>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID Fasilitas</th>
                         <th>Nama Fasilitas</th>
+                        <th>Deskripsi Fasilitas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -326,8 +327,8 @@
                             for (Fasilitas f : daftarFasilitas) {
                     %>
                     <tr>
-                        <td><%= f.getIdFasilitas()%></td>
                         <td><%= f.getNamaFasilitas()%></td>
+                        <td><%= f.getDeskripsiFasilitas()%></td>
                         <td>
                             <a href="Admins?action=hapusFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
                                onclick="return confirm('Yakin ingin menghapus fasilitas ini?')">Hapus</a>

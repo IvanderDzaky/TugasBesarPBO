@@ -277,8 +277,9 @@ public class Admins extends HttpServlet {
     private void handleTambahFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String nama = request.getParameter("nama");
+        String deskripsi = request.getParameter("deskripsi");
         try {
-            Fasilitas fasilitas = new Fasilitas(nama);
+            Fasilitas fasilitas = new Fasilitas(nama, deskripsi);
             admin.tambahFasilitas(fasilitas);
             request.getSession().setAttribute("successMsg", "Berhasil menambahkan fasilitas.");
         } catch (SQLIntegrityConstraintViolationException e) {
