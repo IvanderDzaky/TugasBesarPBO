@@ -24,7 +24,8 @@ CREATE TABLE kamar (
 -- Tabel Fasilitas
 CREATE TABLE fasilitas (
   id_fasilitas INT PRIMARY KEY AUTO_INCREMENT,
-  nama_fasilitas VARCHAR(100) NOT NULL UNIQUE
+  nama_fasilitas VARCHAR(100) NOT NULL UNIQUE,
+nama_fasilitas VARCHAR(255) NOT NULL
 );
 
 -- Tabel Many-to-Many: Kamar <-> Fasilitas
@@ -46,4 +47,14 @@ CREATE TABLE reservasi (
   status VARCHAR(20) DEFAULT 'Dipesan',
   FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
   FOREIGN KEY (id_kamar) REFERENCES kamar(id_kamar) ON DELETE CASCADE
+);
+
+CREATE TABLE pembayaran (
+  id_pembayaran VARCHAR(50) PRIMARY KEY,
+  id_reservasi INT NOT NULL,
+  metode VARCHAR(50),
+  jumlah_bayar DOUBLE,
+  status VARCHAR(20), -- contoh: 'Sukses', 'Pending', 'Gagal'
+  tanggal_bayar DATE DEFAULT CURRENT_DATE,
+  FOREIGN KEY (id_reservasi) REFERENCES reservasi(id_reservasi) ON DELETE CASCADE
 );

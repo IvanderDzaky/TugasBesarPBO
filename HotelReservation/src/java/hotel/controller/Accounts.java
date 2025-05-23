@@ -58,6 +58,7 @@ public class Accounts extends HttpServlet {
             User user = User.login(email, password);
             if (user != null) {
                 user.info(request);
+                request.getSession().setAttribute("user", user); // ✅ INI YANG PENTING
                 request.getSession().setAttribute("successMsg", "Selamat datang, " + user.getNama());
                 response.sendRedirect("Home");
                 return;

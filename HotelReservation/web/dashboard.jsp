@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
+<%@ page import="java.util.List" %>
+<%@ page import="hotel.model.Reservasi" %>
+<%@ page import="hotel.model.Kamar" %>
 
 <!-- Hero -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)">
@@ -67,7 +70,7 @@
                 <table class="table table-bordered table-hover" id="reservationTable">
                     <thead class="thead-light text-center">
                         <tr>
-                            <th>ID</th>
+                            <th>Nomor Kamar</th>
                             <th>Tipe Kamar</th>
                             <th>Check-In</th>
                             <th>Check-Out</th>
@@ -77,60 +80,86 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
+                        <%
+                            List<Reservasi> daftarReservasi = (List<Reservasi>) request.getAttribute("daftarReservasi");
+
+                            if (daftarReservasi != null && !daftarReservasi.isEmpty()) {
+                                for (Reservasi r : daftarReservasi) {
+                                    String status = r.getStatus();
+                                    String badgeStatus = "secondary";
+                                    if ("Dipesan".equalsIgnoreCase(status)) {
+                                        badgeStatus = "warning";
+                                    } else if ("Selesai".equalsIgnoreCase(status)) {
+                                        badgeStatus = "secondary";
+                                    }
+
+                                    // Dummy untuk pembayaran (belum diimplementasi)
+                                    String pembayaran = "-";
+                                    String badgePembayaran = "danger";
+                                    boolean disableAksi = false;
+
+                                    if ("Selesai".equalsIgnoreCase(status)) {
+                                        pembayaran = "Lunas";
+                                        badgePembayaran = "success";
+                                        disableAksi = true;
+                                    } else {
+                                        pembayaran = "Belum Bayar";
+                                        badgePembayaran = "danger";
+                                    }
+
+                                    
+                        %>
                         <tr>
-                            <td>R00123</td>
-                            <td>Deluxe</td>
-                            <td>2025-06-10</td>
-                            <td>2025-06-15</td>
-                            <td><span class="badge badge-warning">Dipesan</span></td>
-                            <td><span class="badge badge-danger">Belum Bayar</span></td>
+                            <td><%= r.getKamar().getNomorKamar()%></td>
+                            <td><%= r.getKamar().getTipe()%></td>
+                            <td><%= r.getCheckIn()%></td>
+                            <td><%= r.getCheckOut()%></td>
+                            <td><span class="badge badge-<%= badgeStatus%>"><%= status%></span></td>
+                            <td><span class="badge badge-<%= badgePembayaran%>"><%= pembayaran%></span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary btn-ubah">Ubah</button>
-                                <button class="btn btn-sm btn-outline-danger">Batalkan</button>
-                                <button class="btn btn-sm btn-outline-success">Bayar</button>
+                                <button class="btn btn-sm btn-outline-primary btn-ubah" <%= disableAksi ? "disabled" : ""%>>Ubah</button>
+                                <button class="btn btn-sm btn-outline-danger" <%= disableAksi ? "disabled" : ""%>>Batalkan</button>
+                                <button class="btn btn-sm btn-outline-success" <%= disableAksi ? "disabled" : ""%>>Bayar</button>
                             </td>
                         </tr>
+                        <!-- Form ubah tampilkan jika diperlukan -->
                         <tr class="ubah-form-row" style="display:none;">
                             <td colspan="7">
                                 <form class="ubah-form">
                                     <div class="form-row">
                                         <div class="col-md-3">
-                                            <input type="date" class="form-control" placeholder="Check-In Baru">
+                                            <input type="date" class="form-control" placeholder="Check-In Baru" name="newCheckIn">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="date" class="form-control" placeholder="Check-Out Baru">
+                                            <input type="date" class="form-control" placeholder="Check-Out Baru" name="newCheckOut">
                                         </div>
                                         <div class="col-md-3">
-                                            <select class="form-control">
-                                                <option>Standar</option>
-                                                <option>Deluxe</option>
-                                                <option>Suite</option>
+                                            <select class="form-control" name="newTipe">
+                                                <option value="Standar">Standar</option>
+                                                <option value="Deluxe">Deluxe</option>
+                                                <option value="Suite">Suite</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 text-right">
                                             <button type="button" class="btn btn-sm btn-outline-secondary btn-batal">Batal</button>
-                                            <button type="button" class="btn btn-sm btn-primary btn-simpan">Simpan Perubahan</button>
+                                            <button type="submit" class="btn btn-sm btn-primary btn-simpan">Simpan Perubahan</button>
                                         </div>
                                     </div>
                                 </form>
                             </td>
                         </tr>
-
-                        <!-- Contoh selesai -->
+                        <%
+                            }
+                        } else {
+                        %>
                         <tr>
-                            <td>R00110</td>
-                            <td>Suite</td>
-                            <td>2025-04-01</td>
-                            <td>2025-04-05</td>
-                            <td><span class="badge badge-secondary">Selesai</span></td>
-                            <td><span class="badge badge-success">Lunas</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-secondary" disabled>Ubah</button>
-                                <button class="btn btn-sm btn-outline-secondary" disabled>Batalkan</button>
-                                <button class="btn btn-sm btn-outline-secondary" disabled>Bayar</button>
-                            </td>
+                            <td colspan="7">Belum ada reservasi.</td>
                         </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
+
                 </table>
             </div>
         </div>

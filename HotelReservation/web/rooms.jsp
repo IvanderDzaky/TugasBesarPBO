@@ -1,6 +1,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="hotel.model.*" %>
 <%@ page import="hotel.helper.*" %>
+<%@ page session="true" %>
 <%
     List<Fasilitas> daftarFasilitas = (List<Fasilitas>) request.getAttribute("daftarFasilitas");
     List<KamarTersedia> hasil = (List<KamarTersedia>) request.getAttribute("hasilKamar");
@@ -44,7 +45,7 @@
                             <label class="font-weight-bold text-black">Check In</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" name="checkin" class="form-control" placeholder="Select date">
+                                <input type="text" id="checkin_date"name="checkin" class="form-control" placeholder="Select Check-in Date" autocomplete="off">
                             </div>
                         </div>
                         <!-- Check Out -->
@@ -52,7 +53,7 @@
                             <label class="font-weight-bold text-black">Check Out</label>
                             <div class="field-icon-wrap">
                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" name="checkout" class="form-control" placeholder="Select date">
+                                <input type="text" id="checkout_date"name="checkout" class="form-control" placeholder="Select Check-out Date" autocomplete="off">
                             </div>
                         </div>
                         <!-- Adults -->
@@ -83,12 +84,13 @@
                             <label class="font-weight-bold text-black d-block">Facilities</label>
                             <div class="form-control" style="height:auto; overflow-y:auto; max-height:150px;">
                                 <% if (daftarFasilitas != null) {
-                                       for (Fasilitas f : daftarFasilitas) { %>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>">
-                                        <label class="form-check-label"><%= f.getNamaFasilitas()%></label>
-                                    </div>
-                                <% }} %>
+                                        for (Fasilitas f : daftarFasilitas) {%>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="fasilitas" value="<%= f.getIdFasilitas()%>">
+                                    <label class="form-check-label"><%= f.getNamaFasilitas()%></label>
+                                </div>
+                                <% }
+                                    } %>
                             </div>
                         </div>
                         <!-- Button -->
@@ -117,11 +119,11 @@
             <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                 <a href="#" class="room">
                     <figure class="img-wrap">
-                        <img src="${pageContext.request.contextPath}/images/<%= roomImages[i] %>" alt="room image" class="img-fluid mb-3">
+                        <img src="${pageContext.request.contextPath}/images/<%= roomImages[i]%>" alt="room image" class="img-fluid mb-3">
                     </figure>
                     <div class="p-3 text-center room-info">
-                        <h2><%= roomNames[i] %></h2>
-                        <span class="text-uppercase letter-spacing-1"><%= prices[i] %>$ / per night</span>
+                        <h2><%= roomNames[i]%></h2>
+                        <span class="text-uppercase letter-spacing-1"><%= prices[i]%>$ / per night</span>
                     </div>
                 </a>
             </div>
@@ -145,15 +147,15 @@
             int delay = 100;
             for (KamarTersedia k : hasil) {
         %>
-        <div class="site-block-half d-block d-lg-flex bg-white mb-4" data-aos="fade" data-aos-delay="<%= delay %>">
-            <a href="#" class="image d-block bg-image-2" style="background-image: url('${pageContext.request.contextPath}/images/<%= k.getTipe().toLowerCase() %>.jpg');"></a>
+        <div class="site-block-half d-block d-lg-flex bg-white mb-4" data-aos="fade" data-aos-delay="<%= delay%>">
+            <a href="#" class="image d-block bg-image-2" style="background-image: url('${pageContext.request.contextPath}/images/<%= k.getTipe().toLowerCase()%>.jpg');"></a>
             <div class="text">
                 <span class="d-block mb-4">
-                    <span class="display-4 text-primary">$<%= k.getHarga() %></span>
+                    <span class="display-4 text-primary">$<%= k.getHarga()%></span>
                     <span class="text-uppercase letter-spacing-2">/ per night</span>
                 </span>
-                <h2 class="mb-3"><%= k.getTipe() %></h2>
-                <p><strong>Features:</strong> <%= k.getJumlahTersedia() %> Room available</p>
+                <h2 class="mb-3"><%= k.getTipe()%></h2>
+                <p><strong>Features:</strong> <%= k.getJumlahTersedia()%> Room available</p>
                 <p><strong>Facilities:</strong>
                     <%
                         List<Fasilitas> fasilitasList = k.getFasilitasList();
@@ -165,15 +167,20 @@
                         }
                     %>
                 </p>
-                <p><strong>Max Guests:</strong> <%= k.getMaxGuest() %> Guests</p>
-                <p class="mt-3">Nikmati kenyamanan menginap di kamar <%= k.getTipe() %> kami dengan fasilitas terbaik.</p>
-                <p><a href="${pageContext.request.contextPath}/#" class="btn btn-primary text-white">Book Now</a></p>
+                <p><strong>Max Guests:</strong> <%= k.getMaxGuest()%> Guests</p>
+                <p class="mt-3">Nikmati kenyamanan menginap di kamar <%= k.getTipe()%> kami dengan fasilitas terbaik.</p>
+                <p><form action="${pageContext.request.contextPath}/Rooms/CheckAvailability/Reserve" method="post">
+                    <input type="hidden" name="idKamar" value="<%= k.getIdKamar()%>">
+                    <button type="submit" class="btn btn-primary text-white">Book Now</button>
+                </form>
+                </p>
             </div>
         </div>
-        <% delay += 100; } %>
+        <% delay += 100;
+            } %>
     </div>
 </section>
-<% } %>
+<% }%>
 
 <!-- CTA SECTION -->
 <section class="section bg-image overlay" style="background-image: url('${pageContext.request.contextPath}/images/hero_4.jpg');">

@@ -320,6 +320,7 @@ public class Kamar {
             }
 
             String sql = "SELECT "
+                    + "    k.id_kamar, "
                     + "    k.tipe, "
                     + "    k.harga, "
                     + "    k.max_guest, "
@@ -371,6 +372,7 @@ public class Kamar {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     KamarTersedia kt = new KamarTersedia();
+                    kt.setIdKamar(rs.getInt("id_kamar"));
                     kt.setTipe(rs.getString("tipe"));
                     kt.setHarga(rs.getDouble("harga"));
                     kt.setMaxGuest(rs.getInt("max_guest"));

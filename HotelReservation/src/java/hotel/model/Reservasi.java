@@ -8,17 +8,17 @@ import java.util.List;
 public class Reservasi {
 
     private int idReservasi;
-    private int idKamar;
+    private Kamar kamar;
     private Date checkIn;
     private Date checkOut;
-    private Customer Customer;
+    private Customer customer;
     private String status;
 
     // Constructor
-    public Reservasi(int idReservasi, int idUser, int idKamar, Date checkIn, Date checkOut, String status) {
+    public Reservasi(int idReservasi, Customer customer, Kamar kamar, Date checkIn, Date checkOut, String status) {
         this.idReservasi = idReservasi;
-        this.Customer.idUser = idUser;
-        this.idKamar = idKamar;
+        this.customer = customer;
+        this.kamar = kamar;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.status = status;
@@ -33,20 +33,20 @@ public class Reservasi {
         this.idReservasi = idReservasi;
     }
 
-    public int getIdUser() {
-        return Customer.idUser;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setIdUser(int idUser) {
-        this.Customer.idUser = idUser;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public int getIdKamar() {
-        return idKamar;
+    public Kamar getKamar() {
+        return kamar;
     }
 
-    public void setIdKamar(int idKamar) {
-        this.idKamar = idKamar;
+    public void setKamar(Kamar kamar) {
+        this.kamar = kamar;
     }
 
     public Date getCheckIn() {
