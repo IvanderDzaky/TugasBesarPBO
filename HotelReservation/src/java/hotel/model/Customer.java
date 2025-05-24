@@ -6,6 +6,7 @@ import java.util.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Customer extends User {
 
@@ -40,12 +41,14 @@ public class Customer extends User {
     }
 
     public boolean register() throws SQLException {
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         String sql = "INSERT INTO users (nama, email, password, isAdmin) VALUES (?, ?, ?, false)";
         try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, nama);
             stmt.setString(2, email);
-            stmt.setString(3, password);
+            stmt.setString(3, hashedPassword); // simpan yang sudah di-hash
 
             return stmt.executeUpdate() > 0;
         }

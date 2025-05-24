@@ -4,6 +4,7 @@ import hotel.config.SqlConnect;
 import java.sql.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;
+import org.mindrot.jbcrypt.BCrypt;
 
 public abstract class User {
 
@@ -77,27 +78,31 @@ public abstract class User {
     public abstract void info(HttpServletRequest request);
 
     public static User login(String email, String password) throws SQLException {
-        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE email = ?";
         try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-            stmt.setString(2, password);
-
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
-                boolean isAdmin = rs.getBoolean("isAdmin");
-                User user;
+                String hashedPassword = rs.getString("password");
 
-                if (isAdmin) {
-                    user = new Admin(rs.getString("nama"), email, password);
-                } else {
-                    user = new Customer(rs.getString("nama"), email, password);
+                // Bandingkan password input dengan hash dari database
+                if (BCrypt.checkpw(password, hashedPassword)) {
+                    boolean isAdmin = rs.getBoolean("isAdmin");
+                    User user;
+
+                    if (isAdmin) {
+                        user = new Admin(rs.getString("nama"), email, password);
+                    } else {
+                        user = new Customer(rs.getString("nama"), email, password);
+                    }
+
+                    user.setIdUser(rs.getInt("id_user"));
+                    user.setCreatedAt(rs.getTimestamp("createdAt"));
+                    user.setIsAdmin(isAdmin);
+                    return user;
                 }
-
-                user.setIdUser(rs.getInt("id_user"));
-                user.setCreatedAt(rs.getTimestamp("createdAt"));
-                user.setIsAdmin(isAdmin);
-                return user;
             }
         }
         return null;

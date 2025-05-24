@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Admin extends User {
 
@@ -38,7 +39,8 @@ public class Admin extends User {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, customer.getNama());
             stmt.setString(2, customer.getEmail());
-            stmt.setString(3, customer.getPassword());
+            String hashedPassword = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt());
+            stmt.setString(3, hashedPassword);
 
             stmt.executeUpdate();
         } finally {
@@ -102,7 +104,8 @@ public class Admin extends User {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, customerBaru.getNama());
             stmt.setString(2, customerBaru.getEmail());
-            stmt.setString(3, customerBaru.getPassword());
+            String hashedPassword = BCrypt.hashpw(customerBaru.getPassword(), BCrypt.gensalt());
+            stmt.setString(3, hashedPassword);
             stmt.setInt(4, idUser);
             stmt.executeUpdate();
         } finally {
