@@ -71,6 +71,14 @@ public class CheckAvailability extends HttpServlet {
 
             Date parsedCheckIn = sdf.parse(checkInStr);
             Date parsedCheckOut = sdf.parse(checkOutStr);
+            
+            Date today = new Date(); // Hari ini (java.util.Date)
+
+            if (parsedCheckIn.before(today)) {
+                session.setAttribute("errorMsg", "Tanggal check-in tidak boleh di hari yang sudah lewat.");
+                response.sendRedirect(request.getContextPath() + "/Rooms");
+                return false;
+            }
 
             if (!parsedCheckOut.after(parsedCheckIn)) {
                 session.setAttribute("errorMsg", "Tanggal check-out harus setelah check-in.");

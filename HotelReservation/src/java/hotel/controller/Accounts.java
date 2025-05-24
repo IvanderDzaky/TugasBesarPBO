@@ -1,6 +1,7 @@
 package hotel.controller;
 
 import hotel.model.*;
+import hotel.security.JWTUtil;
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import jakarta.servlet.ServletException;
@@ -58,8 +59,13 @@ public class Accounts extends HttpServlet {
             User user = User.login(email, password);
             if (user != null) {
                 user.info(request);
-                request.getSession().setAttribute("user", user); // ✅ INI YANG PENTING 
-                request.getSession().setAttribute("successMsg", "Selamat datang, " + user.getNama());
+
+                // Tambahkan JWT
+              String token = JWTUtil.generateToken(user.getIdUser(), user.getIsAdmin(), user.getEmail());
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user); // Bisa dipertahankan
+                session.setAttribute("auth_token", token); // Simpan token di session
+                session.setAttribute("successMsg", "Selamat datang, " + user.getNama());
                 response.sendRedirect("Home");
                 return;
             } else {
@@ -68,8 +74,8 @@ public class Accounts extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Terjadi kesalahan saat login.");
-
         }
+
         response.sendRedirect("Accounts");
     }
 

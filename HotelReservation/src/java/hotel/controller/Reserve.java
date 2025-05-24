@@ -27,7 +27,7 @@ public class Reserve extends HttpServlet {
             throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
-
+            Object user = session.getAttribute("user");
             // Ambil parameter dari form
             String idKamarStr = request.getParameter("idKamar");
             if (idKamarStr == null || idKamarStr.isEmpty()) {
@@ -37,15 +37,6 @@ public class Reserve extends HttpServlet {
             }
 
             int idKamar = Integer.parseInt(idKamarStr);
-
-            // Ambil data user yang sedang login
-            Integer userId = (Integer) session.getAttribute("userId");
-            if (userId == null) {
-                session.setAttribute("errorMsg", "Silakan login terlebih dahulu.");
-                response.sendRedirect(request.getContextPath() + "/Accounts");
-                return;
-            }
-
             // Ambil data dari session (disimpan oleh CheckAvailability)
             String checkInStr = (String) session.getAttribute("checkin");
             String checkOutStr = (String) session.getAttribute("checkout");
@@ -53,13 +44,12 @@ public class Reserve extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
             Date parsedCheckIn = sdf.parse(checkInStr);
             Date parsedCheckOut = sdf.parse(checkOutStr);
-            
+
             java.sql.Date checkIn = new java.sql.Date(parsedCheckIn.getTime());
             java.sql.Date checkOut = new java.sql.Date(parsedCheckOut.getTime());
 
             // Siapkan objek Customer dan Kamar
-            Customer customer = new Customer();
-            customer.setIdUser(userId); // Anda harus punya setter ini
+            Customer customer = (Customer) user;
 
             Kamar kamar = new Kamar();
             kamar.setIdKamar(idKamar); // Anda juga harus punya setter ini
