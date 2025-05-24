@@ -143,8 +143,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Data users
 INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `isAdmin`, `createdAt`) VALUES
-(3, 'ADMIN', 'admin@yahoo.com', 'admin123', 1, '2025-05-18 22:12:35'),
-(23, 'mahmud', 'mahmud@gmail.com', '123', 0, '2025-05-19 02:30:43');
+(23, 'mahmud', 'mahmud@gmail.com', '$2a$10$OzakO5ImwJ70GzUGh09TrufpiEs/mN0QmSzfxZj4E0s/kMjSA2YHS', 0, '2025-05-19 02:30:43'),
+(38, 'fattan', 'fattan@gmail.com', '$2a$10$Fn1HcptBuu3RlwMc08IO4eagqGylCrz72WAwg/PfgG62z1MR8hgky', 0, '2025-05-24 07:09:32'),
+(39, 'NIKO', 'Kayvon@gmail.com', '$2a$10$i5fc7WiJeMG4npJoMXeQWO5Sr/lWWhwNVf6aAMOIuMQ5R2h9ztwtq', 0, '2025-05-24 10:30:14'),
+(40, 'ADMIN', 'admin@yahoo.com', '$2a$10$.gefvWczpIRlk2bCW1BdYelovWNT1KsSbEqY5PdvUvDZZC7wQMVU6', 1, '2025-05-24 10:37:53');
+
 
 COMMIT;
 
