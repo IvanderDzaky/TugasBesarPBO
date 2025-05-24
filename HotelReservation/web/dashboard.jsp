@@ -118,7 +118,8 @@
                             <td><span class="badge badge-<%= badgePembayaran%>"><%= pembayaran%></span></td>
                             <td>
                                 <button class="btn btn-sm btn-outline-primary btn-ubah" <%= disableAksi ? "disabled" : ""%>>Ubah</button>
-                                <button class="btn btn-sm btn-outline-danger" <%= disableAksi ? "disabled" : ""%>>Batalkan</button>
+                                <button class="btn btn-sm btn-outline-danger" <%= disableAksi ? "disabled" : ""%>><a href="Dashboard?action=batalkanReservasi&idReservasi=<%= r.getIdReservasi()%>" 
+                               onclick="return confirm('Yakin hapus reservasi ini?')">Batalkan</a></button>
                                 <button class="btn btn-sm btn-outline-success" <%= disableAksi ? "disabled" : ""%>>Bayar</button>
                             </td>
                         </tr>
@@ -132,13 +133,6 @@
                                         </div>
                                         <div class="col-md-3">
                                             <input type="date" class="form-control" placeholder="Check-Out Baru" name="newCheckOut">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control" name="newTipe">
-                                                <option value="Standar">Standar</option>
-                                                <option value="Deluxe">Deluxe</option>
-                                                <option value="Suite">Suite</option>
-                                            </select>
                                         </div>
                                         <div class="col-md-3 text-right">
                                             <button type="button" class="btn btn-sm btn-outline-secondary btn-batal">Batal</button>
