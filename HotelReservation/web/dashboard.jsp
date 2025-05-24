@@ -107,7 +107,7 @@
                                         badgePembayaran = "danger";
                                     }
 
-                                    
+
                         %>
                         <tr>
                             <td><%= r.getKamar().getNomorKamar()%></td>
@@ -117,17 +117,22 @@
                             <td><span class="badge badge-<%= badgeStatus%>"><%= status%></span></td>
                             <td><span class="badge badge-<%= badgePembayaran%>"><%= pembayaran%></span></td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary btn-ubah" <%= disableAksi ? "disabled" : ""%>>Ubah</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-ubah" data-id="<%= r.getIdReservasi()%>" <%= disableAksi ? "disabled" : ""%>>
+                                    Ubah
+                                </button>
+
                                 <button class="btn btn-sm btn-outline-danger" <%= disableAksi ? "disabled" : ""%>><a href="Dashboard?action=batalkanReservasi&idReservasi=<%= r.getIdReservasi()%>" 
-                               onclick="return confirm('Yakin hapus reservasi ini?')">Batalkan</a></button>
+                                                                                                                     onclick="return confirm('Yakin hapus reservasi ini?')">Batalkan</a></button>
                                 <button class="btn btn-sm btn-outline-success" <%= disableAksi ? "disabled" : ""%>>Bayar</button>
                             </td>
                         </tr>
                         <!-- Form ubah tampilkan jika diperlukan -->
                         <tr class="ubah-form-row" style="display:none;">
                             <td colspan="7">
-                                <form class="ubah-form">
+                                <form class="ubah-form" method="post" action="Dashboard?action=ubahReservasi">
                                     <div class="form-row">
+                                        <input type="hidden" name="idReservasi" value="<%= r.getIdReservasi()%>">
+
                                         <div class="col-md-3">
                                             <input type="date" class="form-control" placeholder="Check-In Baru" name="newCheckIn">
                                         </div>
@@ -164,24 +169,30 @@
 <!-- Script Section -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.btn-ubah').click(function () {
-            // Sembunyikan semua form ubah terlebih dahulu
-            $('.ubah-form-row').hide();
+                                                                                                                         $(document).ready(function () {
+                                                                                                                             $('.btn-ubah').click(function () {
+                                                                                                                                 $('.ubah-form-row').hide();
+                                                                                                                                 const currentRow = $(this).closest('tr');
+                                                                                                                                 const ubahRow = currentRow.next('.ubah-form-row');
+                                                                                                                                 ubahRow.show();
+                                                                                                                             });
 
-            // Tampilkan form di bawah baris yang diklik
-            const currentRow = $(this).closest('tr');
-            const ubahRow = currentRow.next('.ubah-form-row');
-            ubahRow.show();
-        });
+                                                                                                                             $('.btn-batal').click(function () {
+                                                                                                                                 $(this).closest('.ubah-form-row').hide();
+                                                                                                                             });
 
-        $('.btn-batal').click(function () {
-            $(this).closest('.ubah-form-row').hide();
-        });
+                                                                                                                             $('.btn-simpan').click(function () {
+                                                                                                                                 const form = $(this).closest('form');
+                                                                                                                                 const checkIn = form.find('input[name="newCheckIn"]').val();
+                                                                                                                                 const checkOut = form.find('input[name="newCheckOut"]').val();
 
-        $('.btn-simpan').click(function () {
-            alert('Perubahan berhasil disimpan (simulasi).');
-            $(this).closest('.ubah-form-row').hide();
-        });
-    });
+                                                                                                                                 if (!checkIn || !checkOut) {
+                                                                                                                                     alert('Tanggal tidak boleh kosong!');
+                                                                                                                                     return;
+                                                                                                                                 }
+
+                                                                                                                                 form.submit();
+                                                                                                                             });
+                                                                                                                         });
+
 </script>

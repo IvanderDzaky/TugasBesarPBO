@@ -106,7 +106,31 @@ public class Customer extends User {
 
         return daftar;
     }
+
     //method batalkanReservasi
-    
+    public void batalkanReservasi(int idReservasi) throws SQLException {
+        String sql = "DELETE FROM reservasi WHERE id_reservasi = ? AND id_user = ?";
+
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idReservasi);
+            stmt.setInt(2, this.getIdUser());
+
+            stmt.executeUpdate();
+        }
+    }
+
     //method ubahReservasi
-} 
+    public void ubahReservasi(int idReservasi, Date newCheckIn, Date newCheckOut) throws SQLException {
+        String sql = "UPDATE reservasi SET check_in = ?, check_out = ? WHERE id_reservasi = ? AND id_user = ?";
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDate(1, newCheckIn);        // Tanggal check-in baru
+            stmt.setDate(2, newCheckOut);       // Tanggal check-out baru
+            stmt.setInt(3, idReservasi);        // ID reservasi
+            stmt.setInt(4, this.getIdUser());   // ID user pemilik reservasi
+
+            stmt.executeUpdate();
+        }
+    }
+}
