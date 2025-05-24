@@ -121,8 +121,15 @@
                                     Ubah
                                 </button>
 
-                                <button class="btn btn-sm btn-outline-danger" <%= disableAksi ? "disabled" : ""%>><a href="Dashboard?action=batalkanReservasi&idReservasi=<%= r.getIdReservasi()%>" 
-                                                                                                                     onclick="return confirm('Yakin hapus reservasi ini?')">Batalkan</a></button>
+                                <form method="get" action="Dashboard" style="display:inline;">
+                                    <input type="hidden" name="action" value="batalkanReservasi">
+                                    <input type="hidden" name="idReservasi" value="<%= r.getIdReservasi()%>">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Yakin hapus reservasi ini?')"
+                                            <%= disableAksi ? "disabled" : ""%>>
+                                        Batalkan
+                                    </button>
+                                </form>
                                 <button class="btn btn-sm btn-outline-success" <%= disableAksi ? "disabled" : ""%>>Bayar</button>
                             </td>
                         </tr>
@@ -169,30 +176,30 @@
 <!-- Script Section -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-                                                                                                                         $(document).ready(function () {
-                                                                                                                             $('.btn-ubah').click(function () {
-                                                                                                                                 $('.ubah-form-row').hide();
-                                                                                                                                 const currentRow = $(this).closest('tr');
-                                                                                                                                 const ubahRow = currentRow.next('.ubah-form-row');
-                                                                                                                                 ubahRow.show();
-                                                                                                                             });
+            $(document).ready(function () {
+                $('.btn-ubah').click(function () {
+                    $('.ubah-form-row').hide();
+                    const currentRow = $(this).closest('tr');
+                    const ubahRow = currentRow.next('.ubah-form-row');
+                    ubahRow.show();
+                });
 
-                                                                                                                             $('.btn-batal').click(function () {
-                                                                                                                                 $(this).closest('.ubah-form-row').hide();
-                                                                                                                             });
+                $('.btn-batal').click(function () {
+                    $(this).closest('.ubah-form-row').hide();
+                });
 
-                                                                                                                             $('.btn-simpan').click(function () {
-                                                                                                                                 const form = $(this).closest('form');
-                                                                                                                                 const checkIn = form.find('input[name="newCheckIn"]').val();
-                                                                                                                                 const checkOut = form.find('input[name="newCheckOut"]').val();
+                $('.btn-simpan').click(function () {
+                    const form = $(this).closest('form');
+                    const checkIn = form.find('input[name="newCheckIn"]').val();
+                    const checkOut = form.find('input[name="newCheckOut"]').val();
 
-                                                                                                                                 if (!checkIn || !checkOut) {
-                                                                                                                                     alert('Tanggal tidak boleh kosong!');
-                                                                                                                                     return;
-                                                                                                                                 }
+                    if (!checkIn || !checkOut) {
+                        alert('Tanggal tidak boleh kosong!');
+                        return;
+                    }
 
-                                                                                                                                 form.submit();
-                                                                                                                             });
-                                                                                                                         });
+                    form.submit();
+                });
+            });
 
 </script>
