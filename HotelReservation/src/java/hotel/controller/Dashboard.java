@@ -18,18 +18,18 @@ public class Dashboard extends HttpServlet {
             throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
-            Customer customer = (Customer) session.getAttribute("user");
+            Object user = session.getAttribute("user");
 
-            if (customer != null) {
-                List<Reservasi> daftarReservasi = customer.lihatReservasi(); // Ambil reservasi
-                request.setAttribute("daftarReservasi", daftarReservasi);    // Kirim ke JSP
+            if (user != null && user instanceof Customer) {
+                Customer customer = (Customer) user;
+                List<Reservasi> daftarReservasi = customer.lihatReservasi();
+                request.setAttribute("daftarReservasi", daftarReservasi);
+                request.getRequestDispatcher("index.jsp?page=dashboard").forward(request, response);
             } else {
-                request.setAttribute("errorMsg", "Silakan login untuk melihat dashboard.");
+                // Redirect jika belum login atau bukan customer
+                session.setAttribute("errorMsg", "Silakan login sebagai Customer untuk mengakses dashboard.");
                 response.sendRedirect("Accounts");
-                return;
             }
-
-            request.getRequestDispatcher("index.jsp?page=dashboard").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Terjadi kesalahan: " + e.getMessage());

@@ -3,13 +3,13 @@ package hotel.controller;
 import hotel.helper.Fasilitas;
 import hotel.model.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
@@ -22,57 +22,60 @@ public class Admins extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         try {
-            Admin admin = new Admin("Admin", "admin@mail.com", "admin123");
+            HttpSession session = request.getSession();
+            Object user = session.getAttribute("user");
 
-            String action = request.getParameter("action");
+            if (user != null && user instanceof Admin) {
+                Admin admin = (Admin) user;
 
-            if (action == null) {
-                tampilkanDaftarCustomer(admin, request);
-                tampilkanDaftarKamar(admin, request);
-                tampilkanDaftarFasilitas(admin, request);
-                request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
-                return;
-            }
+                String action = request.getParameter("action");
+                if (action == null) {
+                    tampilkanDaftarCustomer(admin, request);
+                    tampilkanDaftarKamar(admin, request);
+                    tampilkanDaftarFasilitas(admin, request);
+                    tampilkanSemuaReservasi(admin, request);
+                    request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
+                    return;
+                }
 
-            switch (action) {
-                case "hapusCustomer":
-                    handleHapusCustomer(admin, request, response);
-                    break;
-
-                case "tambahCustomer":
-                    handleTambahCustomer(admin, request, response);
-                    break;
-
-                case "updateCustomer":
-                    handleUpdateCustomer(admin, request, response);
-                    break;
-
-                case "tambahKamar":
-                    handleTambahKamar(admin, request, response);
-                    break;
-
-                case "updateKamar":
-                    handleUpdateKamar(admin, request, response);
-                    break;
-
-                case "hapusKamar":
-                    handleHapusKamar(admin, request, response);
-                    break;
-
-                case "tambahFasilitas":
-                    handleTambahFasilitas(admin, request, response);
-                    break;
-
-                case "hapusFasilitas":
-                    handleHapusFasilitas(admin, request, response);
-                    break;
-
-                default:
-                    request.getSession().setAttribute("errorMsg", "Aksi tidak dikenali.");
-                    response.sendRedirect("Admins");
-                    break;
+                switch (action) {
+                    case "hapusCustomer":
+                        handleHapusCustomer(admin, request, response);
+                        break;
+                    case "tambahCustomer":
+                        handleTambahCustomer(admin, request, response);
+                        break;
+                    case "updateCustomer":
+                        handleUpdateCustomer(admin, request, response);
+                        break;
+                    case "tambahKamar":
+                        handleTambahKamar(admin, request, response);
+                        break;
+                    case "updateKamar":
+                        handleUpdateKamar(admin, request, response);
+                        break;
+                    case "hapusKamar":
+                        handleHapusKamar(admin, request, response);
+                        break;
+                    case "tambahFasilitas":
+                        handleTambahFasilitas(admin, request, response);
+                        break;
+                    case "hapusFasilitas":
+                        handleHapusFasilitas(admin, request, response);
+                        break;
+                    case "hapusReservasi":
+                        handleHapusReservasi(admin, request, response);
+                        break;
+                    default:
+                        session.setAttribute("errorMsg", "Aksi tidak dikenali.");
+                        response.sendRedirect("Admins");
+                        break;
+                }
+            } else {
+                // Redirect jika belum login sebagai admin
+                session.setAttribute("errorMsg", "Silakan login sebagai Admin untuk mengakses halaman ini.");
+                response.sendRedirect("Accounts");
             }
 
         } catch (Exception e) {
@@ -98,6 +101,12 @@ public class Admins extends HttpServlet {
             throws SQLException {
         List<Fasilitas> daftarFasilitas = admin.lihatFasilitas();
         request.setAttribute("daftarFasilitas", daftarFasilitas);
+    }
+
+    private void tampilkanSemuaReservasi(Admin admin, HttpServletRequest request)
+            throws SQLException {
+        List<Reservasi> daftarReservasi = admin.lihatSemuaReservasi();
+        request.setAttribute("reservasiList", daftarReservasi);
     }
 
     private void handleHapusCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -221,7 +230,7 @@ public class Admins extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan sistem.");
         }
-        response.sendRedirect("Admins");
+        response.sendRedirect("Admins#kamar");
     }
 
     private void handleUpdateKamar(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -271,7 +280,7 @@ public class Admins extends HttpServlet {
             request.getSession().setAttribute("errorMsg", "Terjadi kesalahan saat update.");
         }
 
-        response.sendRedirect("Admins");
+        response.sendRedirect("Admins#kamar");
     }
 
     private void handleTambahFasilitas(Admin admin, HttpServletRequest request, HttpServletResponse response)
@@ -304,7 +313,18 @@ public class Admins extends HttpServlet {
         }
         response.sendRedirect("Admins");
     }
-
+    private void handleHapusReservasi(Admin admin, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        try {
+            int idReservasi = Integer.parseInt(request.getParameter("idReservasi"));
+            admin.hapusReservasi(idReservasi);
+            request.getSession().setAttribute("successMsg", "Reservasi berhasil dihapus.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getSession().setAttribute("errorMsg", "Gagal menghapus Reservasi.");
+        }
+        response.sendRedirect("Admins#reservasi");
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

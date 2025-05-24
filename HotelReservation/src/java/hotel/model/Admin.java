@@ -213,4 +213,71 @@ public class Admin extends User {
             }
         }
     }
+
+    public List<Reservasi> lihatSemuaReservasi() throws SQLException {
+        List<Reservasi> daftarReservasi = new ArrayList<>();
+        Connection conn = SqlConnect.getConnection();
+
+        String sql = "SELECT r.id_reservasi, r.check_in, r.check_out, r.status, "
+                + "k.id_kamar, k.nomor_kamar, k.tipe, "
+                + "u.id_user, u.nama, u.email "
+                + "FROM reservasi r "
+                + "JOIN kamar k ON r.id_kamar = k.id_kamar "
+                + "JOIN users u ON r.id_user = u.id_user";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int idReservasi = rs.getInt("id_reservasi");
+                int idKamar = rs.getInt("id_kamar");
+                int idUser = rs.getInt("id_user");
+                java.sql.Date checkIn = rs.getDate("check_in");
+                java.sql.Date checkOut = rs.getDate("check_out");
+                String status = rs.getString("status");
+
+                // Data kamar
+                String nomorKamar = rs.getString("nomor_kamar");
+                String tipeKamar = rs.getString("tipe");
+                Kamar kamar = new Kamar();
+                kamar.setIdKamar(idKamar);
+                kamar.setNomorKamar(nomorKamar);
+                kamar.setTipe(tipeKamar);
+
+                // Data customer
+                String nama = rs.getString("nama");
+                String email = rs.getString("email");
+                Customer customer = new Customer();
+                customer.setIdUser(idUser);
+                customer.setNama(nama);
+                customer.setEmail(email);
+
+                // Bangun reservasi
+                Reservasi r = new Reservasi(idReservasi, customer, kamar, checkIn, checkOut, status);
+                daftarReservasi.add(r);
+            }
+        }
+
+        return daftarReservasi;
+    }
+
+    public void hapusReservasi(int idReservasi) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "DELETE FROM reservasi WHERE id_reservasi = ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, idReservasi);
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
 }

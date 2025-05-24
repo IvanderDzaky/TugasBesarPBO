@@ -29,42 +29,6 @@
     </head>
     <body>
         <jsp:include page="header-footer/header.jsp" />
-        <%-- Toast Notification Container --%>
-        <div id="toast" style="display:none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #f44336; color: white; padding: 16px 24px; border-radius: 8px; z-index: 1000; box-shadow: 0 2px 6px rgba(0,0,0,0.3); text-align: center;">
-            <span id="toast-msg"></span>
-        </div>
-        <script>
-            function showToast(message, isSuccess = false) {
-                const toast = document.getElementById("toast");
-                const toastMsg = document.getElementById("toast-msg");
-
-                toastMsg.innerText = message;
-                toast.style.backgroundColor = isSuccess ? "#4CAF50" : "#f44336"; // hijau / merah
-                toast.style.display = "block";
-
-                setTimeout(() => {
-                    toast.style.display = "none";
-                }, 3000);
-            }
-        </script>
-        <%
-            String errorMsg = (String) session.getAttribute("errorMsg");
-            String successMsg = (String) session.getAttribute("successMsg");
-            if (successMsg != null) {
-                session.removeAttribute("successMsg"); // agar tidak tampil lagi di refresh
-            }
-            if (errorMsg != null) {
-        %>
-
-        <script> showToast("<%= errorMsg.replace("\"", "\\\"")%>");</script>
-        <%
-        } else if (successMsg != null) {
-        %>
-
-        <script> showToast("<%= successMsg.replace("\"", "\\\"")%>", true);</script>
-        <%
-            }
-        %>
         <%
             String p = request.getParameter("page");
             if ("home".equals(p) || p == null) {
@@ -457,7 +421,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
                         <div class="media media-custom d-block mb-4 h-100">
-                           <img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid">
+                            <img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid">
                             <div class="media-body">
                                 <span class="meta-post">February 26, 2018</span>
                                 <h2 class="mt-0 mb-3"><a href="#">30 Great Ideas On Gifts For Travelers</a></h2>

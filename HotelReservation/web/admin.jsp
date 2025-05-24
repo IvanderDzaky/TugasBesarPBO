@@ -1,6 +1,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="hotel.model.*" %>
 <%@ page import="hotel.helper.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!-- Hero Section -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -134,7 +135,7 @@
             <div id="kamarForm" class="form-section mb-3" style="display: none;">
                 <form class="form-inline" action="Admins?action=tambahKamar" method="post">
                     <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
-                    <select name="tipe" class="form-control mb-2 mr-sm-2" required>
+                    <select name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe Kamar" required>
                         <option value="Single Room">Single Room</option>
                         <option value="Family Room">Family Room</option>
                         <option value="Presidential Room">Presidential Room</option>
@@ -142,8 +143,22 @@
                         <option value="VIP Suite">VIP Suite</option>
                         <option value="Deluxe Suite">Deluxe Suite</option>
                     </select>
-                    <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
-                    <input type="number" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                    <select type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
+                        <option value="90">90$</option>
+                        <option value="120">120$</option>
+                        <option value="250">250$</option>
+                        <option value="300">300$</option>
+                        <option value="350">350$</option>
+                        <option value="400">400$</option>
+                    </select>
+                    <select type="number" name="maxGuest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
+                        <option value="2">2</option>
+                        <option value="6">5</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
                     <div class="form-control mb-2 mr-sm-2">
                         <% if (daftarFasilitas != null) {
                                 for (Fasilitas f : daftarFasilitas) {%>
@@ -256,45 +271,65 @@
         </div>
 
 
+        <%
+            List<Reservasi> reservasiList = (List<Reservasi>) request.getAttribute("reservasiList");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        %>
 
         <!-- Reservasi Tab -->
         <div class="tab-pane fade" id="reservasi" role="tabpanel">
             <h4>Data Reservasi</h4>
             <table class="table table-hover">
-                <!-- Reservasi Form -->
-                <div id="kamarForm" class="form-section mb-3" style="display: none;">
-                    <form class="form-inline" action="Admins?action=tambahKamar" method="post">
-                        <input type="text" name="nomor" class="form-control mb-2 mr-sm-2" placeholder="No Kamar" required>
-                        <input type="text" name="tipe" class="form-control mb-2 mr-sm-2" placeholder="Tipe" required>
-                        <input type="number" name="harga" class="form-control mb-2 mr-sm-2" placeholder="Harga" required>
-                        <input type="number" name="Max Guest" class="form-control mb-2 mr-sm-2" placeholder="Max Guest" required>
-                        <select many name="Fasilitas" class="form-control mb-2 mr-sm-2" required>
-                            <option value="AC">AC</option>
-                            <option value="Cleaning">Cleaning Service</option>
-                            <option value="Shower">Shower</option>
-                            <option value="TV">TV</option>
-                            <option value="WiFI">WiFi</option>
-                        </select>
-                        <select name="status" class="form-control mb-2 mr-sm-2" required>
-                            <option value="Tersedia">Tersedia</option>
-                            <option value="Terisi">Terisi</option>
-                        </select>
-                        <button type="submit" class="btn btn-success mb-2">Simpan</button>
-                    </form>
-                </div>
                 <thead>
-                    <tr><th>ID</th><th>Customer</th><th>Kamar</th><th>Status</th><th>Aksi</th></tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Kamar</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
+                    <%
+                        if (reservasiList == null || reservasiList.isEmpty()) {
+                    %>
+                    <tr><td colspan="7">Tidak ada data reservasi.</td></tr>
+                    <%
+                    } else {
+                        for (Reservasi r : reservasiList) {
+                    %>
                     <tr>
-                        <td>R00123</td>
-                        <td>Amanda</td>
-                        <td>101</td>
-                        <td><span class="badge badge-warning">Dipesan</span></td>
+                        <td><%= r.getIdReservasi()%></td>
+                        <td><%= r.getCustomer().getEmail()%></td>
+                        <td><%= r.getKamar().getNomorKamar()%></td>
+                        <td><%= sdf.format(r.getCheckIn())%></td>
+                        <td><%= sdf.format(r.getCheckOut())%></td>
                         <td>
-                            <a href="Admins?action=delete&id=R00123" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus reservasi ini?')">Hapus</a>
+                            <%
+                                String status = r.getStatus();
+                                String badge = "badge-secondary";
+                                if ("Dipesan".equals(status))
+                                    badge = "badge-warning";
+                                else if ("CheckIn".equals(status))
+                                    badge = "badge-primary";
+                                else if ("Selesai".equals(status))
+                                    badge = "badge-success";
+                            %>
+                            <span class="badge <%= badge%>"><%= status%></span>
+                        </td>
+                        <td>
+                            <a href="Admins?action=hapusReservasi&idReservasi=<%= r.getIdReservasi()%>" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Yakin hapus reservasi ini?')">
+                                Hapus
+                            </a>
                         </td>
                     </tr>
+                    <%
+                            }
+                        }
+                    %>
                 </tbody>
             </table>
         </div>

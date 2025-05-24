@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true" %>
 <%
     HttpSession sess = request.getSession(false);
     boolean loggedIn = (sess != null && sess.getAttribute("userId") != null);
@@ -6,9 +7,10 @@
     if (loggedIn && sess.getAttribute("isAdmin") != null) {
         isAdmin = (Boolean) sess.getAttribute("isAdmin");
     }
-    request.setAttribute("userName", userName); 
+    request.setAttribute("userName", userName);
 %>       
 <header class="site-header js-site-header">
+    <jsp:include page="/notification.jsp" />
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-6 col-lg-4 site-logo" data-aos="fade">
