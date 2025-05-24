@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.UUID;
 
 @WebServlet(name = "Accounts", urlPatterns = {"/Accounts"})
 public class Accounts extends HttpServlet {
@@ -20,6 +21,10 @@ public class Accounts extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
+            HttpSession session = request.getSession();
+            String csrfToken = UUID.randomUUID().toString();
+            session.setAttribute("csrf_token", csrfToken);
+            request.setAttribute("csrf_token", csrfToken);
             request.getRequestDispatcher("index.jsp?page=accounts").forward(request, response);
             return;
         }
@@ -45,12 +50,26 @@ public class Accounts extends HttpServlet {
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        // Validasi CSRF token
+        String sessionToken = (String) session.getAttribute("csrf_token");
+        String formToken = request.getParameter("csrf_token");
+
+        if (sessionToken == null || formToken == null || !sessionToken.equals(formToken)) {
+            session.setAttribute("errorMsg", "CSRF Token SALAH.");
+            response.sendRedirect("Accounts");
+            return;
+        }
+
+        // Hapus token setelah dipakai (opsional, untuk satu kali pakai)
+        session.removeAttribute("csrf_token");
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         if (email == null || password == null || email.trim().isEmpty() || password.trim().isEmpty()) {
-            request.getSession().setAttribute("errorMsg", "Email dan password wajib diisi.");
+            session.setAttribute("errorMsg", "Email dan password wajib diisi.");
             response.sendRedirect("Accounts");
             return;
         }
@@ -59,21 +78,18 @@ public class Accounts extends HttpServlet {
             User user = User.login(email, password);
             if (user != null) {
                 user.info(request);
-
-                // Tambahkan JWT
-              String token = JWTUtil.generateToken(user.getIdUser(), user.getIsAdmin(), user.getEmail());
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user); // Bisa dipertahankan
-                session.setAttribute("auth_token", token); // Simpan token di session
+                String token = JWTUtil.generateToken(user.getIdUser(), user.getIsAdmin(), user.getEmail());
+                session.setAttribute("user", user);
+                session.setAttribute("auth_token", token);
                 session.setAttribute("successMsg", "Selamat datang, " + user.getNama());
                 response.sendRedirect("Home");
                 return;
             } else {
-                request.getSession().setAttribute("errorMsg", "Email atau password salah.");
+                session.setAttribute("errorMsg", "Email atau password salah.");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Terjadi kesalahan saat login.");
+            session.setAttribute("errorMsg", "Terjadi kesalahan saat login.");
         }
 
         response.sendRedirect("Accounts");

@@ -49,7 +49,8 @@
                 <span>or use your email password</span>
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name ="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
+                <input type="hidden" name="csrf_token" value="${csrf_token}"
+                       <a href="#">Forget Your Password?</a>
                 <button name="action" value="login">Sign In</button>
             </form>
         </div>
