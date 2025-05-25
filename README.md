@@ -6,4 +6,7 @@
 5. If there any error message and you will ended with "Resolve" the error
 + Click "Resolve" and try to search that missing library which you installed
 + After it resolved, whole library would be seen when you click Libraries on the folder tree
-6. Try to run Build and Clean or You just can run
+6. Create the database, look over hotel.sql package and do SQL or import
+7. Try to run Build and Clean or You just can run
+
+- Admin@yahoo.com, admin123
