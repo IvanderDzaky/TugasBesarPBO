@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data users
-INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `isAdmin`, `createdAt`) VALUES
-(23, 'mahmud', 'mahmud@gmail.com', '$2a$10$OzakO5ImwJ70GzUGh09TrufpiEs/mN0QmSzfxZj4E0s/kMjSA2YHS', 0, '2025-05-19 02:30:43'),
-(38, 'fattan', 'fattan@gmail.com', '$2a$10$Fn1HcptBuu3RlwMc08IO4eagqGylCrz72WAwg/PfgG62z1MR8hgky', 0, '2025-05-24 07:09:32'),
-(39, 'NIKO', 'Kayvon@gmail.com', '$2a$10$i5fc7WiJeMG4npJoMXeQWO5Sr/lWWhwNVf6aAMOIuMQ5R2h9ztwtq', 0, '2025-05-24 10:30:14'),
-(40, 'ADMIN', 'admin@yahoo.com', '$2a$10$.gefvWczpIRlk2bCW1BdYelovWNT1KsSbEqY5PdvUvDZZC7wQMVU6', 1, '2025-05-24 10:37:53');
+INSERT INTO `users` (`nama`, `email`, `password`, `isAdmin`, `createdAt`) VALUES
+('mahmud', 'mahmud@gmail.com', '$2a$10$OzakO5ImwJ70GzUGh09TrufpiEs/mN0QmSzfxZj4E0s/kMjSA2YHS', 0, '2025-05-19 02:30:43'),
+('fattan', 'fattan@gmail.com', '$2a$10$Fn1HcptBuu3RlwMc08IO4eagqGylCrz72WAwg/PfgG62z1MR8hgky', 0, '2025-05-24 07:09:32'),
+('NIKO', 'Kayvon@gmail.com', '$2a$10$i5fc7WiJeMG4npJoMXeQWO5Sr/lWWhwNVf6aAMOIuMQ5R2h9ztwtq', 0, '2025-05-24 10:30:14'),
+('ADMIN', 'admin@yahoo.com', '$2a$10$.gefvWczpIRlk2bCW1BdYelovWNT1KsSbEqY5PdvUvDZZC7wQMVU6', 1, '2025-05-24 10:37:53');
 
 -- --------------------------------------------------------
 -- Struktur tabel: kamar
@@ -54,18 +54,18 @@ CREATE TABLE IF NOT EXISTS `kamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data kamar
-INSERT INTO `kamar` (`id_kamar`, `nomor_kamar`, `tipe`, `harga`, `status`, `max_guest`) VALUES
-(19, '101', 'Single Room', 90, 1, 2),
-(20, '102', 'Single Room', 90, 1, 2),
-(21, '103', 'Single Room', 90, 1, 2),
-(22, '201', 'Family Room', 120, 1, 5),
-(23, '202', 'Family Room', 120, 1, 5),
-(24, '301', 'Presidential Room', 250, 1, 8),
-(25, '401', 'Suite', 300, 1, 10),
-(26, '402', 'Suite', 300, 1, 10),
-(27, '501', 'VIP Suite', 350, 1, 15),
-(28, '502', 'VIP Suite', 350, 1, 15),
-(29, '601', 'Deluxe Suite', 400, 1, 20);
+INSERT INTO `kamar` (`nomor_kamar`, `tipe`, `harga`, `status`, `max_guest`) VALUES
+('101', 'Single Room', 90, 1, 2),
+('102', 'Single Room', 90, 1, 2),
+('103', 'Single Room', 90, 1, 2),
+('201', 'Family Room', 120, 1, 5),
+('202', 'Family Room', 120, 1, 5),
+('301', 'Presidential Room', 250, 1, 8),
+('401', 'Suite', 300, 1, 10),
+('402', 'Suite', 300, 1, 10),
+('501', 'VIP Suite', 350, 1, 15),
+('502', 'VIP Suite', 350, 1, 15),
+('601', 'Deluxe Suite', 400, 1, 20);
 
 -- --------------------------------------------------------
 -- Struktur tabel: fasilitas
@@ -78,14 +78,14 @@ CREATE TABLE IF NOT EXISTS `fasilitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data fasilitas
-INSERT INTO `fasilitas` (`id_fasilitas`, `nama_fasilitas`, `deskripsi_fasilitas`) VALUES
-(1, 'WiFi', 'High speed WiFi quality with Indihome 500mb/s.'),
-(2, 'AC', 'Most coldest Air Conditioner that ever had.'),
-(3, 'TV', 'Smart Tv'),
-(4, 'Shower', 'Water Heater, Bathub'),
-(5, 'Cleaning', 'Cleaning Service'),
-(22, 'Coffe', 'Premium Coffe'),
-(25, 'Balcony', 'Premium Balcony');
+INSERT INTO `fasilitas` (`nama_fasilitas`, `deskripsi_fasilitas`) VALUES
+('WiFi', 'High speed WiFi quality with Indihome 500mb/s.'),
+('AC', 'Most coldest Air Conditioner that ever had.'),
+('TV', 'Smart Tv'),
+('Shower', 'Water Heater, Bathub'),
+('Cleaning', 'Cleaning Service'),
+('Coffe', 'Premium Coffe'),
+('Balcony', 'Premium Balcony');
 
 -- --------------------------------------------------------
 -- Struktur tabel: kamar_fasilitas
@@ -144,10 +144,6 @@ CREATE TABLE IF NOT EXISTS `reservasi` (
   CONSTRAINT `reservasi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   CONSTRAINT `reservasi_ibfk_2` FOREIGN KEY (`id_kamar`) REFERENCES `kamar` (`id_kamar`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Data reservasi
-INSERT INTO `reservasi` (`id_reservasi`, `id_user`, `id_kamar`, `check_in`, `check_out`, `status`) VALUES
-(7, 3, 29, '2025-05-01', '2025-05-02', 'Dipesan');
 
 COMMIT;
 
