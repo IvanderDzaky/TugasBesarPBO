@@ -49,8 +49,10 @@
 
         <!-- Customer Tab -->
         <div class="tab-pane fade show active" id="customer" role="tabpanel">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h4>Data Customer</h4>
+            <h4>Data Customer</h4>
+
+            <!-- Tombol Tambah di bawah judul -->
+            <div class="mb-3">
                 <button class="btn btn-outline-primary btn-sm" onclick="toggleForm('customerForm')">Tambah</button>
             </div>
 
