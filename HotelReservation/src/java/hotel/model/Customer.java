@@ -109,14 +109,30 @@ public class Customer extends User {
 
     //method batalkanReservasi
     public void batalkanReservasi(int idReservasi) throws SQLException {
-        String sql = "DELETE FROM reservasi WHERE id_reservasi = ? AND id_user = ?";
+        String updateReservasi = "UPDATE reservasi SET status = 'Dibatalkan' WHERE id_reservasi = ? AND id_user = ?";
+        String updatePembayaran = "UPDATE pembayaran SET status = 'Dibatalkan' WHERE id_reservasi = ?";
 
-        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = SqlConnect.getConnection()) {
+            conn.setAutoCommit(false); // Mulai transaksi
 
-            stmt.setInt(1, idReservasi);
-            stmt.setInt(2, this.getIdUser());
+            try (
+                    PreparedStatement stmtReservasi = conn.prepareStatement(updateReservasi); PreparedStatement stmtPembayaran = conn.prepareStatement(updatePembayaran)) {
+                // Update status reservasi
+                stmtReservasi.setInt(1, idReservasi);
+                stmtReservasi.setInt(2, this.getIdUser());
+                stmtReservasi.executeUpdate();
 
-            stmt.executeUpdate();
+                // Update status pembayaran (tidak perlu id_user karena relasi hanya lewat id_reservasi)
+                stmtPembayaran.setInt(1, idReservasi);
+                stmtPembayaran.executeUpdate();
+
+                conn.commit(); // Commit jika semua berhasil
+            } catch (SQLException e) {
+                conn.rollback(); // Rollback jika ada error
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
         }
     }
 

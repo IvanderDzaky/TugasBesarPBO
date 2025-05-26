@@ -1,8 +1,9 @@
+<%@page import="java.util.Map"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
 <%@ page import="java.util.List" %>
-<%@ page import="hotel.model.Reservasi" %>
-<%@ page import="hotel.model.Kamar" %>
+<%@ page import="hotel.model.*" %>
+
 
 <!-- Hero -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)">
@@ -82,7 +83,7 @@
                     <tbody class="text-center">
                         <%
                             List<Reservasi> daftarReservasi = (List<Reservasi>) request.getAttribute("daftarReservasi");
-
+                            Map<Integer, String> statusPembayaranMap = (Map<Integer, String>) request.getAttribute("statusPembayaranMap");
                             if (daftarReservasi != null && !daftarReservasi.isEmpty()) {
                                 for (Reservasi r : daftarReservasi) {
                                     String status = r.getStatus();
@@ -91,22 +92,25 @@
                                         badgeStatus = "warning";
                                     } else if ("Selesai".equalsIgnoreCase(status)) {
                                         badgeStatus = "secondary";
+                                    } else if ("Dibatalkan".equalsIgnoreCase(status)) {
+                                        badgeStatus = "danger";
                                     }
 
-                                    // Dummy untuk pembayaran (belum diimplementasi)
-                                    String pembayaran = "-";
+                                    int idReservasi = r.getIdReservasi();
+                                    String statusPembayaran = statusPembayaranMap.getOrDefault(idReservasi, "Belum Bayar");
                                     String badgePembayaran = "danger";
                                     boolean disableAksi = false;
 
-                                    if ("Selesai".equalsIgnoreCase(status)) {
-                                        pembayaran = "Lunas";
+                                    if ("Lunas".equalsIgnoreCase(statusPembayaran)) {
                                         badgePembayaran = "success";
-                                        disableAksi = true;
-                                    } else {
-                                        pembayaran = "Belum Bayar";
-                                        badgePembayaran = "danger";
+                                    } else if ("Dibatalkan".equalsIgnoreCase(statusPembayaran)) {
+                                        badgePembayaran = "secondary";
                                     }
 
+                                    // Jika reservasi selesai atau dibatalkan, aksi harus dinonaktifkan
+                                    if ("Selesai".equalsIgnoreCase(status) || "Dibatalkan".equalsIgnoreCase(status)) {
+                                        disableAksi = true;
+                                    }
 
                         %>
                         <tr>
@@ -115,7 +119,7 @@
                             <td><%= r.getCheckIn()%></td>
                             <td><%= r.getCheckOut()%></td>
                             <td><span class="badge badge-<%= badgeStatus%>"><%= status%></span></td>
-                            <td><span class="badge badge-<%= badgePembayaran%>"><%= pembayaran%></span></td>
+                            <td><span class="badge badge-<%= badgePembayaran%>"><%= statusPembayaran %></span></td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-outline-primary btn-ubah" data-id="<%= r.getIdReservasi()%>" <%= disableAksi ? "disabled" : ""%>>
                                     Ubah
@@ -130,7 +134,15 @@
                                         Batalkan
                                     </button>
                                 </form>
-                                <button class="btn btn-sm btn-outline-success" <%= disableAksi ? "disabled" : ""%>>Bayar</button>
+                                <form method="post" action="Payment" style="display:inline;">
+                                    <input type="hidden" name="idReservasi" value="<%= r.getIdReservasi()%>">
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-success"
+                                            <%= disableAksi ? "disabled" : ""%>>
+                                        Bayar
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                         <!-- Form ubah tampilkan jika diperlukan -->
@@ -176,30 +188,30 @@
 <!-- Script Section -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-            $(document).ready(function () {
-                $('.btn-ubah').click(function () {
-                    $('.ubah-form-row').hide();
-                    const currentRow = $(this).closest('tr');
-                    const ubahRow = currentRow.next('.ubah-form-row');
-                    ubahRow.show();
-                });
+                                                $(document).ready(function () {
+                                                    $('.btn-ubah').click(function () {
+                                                        $('.ubah-form-row').hide();
+                                                        const currentRow = $(this).closest('tr');
+                                                        const ubahRow = currentRow.next('.ubah-form-row');
+                                                        ubahRow.show();
+                                                    });
 
-                $('.btn-batal').click(function () {
-                    $(this).closest('.ubah-form-row').hide();
-                });
+                                                    $('.btn-batal').click(function () {
+                                                        $(this).closest('.ubah-form-row').hide();
+                                                    });
 
-                $('.btn-simpan').click(function () {
-                    const form = $(this).closest('form');
-                    const checkIn = form.find('input[name="newCheckIn"]').val();
-                    const checkOut = form.find('input[name="newCheckOut"]').val();
+                                                    $('.btn-simpan').click(function () {
+                                                        const form = $(this).closest('form');
+                                                        const checkIn = form.find('input[name="newCheckIn"]').val();
+                                                        const checkOut = form.find('input[name="newCheckOut"]').val();
 
-                    if (!checkIn || !checkOut) {
-                        alert('Tanggal tidak boleh kosong!');
-                        return;
-                    }
+                                                        if (!checkIn || !checkOut) {
+                                                            alert('Tanggal tidak boleh kosong!');
+                                                            return;
+                                                        }
 
-                    form.submit();
-                });
-            });
+                                                        form.submit();
+                                                    });
+                                                });
 
 </script>

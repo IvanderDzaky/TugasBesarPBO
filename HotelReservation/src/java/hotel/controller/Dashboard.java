@@ -1,5 +1,6 @@
 package hotel.controller;
 
+import hotel.helper.Bayar;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import hotel.model.*;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "Dashboard", urlPatterns = {"/Dashboard"})
 public class Dashboard extends HttpServlet {
@@ -25,7 +28,16 @@ public class Dashboard extends HttpServlet {
 
             if (action == null) {
                 List<Reservasi> daftarReservasi = customer.lihatReservasi();
+                Map<Integer, String> statusPembayaranMap = new HashMap<>();
+
+                for (Reservasi r : daftarReservasi) {
+                    int idReservasi = r.getIdReservasi();
+                    String statusBayar = Bayar.getStatusPembayaranByReservasi(idReservasi);
+                    statusPembayaranMap.put(idReservasi, statusBayar);
+                }
+
                 request.setAttribute("daftarReservasi", daftarReservasi);
+                request.setAttribute("statusPembayaranMap", statusPembayaranMap);
                 request.getRequestDispatcher("index.jsp?page=dashboard").forward(request, response);
                 return; // jangan lupa return supaya tidak lanjut ke switch
             }

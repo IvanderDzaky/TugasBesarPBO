@@ -469,12 +469,13 @@
         } else if ("rooms".equals(p)) {
         %>
         <jsp:include page="rooms.jsp" flush="false"></jsp:include>
-        <% } else {
+        <% } else if ("payments".equals(p)) {
         %>
-        <h2>Halaman tidak ditemukan</h2>
+         <jsp:include page="component/payment.jsp" flush="false"></jsp:include>
         <%
             }
         %>
+        
 
         <jsp:include page="header-footer/footer.jsp" />
 
