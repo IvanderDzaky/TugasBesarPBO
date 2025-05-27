@@ -134,7 +134,7 @@
                                         Batalkan
                                     </button>
                                 </form>
-                                <form method="post" action="Payment" style="display:inline;">
+                                <form method="get" action="Payment" style="display:inline;">
                                     <input type="hidden" name="idReservasi" value="<%= r.getIdReservasi()%>">
                                     <button type="submit"
                                             class="btn btn-sm btn-outline-success"

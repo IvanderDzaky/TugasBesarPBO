@@ -7,6 +7,9 @@
     Kamar kamar = (Kamar) request.getAttribute("kamar");
     Integer durasi = (Integer) request.getAttribute("durasi");
     Double totalHarga = (Double) request.getAttribute("totalHarga");
+
+    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
+    String formattedTotal = totalHarga != null ? formatter.format(totalHarga) : "";
 %>
 
 <!-- Hero -->
@@ -30,14 +33,17 @@
     </a>
 </section>
 
+<% Boolean showCountdown = (Boolean) request.getAttribute("showCountdown"); %>
+<% Long deadlineMillis = (Long) request.getAttribute("deadlineMillis"); %>
+
 <% if (reservasi != null && kamar != null) {%>
 <section class="section contact-section" id="next">
     <div class="container">
         <h3 class="text-center mb-4">Konfirmasi Pembayaran Reservasi</h3>
-        <form method="post" action="${pageContext.request.contextPath}/Payment/ConfirmPayment" name="bayar">
+        <form method="post" action="${pageContext.request.contextPath}/Payment/Bayar">
             <input type="hidden" name="idReservasi" value="<%= reservasi.getIdReservasi()%>">
-            <div class="row">
 
+            <div class="row">
                 <div class="col-md-6 mb-3">
                     <label>Nomor Kamar</label>
                     <input type="text" class="form-control" value="<%= kamar.getNomorKamar()%>" readonly>
@@ -53,12 +59,14 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>Total Harga</label>
-                    <input type="text" class="form-control" name="jumlahBayar" value="<%= totalHarga%>" readonly>
+                    <input type="hidden" name="jumlahBayar" value="<%= totalHarga%>">
+                    <input type="text" class="form-control" value="<%= formattedTotal%>" readonly>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label>Metode Pembayaran</label>
-                    <select name="metode" class="form-control">
+                    <select name="metode" class="form-control" required>
+                        <option value="" disabled selected>Pilih Metode</option>
                         <option value="Transfer Bank">Transfer Bank</option>
                         <option value="QRIS">QRIS</option>
                         <option value="E-Wallet">E-Wallet</option>
@@ -73,9 +81,8 @@
         </form>
     </div>
 </section>
-<% } else { %>
-<% Boolean showCountdown = (Boolean) request.getAttribute("showCountdown"); %>
-<% if (showCountdown != null && showCountdown) {%>
+
+<% } else if (showCountdown != null && showCountdown) { %>
 <section class="section pb-4">
     <div class="container">
         <h4 class="text-center mb-3">Menunggu Pembayaran...</h4>
@@ -83,33 +90,45 @@
 
         <div id="countdown" class="text-center text-danger font-weight-bold mb-4" style="font-size: 24px;"></div>
 
-        <form method="post" action="Payment">
-            <input type="hidden" name="action" value="sudahBayar">
+        <% if (request.getAttribute("idPembayaran") != null) {%>
+        <form method="post" action="${pageContext.request.contextPath}/Payment/Bayar/Konfirmasi">
             <input type="hidden" name="idPembayaran" value="<%= request.getAttribute("idPembayaran")%>">
             <div class="text-center">
                 <button type="submit" class="btn btn-success">Saya Sudah Bayar</button>
                 <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
+        <% } %>
     </div>
 </section>
 
+<% if (deadlineMillis != null) {%>
 <script>
-    // Countdown 24 jam
-    let seconds = 86400;
+    let deadline = <%= deadlineMillis%>;
     let countdown = document.getElementById("countdown");
     let interval = setInterval(function () {
-        let hrs = Math.floor(seconds / 3600);
-        let mins = Math.floor((seconds % 3600) / 60);
-        let secs = seconds % 60;
-        countdown.innerHTML = hrs + " jam " + mins + " menit " + secs + " detik";
-        seconds--;
-        if (seconds < 0) {
+        let now = new Date().getTime();
+        let distance = deadline - now;
+
+        if (distance <= 0) {
             clearInterval(interval);
             countdown.innerHTML = "Waktu habis";
+        } else {
+            let hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let secs = Math.floor((distance % (1000 * 60)) / 1000);
+            countdown.innerHTML = hrs + " jam " + mins + " menit " + secs + " detik";
         }
     }, 1000);
 </script>
 <% } %>
 
+<% } else { %>
+<!-- Jika tidak ada data reservasi dan tidak ada countdown -->
+<section class="section pb-4">
+    <div class="container text-center">
+        <h4>Data pembayaran tidak ditemukan.</h4>
+        <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-primary mt-3">Kembali ke Dashboard</a>
+    </div>
+</section>
 <% }%>

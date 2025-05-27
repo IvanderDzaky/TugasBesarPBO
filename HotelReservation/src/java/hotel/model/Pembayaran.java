@@ -1,7 +1,7 @@
 package hotel.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Pembayaran implements Bayarable {
 
@@ -10,18 +10,29 @@ public class Pembayaran implements Bayarable {
     private String metode;
     private double jumlahBayar;
     private String status;
-    private Date tanggalBayar;
+    private Timestamp tanggalBayar;
+    private Timestamp deadLine;
 
     // Constructor
     public Pembayaran() {
     }
 
-    public Pembayaran(String idPembayaran, String metode, double jumlahBayar, String status, Date tanggalBayar) {
+    public Pembayaran(int idReservasi, String idPembayaran, String metode, double jumlahBayar, String status, Timestamp tanggalBayar, Timestamp deadLine) {
+        this.idReservasi = idReservasi;
         this.idPembayaran = idPembayaran;
         this.metode = metode;
         this.jumlahBayar = jumlahBayar;
         this.status = status;
         this.tanggalBayar = tanggalBayar;
+        this.deadLine = deadLine;
+    }
+
+    public Timestamp getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(Timestamp deadLine) {
+        this.deadLine = deadLine;
     }
 
     // Getter & Setter
@@ -65,11 +76,11 @@ public class Pembayaran implements Bayarable {
         this.status = status;
     }
 
-    public Date getTanggalBayar() {
+    public Timestamp getTanggalBayar() {
         return tanggalBayar;
     }
 
-    public void setTanggalBayar(Date tanggalBayar) {
+    public void setTanggalBayar(Timestamp tanggalBayar) {
         this.tanggalBayar = tanggalBayar;
     }
 
@@ -87,7 +98,7 @@ public class Pembayaran implements Bayarable {
             return;
         }
         this.status = "Lunas";
-        this.tanggalBayar = Date.valueOf(LocalDate.now());
+        this.tanggalBayar = Timestamp.valueOf(LocalDateTime.now());
     }
 
     /**
@@ -116,6 +127,12 @@ public class Pembayaran implements Bayarable {
                 + ", status='" + status + '\''
                 + ", tanggalBayar=" + tanggalBayar
                 + '}';
+    }
+
+    public boolean isValid() {
+        return idPembayaran != null && !idPembayaran.isEmpty()
+                && idReservasi > 0
+                && jumlahBayar > 0;
     }
 
 }

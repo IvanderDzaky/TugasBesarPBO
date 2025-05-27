@@ -100,12 +100,14 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `id_reservasi` INT(11) NOT NULL,
   `metode` VARCHAR(50) DEFAULT NULL,
   `jumlah_bayar` DOUBLE DEFAULT NULL,
-  `status` VARCHAR(20) DEFAULT NULL,
-  `tanggal_bayar` DATE DEFAULT CURDATE(),
+  `status` VARCHAR(20) DEFAULT 'pending',
+  `tanggal_bayar` TIMESTAMP DEFAULT NULL,
+  `deadline` TIMESTAMP DEFAULT NULL,
   PRIMARY KEY (`id_pembayaran`),
   KEY `id_reservasi` (`id_reservasi`),
   CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_reservasi`) REFERENCES `reservasi` (`id_reservasi`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 -- Struktur tabel: reservasi

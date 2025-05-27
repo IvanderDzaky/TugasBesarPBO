@@ -5,71 +5,60 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.util.UUID;
+import hotel.model.Pembayaran;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Bayar {
 
-    public static boolean simpanPembayaran(int idReservasi, String metode, double jumlahBayar) {
-        String sql = "INSERT INTO pembayaran (id_pembayaran, id_reservasi, metode, jumlah_bayar, status, tanggal_bayar) "
-                + "VALUES (?, ?, ?, ?, ?, CURDATE())";
-
-        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            String idPembayaran = "PAY-" + UUID.randomUUID().toString();
-
-            stmt.setString(1, idPembayaran);
-            stmt.setInt(2, idReservasi);
-            stmt.setString(3, metode);
-            stmt.setDouble(4, jumlahBayar);
-            stmt.setString(5, "Pending");
-
-            int result = stmt.executeUpdate();
-            return result > 0;
-
-        } catch (SQLException e) {
+    public static boolean simpanPembayaran(Pembayaran p) {
+        boolean sukses = false;
+        try (Connection conn = SqlConnect.getConnection()) {
+            String sql = "INSERT INTO pembayaran (id_pembayaran, id_reservasi, metode, jumlah_bayar, status, deadline) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, p.getIdPembayaran());
+            ps.setInt(2, p.getIdReservasi());
+            ps.setString(3, p.getMetode());
+            ps.setDouble(4, p.getJumlahBayar());
+            ps.setString(5, p.getStatus());
+            ps.setTimestamp(6, p.getDeadLine());
+            sukses = ps.executeUpdate() > 0;
+        } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return sukses;
     }
 
-    public static String getStatusPembayaranByReservasi(int idReservasi) throws Exception {
-        Connection conn = SqlConnect.getConnection();
-        String sql = "SELECT status FROM pembayaran WHERE id_reservasi = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, idReservasi);
-        ResultSet rs = stmt.executeQuery();
-        String status = "Belum Bayar"; // default
-        if (rs.next()) {
-            status = rs.getString("status");
+    public static boolean konfirmasiPembayaran(Pembayaran pembayaran) {
+        boolean result = false;
+        try (Connection conn = SqlConnect.getConnection()) {
+            String sql = "UPDATE pembayaran SET status = ?, tanggal_bayar = ? WHERE id_pembayaran = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, pembayaran.getStatus());
+            ps.setTimestamp(2, pembayaran.getTanggalBayar());
+            ps.setString(3, pembayaran.getIdPembayaran());
+
+            result = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        rs.close();
-        stmt.close();
-        conn.close();
+        return result;
+    }
+
+    public static String getStatusPembayaranByReservasi(int idReservasi) {
+        String status = "Belum Ada Pembayaran"; // Default jika belum ada pembayaran
+        try (Connection conn = SqlConnect.getConnection()) {
+            String sql = "SELECT status FROM pembayaran WHERE id_reservasi = ? ORDER BY tanggal_bayar DESC LIMIT 1";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idReservasi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                status = rs.getString("status");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return status;
     }
 
-    public static String getIdPembayaranByReservasi(int idReservasi) {
-        String id = null;
-        String sql = "SELECT id_pembayaran FROM pembayaran WHERE id_reservasi = ? ORDER BY id_pembayaran DESC LIMIT 1";
-        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, idReservasi);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                id = rs.getString("id_pembayaran");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
-
-    public static void updateStatusLunas(String idPembayaran) {
-        String sql = "UPDATE pembayaran SET status = 'lunas', tanggal_bayar = CURDATE() WHERE id_pembayaran = ?";
-        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, idPembayaran);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
