@@ -473,7 +473,7 @@
         %>
          <jsp:include page="component/payment.jsp" flush="false"></jsp:include>
         <%
-            }
+            } 
         %>
         
 

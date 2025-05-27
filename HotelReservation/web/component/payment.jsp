@@ -1,18 +1,30 @@
-<%@ page import="hotel.model.Reservasi" %>
-<%@ page import="hotel.model.Kamar" %>
-<%@ page import="java.text.NumberFormat, java.util.Locale" %>
+<%@ page import="hotel.model.*" %>
+<%@ page import="hotel.helper.*" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.NumberFormat, java.text.SimpleDateFormat, java.util.Locale" %>
 
 <%
     Reservasi reservasi = (Reservasi) request.getAttribute("reservasi");
     Kamar kamar = (Kamar) request.getAttribute("kamar");
+    Pembayaran pembayaran = (Pembayaran) request.getAttribute("pembayaran");
     Integer durasi = (Integer) request.getAttribute("durasi");
     Double totalHarga = (Double) request.getAttribute("totalHarga");
 
     NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
     String formattedTotal = totalHarga != null ? formatter.format(totalHarga) : "";
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+    String deadlineText = pembayaran != null && pembayaran.getDeadLine() != null
+            ? sdf.format(pembayaran.getDeadLine())
+            : "Belum ditentukan";
+    Long deadlineMillis = (Long) request.getAttribute("deadlineMillis");
+    if (deadlineMillis == null) {
+        deadlineMillis = 0L;
+    }
+
 %>
 
-<!-- Hero -->
+<!-- Hero Section -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)">
     <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -33,12 +45,10 @@
     </a>
 </section>
 
-<% Boolean showCountdown = (Boolean) request.getAttribute("showCountdown"); %>
-<% Long deadlineMillis = (Long) request.getAttribute("deadlineMillis"); %>
-
-<% if (reservasi != null && kamar != null) {%>
+<!-- Section Utama -->
 <section class="section contact-section" id="next">
     <div class="container">
+        <% if (pembayaran == null) {%>
         <h3 class="text-center mb-4">Konfirmasi Pembayaran Reservasi</h3>
         <form method="post" action="${pageContext.request.contextPath}/Payment/Bayar">
             <input type="hidden" name="idReservasi" value="<%= reservasi.getIdReservasi()%>">
@@ -52,7 +62,6 @@
                     <label>Tipe Kamar</label>
                     <input type="text" class="form-control" value="<%= kamar.getTipe()%>" readonly>
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label>Durasi Menginap (malam)</label>
                     <input type="text" class="form-control" value="<%= durasi%>" readonly>
@@ -62,7 +71,6 @@
                     <input type="hidden" name="jumlahBayar" value="<%= totalHarga%>">
                     <input type="text" class="form-control" value="<%= formattedTotal%>" readonly>
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label>Metode Pembayaran</label>
                     <select name="metode" class="form-control" required>
@@ -72,63 +80,105 @@
                         <option value="E-Wallet">E-Wallet</option>
                     </select>
                 </div>
-
                 <div class="col-md-12 mt-3">
                     <button type="submit" class="btn btn-success">Bayar Sekarang</button>
                     <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
         </form>
-    </div>
-</section>
-
-<% } else if (showCountdown != null && showCountdown) { %>
-<section class="section pb-4">
-    <div class="container">
-        <h4 class="text-center mb-3">Menunggu Pembayaran...</h4>
-        <p class="text-center">Silakan selesaikan pembayaran Anda dalam waktu <strong>24 jam</strong>.</p>
-
-        <div id="countdown" class="text-center text-danger font-weight-bold mb-4" style="font-size: 24px;"></div>
-
-        <% if (request.getAttribute("idPembayaran") != null) {%>
-        <form method="post" action="${pageContext.request.contextPath}/Payment/Bayar/Konfirmasi">
-            <input type="hidden" name="idPembayaran" value="<%= request.getAttribute("idPembayaran")%>">
-            <div class="text-center">
-                <button type="submit" class="btn btn-success">Saya Sudah Bayar</button>
-                <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-secondary">Kembali</a>
+        <% } else {%>
+        <h3 class="text-center mb-4">Status Pembayaran</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Nomor Kamar</label>
+                <input type="text" class="form-control" value="<%= kamar.getNomorKamar()%>" readonly>
             </div>
-        </form>
-        <% } %>
+            <div class="col-md-6 mb-3">
+                <label>Tipe Kamar</label>
+                <input type="text" class="form-control" value="<%= kamar.getTipe()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Durasi Menginap (malam)</label>
+                <input type="text" class="form-control" value="<%= durasi%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Total Harga</label>
+                <input type="text" class="form-control" value="<%= formattedTotal%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Metode Pembayaran</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getMetode()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Status Pembayaran</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getStatus()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Batas Waktu Pembayaran</label>
+                <input type="text" class="form-control" value="<%= deadlineText%>" readonly>
+                <style>
+                    #countdown {
+                        color: red !important;
+                        font-size: 20px !important;
+                        visibility: visible !important;
+                        opacity: 1 !important;
+                    }
+                </style>
+                <div id="countdown" class="mt-2 text-danger font-weight-bold" data-deadline="<%= deadlineMillis%>">
+                    memuat waktu...</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>ID Pembayaran</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getIdPembayaran()%>" readonly>
+            </div>
+            <div class="col-md-12 mt-4">
+                <form method="post" action="${pageContext.request.contextPath}/Payment/Konfirmasi">
+                    <input type="hidden" name="idPembayaran" value="<%= pembayaran.getIdPembayaran()%>">
+                    <button type="submit" class="btn btn-primary">Saya Sudah Bayar</button>
+                    <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-secondary">Kembali</a>
+                </form>
+            </div>
+        </div>
+        <% }%>
     </div>
 </section>
-
-<% if (deadlineMillis != null) {%>
+<!-- Countdown Timer -->
 <script>
-    let deadline = <%= deadlineMillis%>;
-    let countdown = document.getElementById("countdown");
-    let interval = setInterval(function () {
-        let now = new Date().getTime();
-        let distance = deadline - now;
+    document.addEventListener("DOMContentLoaded", function () {
+        const countdownEl = document.getElementById("countdown");
+        console.log("countdownEl:", countdownEl); // Cek elemen ada atau gak
 
-        if (distance <= 0) {
-            clearInterval(interval);
-            countdown.innerHTML = "Waktu habis";
-        } else {
-            let hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let secs = Math.floor((distance % (1000 * 60)) / 1000);
-            countdown.innerHTML = hrs + " jam " + mins + " menit " + secs + " detik";
+        if (!countdownEl)
+            return;
+
+        const deadline = parseInt(countdownEl.getAttribute("data-deadline"));
+        console.log("deadline:", deadline);
+
+        if (isNaN(deadline)) {
+            countdownEl.textContent = "Batas waktu tidak valid";
+            return;
         }
-    }, 1000);
-</script>
-<% } %>
 
-<% } else { %>
-<!-- Jika tidak ada data reservasi dan tidak ada countdown -->
-<section class="section pb-4">
-    <div class="container text-center">
-        <h4>Data pembayaran tidak ditemukan.</h4>
-        <a href="${pageContext.request.contextPath}/Dashboard" class="btn btn-primary mt-3">Kembali ke Dashboard</a>
-    </div>
-</section>
-<% }%>
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = deadline - now;
+            console.log("distance:", distance);
+
+            if (distance <= 0) {
+                countdownEl.textContent = "Waktu pembayaran telah habis";
+                return;
+            }
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.textContent = hours + " jam " + minutes + " menit " + seconds + " detik";
+            console.log("Hitung:", hours, "jam", minutes, "menit", seconds, "detik");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });</script>
+
+
