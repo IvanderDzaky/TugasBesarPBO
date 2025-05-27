@@ -101,6 +101,35 @@ CREATE TABLE IF NOT EXISTS `kamar_fasilitas` (
 
 -- Data kamar_fasilitas
 -- Harus sesuai id_kamar dan id_fasilitas
+INSERT INTO `kamar_fasilitas` (`id_kamar`, `id_fasilitas`) VALUES
+(19, 1),(19, 2),(19, 3),(19, 4),
+(20, 1),(20, 2),(20, 3),(20, 4),
+(21, 1),(21, 2),(21, 3),(21, 4),
+(22, 1),(22, 2),(22, 3),(22, 4),(22, 22),
+(23, 1),(23, 2),(23, 3),(23, 4),(23, 22),
+(24, 1),(24, 2),(24, 3),(24, 4),(24, 5),(24, 22),(24, 25),
+(25, 1),(25, 2),(25, 3),(25, 4),(25, 5),(25, 22),(25, 25),
+(26, 1),(26, 2),(26, 3),(26, 4),(26, 5),(26, 22),(26, 25),
+(27, 1),(27, 2),(27, 3),(27, 4),(27, 5),(27, 22),(27, 25),
+(28, 1),(28, 2),(28, 3),(28, 4),(28, 5),(28, 22),(28, 25),
+(29, 1),(29, 2),(29, 3),(29, 4),(29, 5),(29, 22),(29, 25);
+
+-- --------------------------------------------------------
+-- Struktur tabel: pembayaran
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pembayaran` (
+  `id_pembayaran` VARCHAR(50) NOT NULL,
+  `id_reservasi` INT(11) NOT NULL,
+  `metode` VARCHAR(50) DEFAULT NULL,
+  `jumlah_bayar` DOUBLE DEFAULT NULL,
+  `status` VARCHAR(20) DEFAULT 'pending',
+  `tanggal_bayar` TIMESTAMP DEFAULT NULL,
+  `deadline` TIMESTAMP DEFAULT NULL,
+  PRIMARY KEY (`id_pembayaran`),
+  KEY `id_reservasi` (`id_reservasi`),
+  CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_reservasi`) REFERENCES `reservasi` (`id_reservasi`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 -- Struktur tabel: reservasi
