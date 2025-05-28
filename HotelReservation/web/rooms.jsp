@@ -111,7 +111,7 @@
         <div class="row">
             <%
                 String[] roomNames = {"Single Room", "Family Room", "Presidential Room", "Suite", "VIP Suite", "Deluxe Suite"};
-                String[] roomImages = {"single room.jpg", "family room.jpg", "presidential room.jpg", "suite.jpg", "vip suite.jpg", "deluxe suite.jpg"};
+                String[] roomImages = {"single room.jpg", "family room.jpg", "presidential room.jpg", "Suite.jpg", "vip suite.jpg", "deluxe suite.jpg"};
                 String[] prices = {"90", "120", "250", "300", "350", "400"};
 
                 for (int i = 0; i < roomNames.length; i++) {
