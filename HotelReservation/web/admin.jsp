@@ -26,7 +26,7 @@
 
 <!-- Admin Panel -->
 <div class="container mt-5 mb-5">
-    <h2 class="mb-4">Panel Admin</h2>
+    <h2 class="mb-4">Admin Panel</h2>
 
     <!-- Tabs Navigation -->
     <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
