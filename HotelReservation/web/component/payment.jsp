@@ -10,7 +10,7 @@
     Integer durasi = (Integer) request.getAttribute("durasi");
     Double totalHarga = (Double) request.getAttribute("totalHarga");
 
-    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
+    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("in", "US"));
     String formattedTotal = totalHarga != null ? formatter.format(totalHarga) : "";
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
