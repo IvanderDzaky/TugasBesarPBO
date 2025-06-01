@@ -2,6 +2,7 @@
 <%@ page import="hotel.model.*" %>
 <%@ page import="hotel.helper.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+
 <!-- Hero Section -->
 <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -26,7 +27,7 @@
 
 <!-- Admin Panel -->
 <div class="container mt-5 mb-5">
-    <h2 class="mb-4">Panel Admin</h2>
+    <h2 class="mb-4">Admin Panel</h2>
 
     <!-- Tabs Navigation -->
     <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
@@ -88,14 +89,13 @@
                         <td><%= c.getCreatedAt()%></td>
                         <td>
                             <button class="btn btn-sm btn-warning"
-                                    onclick="showEditForm('<%= c.getIdUser()%>', '<%= c.getNama()%>', '<%= c.getEmail()%>', '<%= c.getPassword()%>')">
-                                Edit
+                                onclick="showEditForm('<%= c.getIdUser()%>', '<%= c.getNama()%>', '<%= c.getEmail()%>', '<%= c.getPassword()%>')">
+                            Edit
                             </button>
-                            <a href="Admins?action=hapusCustomer&idUser=<%= c.getIdUser()%>" 
-                               class="btn btn-sm btn-danger" 
-                               onclick="return confirm('Yakin hapus data ini?')">
-                                Hapus
-                            </a>
+                            <button class="btn btn-sm btn-danger"
+                                onclick="if(confirm('Yakin hapus data ini?')) { window.location.href='Admins?action=hapusCustomer&idUser=<%= c.getIdUser()%>'; }">
+                            Hapus
+                            </button>
                         </td>
                     </tr>
                     <%
@@ -223,8 +223,10 @@
                                     onclick="showEditKamarForm(this)">
                                 Edit
                             </button>
-                            <a href="Admins?action=hapusKamar&idKamar=<%= k.getIdKamar()%>" class="btn btn-sm btn-danger"
-                               onclick="return confirm('Yakin hapus kamar ini?')">Hapus</a>
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="if(confirm('Yakin hapus kamar ini?')) { window.location.href='Admins?action=hapusKamar&idKamar=<%= k.getIdKamar()%>'; }">
+                                Hapus
+                            </button>
                         </td>
                     </tr>
                     <%  }
@@ -278,7 +280,9 @@
 
         <!-- Reservasi Tab -->
         <div class="tab-pane fade" id="reservasi" role="tabpanel">
-            <h4>Data Reservasi</h4>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4>Data Reservasi</h4>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -320,10 +324,10 @@
                             <span class="badge <%= badge%>"><%= status%></span>
                         </td>
                         <td>
-                            <a href="Admins?action=hapusReservasi&idReservasi=<%= r.getIdReservasi()%>" class="btn btn-sm btn-danger"
-                               onclick="return confirm('Yakin hapus reservasi ini?')">
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="if(confirm('Yakin hapus reservasi ini?')) { window.location.href='Admins?action=hapusReservasi&idReservasi=<%= r.getIdReservasi()%>'; }">
                                 Hapus
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     <%
@@ -365,8 +369,10 @@
                         <td><%= f.getNamaFasilitas()%></td>
                         <td><%= f.getDeskripsiFasilitas()%></td>
                         <td>
-                            <a href="Admins?action=hapusFasilitas&idFasilitas=<%= f.getIdFasilitas()%>" class="btn btn-sm btn-danger"
-                               onclick="return confirm('Yakin ingin menghapus fasilitas ini?')">Hapus</a>
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="if(confirm('Yakin ingin menghapus fasilitas ini?')) { window.location.href='Admins?action=hapusFasilitas&idFasilitas=<%= f.getIdFasilitas()%>'; }">
+                                Hapus
+                            </button>
                         </td>
                     </tr>
                     <%
@@ -389,65 +395,64 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-                                   function showEditForm(id, nama, email, password) {
-                                       document.getElementById('editIdUser').value = id;
-                                       document.getElementById('editNama').value = nama;
-                                       document.getElementById('editEmail').value = email;
-                                       document.getElementById('editPassword').value = password;
+    function showEditForm(id, nama, email, password) {
+        document.getElementById('editIdUser').value = id;
+        document.getElementById('editNama').value = nama;
+        document.getElementById('editEmail').value = email;
+        document.getElementById('editPassword').value = password;
 
-                                       // Tampilkan form edit
-                                       document.getElementById('editCustomerForm').style.display = 'block';
+        // Tampilkan form edit
+        document.getElementById('editCustomerForm').style.display = 'block';
 
-                                       // Sembunyikan form tambah (opsional)
-                                       document.getElementById('customerForm').style.display = 'none';
-                                   }
+        // Sembunyikan form tambah (opsional)
+        document.getElementById('customerForm').style.display = 'none';
+    }
 
-                                   function hideEditForm() {
-                                       document.getElementById('editCustomerForm').style.display = 'none';
-                                       document.getElementById('editKamarForm').style.display = 'none';
-                                   }
+    function hideEditForm() {
+        document.getElementById('editCustomerForm').style.display = 'none';
+        document.getElementById('editKamarForm').style.display = 'none';
+    }
 
-                                   function hideTambahForm() {
-                                       document.getElementById('customerForm').style.display = 'none';
-                                       document.getElementById('kamarForm').style.display = 'none';
-                                   }
+    function hideTambahForm() {
+        document.getElementById('customerForm').style.display = 'none';
+        document.getElementById('kamarForm').style.display = 'none';
+    }
 
-                                   function toggleForm(formId) {
-                                       const form = document.getElementById(formId);
-                                       const isHidden = window.getComputedStyle(form).display === 'none';
-                                       form.style.display = isHidden ? 'block' : 'none';
+    function toggleForm(formId) {
+        const form = document.getElementById(formId);
+        const isHidden = window.getComputedStyle(form).display === 'none';
+        form.style.display = isHidden ? 'block' : 'none';
 
-                                       // Sembunyikan form edit saat membuka form tambah
-                                       if (formId === 'kamarForm') {
-                                           document.getElementById('editKamarForm').style.display = 'none';
-                                       } else if (formId === 'customerForm') {
-                                           document.getElementById('editCustomerForm').style.display = 'none';
-                                       }
-                                   }
-                                   function showEditKamarForm(button) {
-                                       document.getElementById('editKamarForm').style.display = 'block';
+        // Sembunyikan form edit saat membuka form tambah
+        if (formId === 'kamarForm') {
+            document.getElementById('editKamarForm').style.display = 'none';
+        } else if (formId === 'customerForm') {
+            document.getElementById('editCustomerForm').style.display = 'none';
+        }
+    }
+    function showEditKamarForm(button) {
+        document.getElementById('editKamarForm').style.display = 'block';
 
-                                       document.getElementById('editIdKamar').value = button.getAttribute('data-id');
-                                       document.getElementById('editNomorKamar').value = button.getAttribute('data-nomor');
-                                       document.getElementById('editTipeKamar').value = button.getAttribute('data-tipe');
-                                       document.getElementById('editHargaKamar').value = button.getAttribute('data-harga');
-                                       document.getElementById('editMaxGuest').value = button.getAttribute('data-maxguest');
-                                       document.getElementById('editStatus').value = button.getAttribute('data-status');
+        document.getElementById('editIdKamar').value = button.getAttribute('data-id');
+        document.getElementById('editNomorKamar').value = button.getAttribute('data-nomor');
+        document.getElementById('editTipeKamar').value = button.getAttribute('data-tipe');
+        document.getElementById('editHargaKamar').value = button.getAttribute('data-harga');
+        document.getElementById('editMaxGuest').value = button.getAttribute('data-maxguest');
+        document.getElementById('editStatus').value = button.getAttribute('data-status');
 
-                                       // Uncheck semua fasilitas dulu
-                                       document.querySelectorAll('.editFasilitas').forEach(cb => cb.checked = false);
+        // Uncheck semua fasilitas dulu
+        document.querySelectorAll('.editFasilitas').forEach(cb => cb.checked = false);
 
-                                       // Tambahkan logika untuk men-check fasilitas yang sesuai jika ingin realtime (misal lewat data-fasilitas dari tombol)
-                                       const fasilitasStr = button.getAttribute('data-fasilitas');
-                                       if (fasilitasStr) {
-                                           const ids = fasilitasStr.split(',');
-                                           document.querySelectorAll('.editFasilitas').forEach(cb => {
-                                               if (ids.includes(cb.value))
-                                                   cb.checked = true;
-                                           });
-                                       }
-                                       // Sembunyikan form tambah (opsional)
-                                       document.getElementById('kamarForm').style.display = 'none';
-                                   }
-
+        // Tambahkan logika untuk men-check fasilitas yang sesuai jika ingin realtime (misal lewat data-fasilitas dari tombol)
+        const fasilitasStr = button.getAttribute('data-fasilitas');
+        if (fasilitasStr) {
+            const ids = fasilitasStr.split(',');
+            document.querySelectorAll('.editFasilitas').forEach(cb => {
+                if (ids.includes(cb.value))
+                    cb.checked = true;
+            });
+        }
+        // Sembunyikan form tambah (opsional)
+        document.getElementById('kamarForm').style.display = 'none';
+    }
 </script>
