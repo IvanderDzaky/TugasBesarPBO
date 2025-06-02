@@ -84,4 +84,27 @@ public class Bayar {
         return bayar;
     }
 
+    public static Pembayaran getByPembayaran(String idPembayaran) {
+        Pembayaran bayar = null;
+        try (Connection conn = SqlConnect.getConnection()) {
+            String sql = "SELECT * FROM pembayaran WHERE id_pembayaran = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, idPembayaran);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                bayar = new Pembayaran();
+                bayar.setIdPembayaran(rs.getString("id_pembayaran"));
+                bayar.setIdReservasi(rs.getInt("id_reservasi"));
+                bayar.setJumlahBayar(rs.getDouble("jumlah_bayar"));
+                bayar.setMetode(rs.getString("metode"));
+                bayar.setStatus(rs.getString("status"));
+                bayar.setTanggalBayar(rs.getTimestamp("tanggal_bayar"));
+                bayar.setDeadLine(rs.getTimestamp("deadline"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bayar;
+    }
+
 }

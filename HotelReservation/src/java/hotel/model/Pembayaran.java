@@ -1,7 +1,12 @@
 package hotel.model;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class Pembayaran implements Bayarable {
 
@@ -104,16 +109,28 @@ public class Pembayaran implements Bayarable {
     /**
      * Menampilkan struk pembayaran ke konsol (bisa juga diubah jadi return
      * String untuk ditampilkan di JSP).
+     * @return 
      */
     @Override
-    public void tampilkanStruk() {
-        System.out.println("========== STRUK PEMBAYARAN ==========");
-        System.out.println("ID Pembayaran : " + idPembayaran);
-        System.out.println("Metode        : " + metode);
-        System.out.println("Jumlah Dibayar: Rp " + jumlahBayar);
-        System.out.println("Status        : " + status);
-        System.out.println("Tanggal Bayar : " + (tanggalBayar != null ? tanggalBayar : "Belum dibayar"));
-        System.out.println("======================================");
+    public Map<String, Object> tampilkanStruk() {
+        Map<String, Object> data = new HashMap<>();
+        Reservasi reservasi = new Reservasi().getById(this.getIdReservasi());
+        Kamar kamar = reservasi.getKamar();
+
+        long durasi = ChronoUnit.DAYS.between(
+                reservasi.getCheckIn().toLocalDate(),
+                reservasi.getCheckOut().toLocalDate()
+        );
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
+        String formattedTotal = formatter.format(this.getJumlahBayar());
+
+        data.put("pembayaran", this);
+        data.put("kamar", kamar);
+        data.put("durasi", durasi);
+        data.put("formattedTotal", formattedTotal);
+
+        return data;
     }
 
     // Bisa juga tambah method lain jika perlu, seperti validasi, dsb.

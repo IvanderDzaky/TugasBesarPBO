@@ -251,30 +251,22 @@ h1, h2, h3, h4, h5 {
    END: Account Page Styles
    ================================ */
 
-.btn {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 50px;
-}
-.btn.btn-outline-white-primary {
-    border: 2px solid #fff;
-}
-.btn.btn-outline-white-primary:hover {
-    border: 2px solid transparent;
-    background: #ffba5a;
-    color: #fff;
+
+/* Form Control Styling */
+.form-control {
+    outline: none;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
 }
 
-.btn, .form-control {
-    outline: none;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-.btn:focus, .btn:active, .form-control:focus, .form-control:active {
+.btn:focus,
+.btn:active,
+.form-control:focus,
+.form-control:active {
     outline: none;
 }
+
+
 
 .form-control {
     -webkit-box-shadow: none !important;

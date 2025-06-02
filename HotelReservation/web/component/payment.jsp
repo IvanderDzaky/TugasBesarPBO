@@ -45,7 +45,7 @@
     </a>
 </section>
 
-<!-- Section Utama -->
+<%-- Section Utama --%>
 <section class="section contact-section" id="next">
     <div class="container">
         <% if (pembayaran == null) {%>
@@ -86,7 +86,8 @@
                 </div>
             </div>
         </form>
-        <% } else {%>
+
+        <% } else if (!"Lunas".equals(pembayaran.getStatus())) {%>
         <h3 class="text-center mb-4">Status Pembayaran</h3>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -124,8 +125,9 @@
                         opacity: 1 !important;
                     }
                 </style>
-                <div id="countdown" class="mt-2 text-danger font-weight-bold" data-deadline="<%= deadlineMillis%>">
-                    memuat waktu...</div>
+                <div id="countdown" class="mt-2 text-danger font-weight-bold"
+                     data-deadline="<%= deadlineMillis%>">memuat waktu...
+                </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label>ID Pembayaran</label>
@@ -139,9 +141,60 @@
                 </form>
             </div>
         </div>
+
+        <% } else {%>
+        <style>
+            @media print {
+                header, footer, .no-print {
+                    display: none !important;
+                }
+            }
+        </style>
+
+
+        <h3 class="text-center mb-4">Struk Pembayaran</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>ID Pembayaran</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getIdPembayaran()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Nomor Kamar</label>
+                <input type="text" class="form-control" value="<%= kamar.getNomorKamar()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Tipe Kamar</label>
+                <input type="text" class="form-control" value="<%= kamar.getTipe()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Durasi Menginap</label>
+                <input type="text" class="form-control" value="<%= durasi%> malam" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Jumlah Dibayar</label>
+                <input type="text" class="form-control" value="<%= formattedTotal%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Metode Pembayaran</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getMetode()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Status</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getStatus()%>" readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Tanggal Bayar</label>
+                <input type="text" class="form-control" value="<%= pembayaran.getTanggalBayar()%>" readonly>
+            </div>
+            <div class="col-md-12 mt-2 text-center no-print">
+                <button class="btn btn-primary me-2" onclick="window.print()">Cetak Struk</button>
+                <button class="btn btn-success" onclick="window.location.href = '${pageContext.request.contextPath}/Dashboard'">Kembali</button>
+            </div>
+        </div>
         <% }%>
     </div>
 </section>
+
 <!-- Countdown Timer -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {

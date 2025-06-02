@@ -18,6 +18,7 @@ import hotel.model.Reservasi;
 import hotel.helper.Bayar;
 import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @WebServlet(name = "Payment", urlPatterns = {"/Payment/*"})
 public class Payment extends HttpServlet {
@@ -40,6 +41,9 @@ public class Payment extends HttpServlet {
                         break;
                     case "/Konfirmasi":
                         handleKonfirmasiPembayaran(request, response);
+                        break;
+                    case "/Struk":
+                        handleLihatStruk(request, response);
                         break;
                     default:
                         response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -135,7 +139,54 @@ public class Payment extends HttpServlet {
 
     protected void handleKonfirmasiPembayaran(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String idPembayaran = request.getParameter("idPembayaran");
+        try {
 
+            // Ambil data pembayaran berdasarkan ID Pembayaran
+            Pembayaran pembayaran = Bayar.getByPembayaran(idPembayaran); // kamu bisa buat method ini kalau belum ada
+
+            if (pembayaran != null) {
+                pembayaran.prosesPembayaran(); // set status lunas dan tanggal bayar
+                boolean sukses = Bayar.konfirmasiPembayaran(pembayaran);
+
+                if (sukses) {
+                    request.getSession().setAttribute("successMsg", "Pembayaran berhasil dikonfirmasi.");
+                } else {
+                    request.getSession().setAttribute("errorMsg", "Gagal mengonfirmasi pembayaran.");
+                }
+
+                response.sendRedirect(request.getContextPath() + "/Dashboard");
+            } else {
+                request.getSession().setAttribute("errorMsg", "Data pembayaran tidak ditemukan.");
+                response.sendRedirect(request.getContextPath() + "/Dashboard");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getSession().setAttribute("errorMsg", "Terjadi kesalahan pada server.");
+            response.sendRedirect(request.getContextPath() + "/Dashboard");
+        }
+    }
+
+    protected void handleLihatStruk(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String idReservasiParam = request.getParameter("idReservasi");
+
+        try {
+            int idReservasi = Integer.parseInt(idReservasiParam);
+            Pembayaran pembayaran = Bayar.getByReservasi(idReservasi);
+
+            Map<String, Object> data = pembayaran.tampilkanStruk();
+            for (Map.Entry<String, Object> entry : data.entrySet()) {
+                request.setAttribute(entry.getKey(), entry.getValue());
+            }
+
+            response.sendRedirect(request.getContextPath() + "/Payment?idReservasi=" + idReservasi);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Terjadi kesalahan saat memuat struk.");
+        }
     }
 
     @Override

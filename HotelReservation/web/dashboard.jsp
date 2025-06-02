@@ -36,6 +36,10 @@
         <li class="nav-item">
             <a class="nav-link" id="reservation-tab" data-toggle="pill" href="#reservationPanel" role="tab">Reservation List</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="struk-tab" data-toggle="pill" href="#strukPanel" role="tab">Lihat Struk</a>
+        </li>
+
     </ul>
 
     <div class="tab-content bg-white shadow p-4 rounded">
@@ -103,12 +107,13 @@
 
                                     if ("Lunas".equalsIgnoreCase(statusPembayaran)) {
                                         badgePembayaran = "success";
+                                        badgeStatus = "secondary";
                                     } else if ("Dibatalkan".equalsIgnoreCase(statusPembayaran)) {
                                         badgePembayaran = "secondary";
                                     }
 
                                     // Jika reservasi selesai atau dibatalkan, aksi harus dinonaktifkan
-                                    if ("Selesai".equalsIgnoreCase(status) || "Dibatalkan".equalsIgnoreCase(status)) {
+                                    if ("Selesai".equalsIgnoreCase(status) || "Dibatalkan".equalsIgnoreCase(status) || "Lunas".equalsIgnoreCase(statusPembayaran)) {
                                         disableAksi = true;
                                     }
 
@@ -119,7 +124,7 @@
                             <td><%= r.getCheckIn()%></td>
                             <td><%= r.getCheckOut()%></td>
                             <td><span class="badge badge-<%= badgeStatus%>"><%= status%></span></td>
-                            <td><span class="badge badge-<%= badgePembayaran%>"><%= statusPembayaran %></span></td>
+                            <td><span class="badge badge-<%= badgePembayaran%>"><%= statusPembayaran%></span></td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-outline-primary btn-ubah" data-id="<%= r.getIdReservasi()%>" <%= disableAksi ? "disabled" : ""%>>
                                     Ubah
@@ -178,6 +183,71 @@
                         %>
                     </tbody>
 
+                </table>
+            </div>
+        </div>
+        <!-- Struk Panel -->
+        <div class="tab-pane fade" id="strukPanel" role="tabpanel">
+            <h4 class="mb-3">Struk Pembayaran</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light text-center">
+                        <tr>
+                            <th>Nomor Kamar</th>
+                            <th>Tipe Kamar</th>
+                            <th>Check-In</th>
+                            <th>Check-Out</th>
+                            <th>Status</th>
+                            <th>Pembayaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <%
+                            if (daftarReservasi != null && !daftarReservasi.isEmpty()) {
+                                for (Reservasi r : daftarReservasi) {
+                                    int idReservasi = r.getIdReservasi();
+                                    String status = r.getStatus();
+                                    String statusPembayaran = statusPembayaranMap.getOrDefault(idReservasi, "Belum Bayar");
+
+                                    // Hanya tampilkan struk untuk yang sudah bayar
+                                    if (!"Lunas".equalsIgnoreCase(statusPembayaran)) {
+                                        continue;
+                                    }
+
+                                    String badgeStatus = "secondary";
+                                    if ("Dipesan".equalsIgnoreCase(status)) {
+                                        badgeStatus = "warning";
+                                    } else if ("Dibatalkan".equalsIgnoreCase(status)) {
+                                        badgeStatus = "danger";
+                                    }
+
+                        %>
+                        <tr>
+                            <td><%= r.getKamar().getNomorKamar()%></td>
+                            <td><%= r.getKamar().getTipe()%></td>
+                            <td><%= r.getCheckIn()%></td>
+                            <td><%= r.getCheckOut()%></td>
+                            <td><span class="badge badge-<%= badgeStatus%>"><%= status%></span></td>
+                            <td><span class="badge badge-success"><%= statusPembayaran%></span></td>
+                            <td>
+                                <form method="get" action="Payment/Struk">
+                                    <input type="hidden" name="idReservasi" value="<%= r.getIdReservasi()%>">
+                                    <button type="submit" class="btn btn-sm btn-outline-info">Lihat Struk</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        } else {
+                        %>
+                        <tr>
+                            <td colspan="7">Belum ada pembayaran.</td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
                 </table>
             </div>
         </div>
