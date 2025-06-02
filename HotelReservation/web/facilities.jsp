@@ -35,7 +35,6 @@
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="big-white rounded shadow p-4 border-top border-4 border-dark text-center">
-                    <img src="images/<%= f.getNamaFasilitas()%>.jpg" width="50px" class="mb-3">
                     <h5><%= f.getNamaFasilitas()%></h5>
                     <p><%= f.getDeskripsiFasilitas() %></p>
                 </div>
