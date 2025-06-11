@@ -283,4 +283,29 @@ public class Admin extends User {
         }
     }
 
+    public void ubahReservasi(int idReservasi, Reservasi reservasi) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = SqlConnect.getConnection();
+            String sql = "UPDATE reservasi SET status = ? WHERE id_reservasi = ?";
+            stmt = conn.prepareStatement(sql);
+
+            // Perbaiki urutan parameter!
+            stmt.setString(1, reservasi.getStatus());
+            stmt.setInt(2, idReservasi);
+
+            stmt.executeUpdate();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+    
+    
+
 }

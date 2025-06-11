@@ -43,6 +43,9 @@
         <li class="nav-item">
             <a class="nav-link" id="fasilitas-tab" data-toggle="tab" href="#fasilitas" role="tab">Fasilitas</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profit-tab" data-toggle="tab" href="#profit" role="tab">Profit</a>
+        </li>
     </ul>
 
     <!-- Tab Content -->
@@ -342,6 +345,24 @@
 
         <!-- Reservasi Tab -->
         <div class="tab-pane fade" id="reservasi" role="tabpanel">
+            <!-- Edit reservasi form -->
+            <div id="editReservasiForm" class="form-section mb-3" style="display: none;">
+                <form action="Admins?action=ubahReservasi" method="post">
+                    <input type="hidden" id="editIdReservasi" name="idReservasi">
+                    <div class="form-group">
+                        <select name="status" id="editStatus" class="form-control" required>
+                            <option value="Dipesan">Dipesan</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Lunas">Lunas</option>
+                            <option value="Dibatalkan">Dibatalkan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary ml-2" onclick="hideEditForm()">Batal</button>
+                    </div>
+                </form>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -383,6 +404,12 @@
                             <span class="badge <%= badge%>"><%= status%></span>
                         </td>
                         <td>
+                            <button class="btn btn-outline-primary"
+                                    data-id="<%= r.getIdReservasi()%>"
+                                    data-status="<%= r.getStatus()%>"
+                                    onClick="showUpdateReservasiForm(this)">                                   
+                                Edit
+                            </button>
                             <button class="btn btn-sm btn-danger"
                                     onclick="if (confirm('Yakin hapus reservasi ini?')) {
                                                 window.location.href = 'Admins?action=hapusReservasi&idReservasi=<%= r.getIdReservasi()%>';
@@ -457,6 +484,15 @@
             </table>
         </div>
 
+        <!-- profit tab -->
+        <div class="tab-pane fade" id="profit" role="tabpanel">
+               <div class="d-flex justify-content-between align-items-center mb-3 w-100 px-3">
+                   <p>Profit</p>
+                </div>
+            
+            
+        </div>
+
     </div>
 </div>
 
@@ -479,6 +515,8 @@
                                         function hideEditForm() {
                                             document.getElementById('editCustomerForm').style.display = 'none';
                                             document.getElementById('editKamarForm').style.display = 'none';
+                                            document.getElementById('editReservasiForm').style.display = 'none';
+
                                         }
 
                                         function hideTambahForm() {
@@ -496,6 +534,8 @@
                                                 document.getElementById('editKamarForm').style.display = 'none';
                                             } else if (formId === 'customerForm') {
                                                 document.getElementById('editCustomerForm').style.display = 'none';
+                                            } else if (formId === 'reservasiForm') {
+                                                document.getElementById('editReservasiForm').style.display = 'none';
                                             }
                                         }
                                         function showEditKamarForm(button) {
@@ -522,5 +562,15 @@
                                             }
                                             // Sembunyikan form tambah (opsional)
                                             document.getElementById('kamarForm').style.display = 'none';
+                                        }
+
+                                        function showUpdateReservasiForm(button) {
+                                            const id = button.getAttribute("data-id");
+                                            const status = button.getAttribute("data-status");
+
+                                            document.getElementById("editIdReservasi").value = id;
+                                            document.getElementById("editStatus").value = status;
+
+                                            document.getElementById("editReservasiForm").style.display = "block";
                                         }
 </script>

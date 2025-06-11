@@ -36,7 +36,7 @@ public class Admins extends HttpServlet {
                 request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
                 return;
             }
-            
+
             switch (action) {
                 case "hapusCustomer":
                     handleHapusCustomer(admin, request, response);
@@ -64,6 +64,9 @@ public class Admins extends HttpServlet {
                     break;
                 case "hapusReservasi":
                     handleHapusReservasi(admin, request, response);
+                    break;
+                case "ubahReservasi":
+                    handleUbahReservasi(admin, request, response);
                     break;
                 default:
                     session.setAttribute("errorMsg", "Aksi tidak dikenali.");
@@ -100,6 +103,21 @@ public class Admins extends HttpServlet {
             throws SQLException {
         List<Reservasi> daftarReservasi = admin.lihatSemuaReservasi();
         request.setAttribute("reservasiList", daftarReservasi);
+    }
+
+    private void handleUbahReservasi(Admin admin, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        try {
+            int idReservasi = Integer.parseInt(request.getParameter("idReservasi"));
+            String status = request.getParameter("status");
+            Reservasi updateStatus = new Reservasi();
+            updateStatus.setStatus(status);
+            admin.ubahReservasi(idReservasi, updateStatus);
+            request.getSession().setAttribute("successMsg", "Berhasil update status");
+        } catch (Exception e) {
+            request.getSession().setAttribute("errorMsg", e);
+        }
+        response.sendRedirect("Admins");
     }
 
     private void handleHapusCustomer(Admin admin, HttpServletRequest request, HttpServletResponse response)
