@@ -113,14 +113,15 @@ public class Kamar {
     //method lihatFasilitasKamar()
     public List<Fasilitas> lihatFasilitasKamar() throws SQLException {
         List<Fasilitas> fasilitasKamar = new ArrayList<>();
-        Connection conn = SqlConnect.getConnection();
 
         String fasilitasQuery = "SELECT f.id_fasilitas, f.nama_fasilitas FROM fasilitas f "
                 + "JOIN kamar_fasilitas kf ON f.id_fasilitas = kf.id_fasilitas "
                 + "WHERE kf.id_kamar = ?";
 
-        try (PreparedStatement fasilitasStmt = conn.prepareStatement(fasilitasQuery)) {
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement fasilitasStmt = conn.prepareStatement(fasilitasQuery)) {
+
             fasilitasStmt.setInt(1, this.idKamar); // pakai id dari objek sekarang
+
             try (ResultSet frs = fasilitasStmt.executeQuery()) {
                 while (frs.next()) {
                     Fasilitas f = new Fasilitas(
@@ -131,42 +132,54 @@ public class Kamar {
                 }
             }
         }
-
         return fasilitasKamar;
     }
 
     public boolean saveToDB() throws SQLException {
-        Connection conn = SqlConnect.getConnection();
         boolean success = false;
 
-        try {
-            String insertKamarSQL = "INSERT INTO kamar (nomor_kamar, tipe, harga, status, max_guest) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(insertKamarSQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, nomorKamar);
-            ps.setString(2, tipe);
-            ps.setDouble(3, harga);
-            ps.setInt(4, isTersedia ? 1 : 0);
-            ps.setInt(5, maxGuest);
-            ps.executeUpdate();
+        String insertKamarSQL = "INSERT INTO kamar (nomor_kamar, tipe, harga, status, max_guest) VALUES (?, ?, ?, ?, ?)";
+        String insertFasilitasSQL = "INSERT INTO kamar_fasilitas (id_kamar, id_fasilitas) VALUES (?, ?)";
 
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                idKamar = rs.getInt(1);
-            }
+        try (Connection conn = SqlConnect.getConnection()) {
+            conn.setAutoCommit(false); // Mulai transaksi
 
-            if (fasilitasList != null) {
-                for (Fasilitas f : fasilitasList) {
-                    PreparedStatement fasilitasStmt = conn.prepareStatement(
-                            "INSERT INTO kamar_fasilitas (id_kamar, id_fasilitas) VALUES (?, ?)");
-                    fasilitasStmt.setInt(1, idKamar);
-                    fasilitasStmt.setInt(2, f.getIdFasilitas());
-                    fasilitasStmt.executeUpdate();
+            try (
+                    PreparedStatement ps = conn.prepareStatement(insertKamarSQL, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, nomorKamar);
+                ps.setString(2, tipe);
+                ps.setDouble(3, harga);
+                ps.setInt(4, isTersedia ? 1 : 0);
+                ps.setInt(5, maxGuest);
+                ps.executeUpdate();
+
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        idKamar = rs.getInt(1);
+                    }
                 }
+
+                if (fasilitasList != null && !fasilitasList.isEmpty()) {
+                    try (PreparedStatement fasilitasStmt = conn.prepareStatement(insertFasilitasSQL)) {
+                        for (Fasilitas f : fasilitasList) {
+                            fasilitasStmt.setInt(1, idKamar);
+                            fasilitasStmt.setInt(2, f.getIdFasilitas());
+                            fasilitasStmt.addBatch();
+                        }
+                        fasilitasStmt.executeBatch();
+                    }
+                }
+
+                conn.commit(); // Commit transaksi jika semua berhasil
+                success = true;
+
+            } catch (SQLException e) {
+                conn.rollback(); // Rollback kalau ada error
+                throw e;
+            } finally {
+                conn.setAutoCommit(true); // Balikkan ke default
             }
 
-            success = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return success;

@@ -58,19 +58,18 @@ public class Admin extends User {
         List<Customer> daftarCustomer = new ArrayList<>();
         String sql = "SELECT * FROM users WHERE isAdmin = 0";
 
-        Connection conn = SqlConnect.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            Customer cust = new Customer(
-                    rs.getString("nama"),
-                    rs.getString("email"),
-                    rs.getString("password")
-            );
-            cust.setIdUser(rs.getInt("id_user"));
-            cust.setCreatedAt(rs.getTimestamp("createdAt"));
-            daftarCustomer.add(cust);
+            while (rs.next()) {
+                Customer cust = new Customer(
+                        rs.getString("nama"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+                cust.setIdUser(rs.getInt("id_user"));
+                cust.setCreatedAt(rs.getTimestamp("createdAt"));
+                daftarCustomer.add(cust);
+            }
         }
 
         return daftarCustomer;
@@ -121,10 +120,9 @@ public class Admin extends User {
 
     public List<Kamar> lihatKamar() throws SQLException {
         List<Kamar> daftarKamar = new ArrayList<>();
-        Connection conn = SqlConnect.getConnection();
-        String query = "SELECT * FROM Kamar ORDER BY nomor_kamar";
+        String sql = "SELECT * FROM kamar ORDER BY nomor_kamar";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Kamar k = new Kamar(
@@ -160,9 +158,9 @@ public class Admin extends User {
 
     public List<Fasilitas> lihatFasilitas() throws SQLException {
         List<Fasilitas> daftarFasilitas = new ArrayList<>();
-        Connection conn = SqlConnect.getConnection();
         String sql = "SELECT * FROM fasilitas";
-        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Fasilitas fasilitas = new Fasilitas(
@@ -220,7 +218,6 @@ public class Admin extends User {
 
     public List<Reservasi> lihatSemuaReservasi() throws SQLException {
         List<Reservasi> daftarReservasi = new ArrayList<>();
-        Connection conn = SqlConnect.getConnection();
 
         String sql = "SELECT r.id_reservasi, r.check_in, r.check_out, r.status, "
                 + "k.id_kamar, k.nomor_kamar, k.tipe, "
@@ -229,7 +226,7 @@ public class Admin extends User {
                 + "JOIN kamar k ON r.id_kamar = k.id_kamar "
                 + "JOIN users u ON r.id_user = u.id_user";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 int idReservasi = rs.getInt("id_reservasi");
@@ -239,7 +236,6 @@ public class Admin extends User {
                 java.sql.Date checkOut = rs.getDate("check_out");
                 String status = rs.getString("status");
 
-                // Data kamar
                 String nomorKamar = rs.getString("nomor_kamar");
                 String tipeKamar = rs.getString("tipe");
                 Kamar kamar = new Kamar();
@@ -247,7 +243,6 @@ public class Admin extends User {
                 kamar.setNomorKamar(nomorKamar);
                 kamar.setTipe(tipeKamar);
 
-                // Data customer
                 String nama = rs.getString("nama");
                 String email = rs.getString("email");
                 Customer customer = new Customer();
@@ -255,7 +250,6 @@ public class Admin extends User {
                 customer.setNama(nama);
                 customer.setEmail(email);
 
-                // Bangun reservasi
                 Reservasi r = new Reservasi(idReservasi, customer, kamar, checkIn, checkOut, status);
                 daftarReservasi.add(r);
             }

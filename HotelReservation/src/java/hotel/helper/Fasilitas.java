@@ -15,6 +15,7 @@ public class Fasilitas {
     private int idFasilitas;
     private String namaFasilitas;
     private String deskripsiFasilitas;
+
     // Constructor
     public Fasilitas() {
     }
@@ -28,13 +29,13 @@ public class Fasilitas {
         this.namaFasilitas = namaFasilitas;
         this.deskripsiFasilitas = deskripsiFasilitas;
     }
-    
+
     public Fasilitas(int idFasilitas, String namaFasilitas, String deskripsiFasilitas) {
         this.idFasilitas = idFasilitas;
         this.namaFasilitas = namaFasilitas;
         this.deskripsiFasilitas = deskripsiFasilitas;
     }
-    
+
     // Getter & Setter
     public int getIdFasilitas() {
         return idFasilitas;
@@ -55,23 +56,22 @@ public class Fasilitas {
     public void setDeskripsiFasilitas(String deskripsiFasilitas) {
         this.deskripsiFasilitas = deskripsiFasilitas;
     }
-    
-      public String getDeskripsiFasilitas() {
+
+    public String getDeskripsiFasilitas() {
         return deskripsiFasilitas;
     }
 
     public static List<Fasilitas> lihatFasilitas() throws SQLException {
         List<Fasilitas> daftarFasilitas = new ArrayList<>();
-        Connection conn = SqlConnect.getConnection();
         String sql = "SELECT * FROM fasilitas";
-        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+        try (Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Fasilitas fasilitas = new Fasilitas(
                         rs.getInt("id_fasilitas"),
                         rs.getString("nama_fasilitas"),
                         rs.getString("deskripsi_fasilitas")
-
                 );
                 daftarFasilitas.add(fasilitas);
             }
@@ -80,5 +80,4 @@ public class Fasilitas {
         return daftarFasilitas;
     }
 
-  
 }
