@@ -350,8 +350,8 @@
                 <form action="Admins?action=ubahReservasi" method="post">
                     <input type="hidden" id="editIdReservasi" name="idReservasi">
                     <div class="form-group">
+                        <p>Status</p>
                         <select name="status" id="editStatus" class="form-control" required>
-                            <p>Status</p>
                             <option value="Dipesan">Dipesan</option>
                             <option value="Pending">Pending</option>
                             <option value="Ditempati">Ditempati</option>
