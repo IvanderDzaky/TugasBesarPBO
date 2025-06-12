@@ -89,13 +89,6 @@ public class Pembayaran implements Bayarable {
         this.tanggalBayar = tanggalBayar;
     }
 
-    // ====================
-    // Method dari interface Bayarable
-    // ====================
-    /**
-     * Menjalankan simulasi pembayaran: mengubah status menjadi "Lunas" dan
-     * mengisi tanggal bayar hari ini.
-     */
     @Override
     public void prosesPembayaran() {
         if (this.jumlahBayar <= 0) {
@@ -106,11 +99,6 @@ public class Pembayaran implements Bayarable {
         this.tanggalBayar = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    /**
-     * Menampilkan struk pembayaran ke konsol (bisa juga diubah jadi return
-     * String untuk ditampilkan di JSP).
-     * @return 
-     */
     @Override
     public Map<String, Object> tampilkanStruk() {
         Map<String, Object> data = new HashMap<>();
@@ -133,7 +121,6 @@ public class Pembayaran implements Bayarable {
         return data;
     }
 
-    // Bisa juga tambah method lain jika perlu, seperti validasi, dsb.
     @Override
     public String toString() {
         return "Pembayaran{"

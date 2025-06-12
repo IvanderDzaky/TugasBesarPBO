@@ -94,9 +94,9 @@
                             </div>
                         </div>
                         <!-- Button -->
-                        <div class="col-md-6 col-lg-2 mb-3 d-flex justify-content-end align-items-end">
+
                             <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
-                        </div>
+
                     </div>
                 </form>
             </div>
