@@ -486,13 +486,45 @@
 
         <!-- profit tab -->
         <div class="tab-pane fade" id="profit" role="tabpanel">
-               <div class="d-flex justify-content-between align-items-center mb-3 w-100 px-3">
-                   <p>Profit</p>
-                </div>
-            
-            
+             <h5>Profit</h5>
+            <div class="d-flex justify-content-between align-items-center mb-3 w-100 px-3">
+                <%@ page import="java.util.List" %>
+                <%@ page import="hotel.helper.Profit" %>
+                <%
+                    List<Profit> profitList = (List<Profit>) request.getAttribute("profit");
+                    if (profitList != null && !profitList.isEmpty()) {
+                %>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tahun</th>
+                            <th>Bulan</th>
+                            <th>Total Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (Profit p : profitList) {
+                        %>
+                        <tr>
+                            <td><%= p.getTahun()%></td>
+                            <td><%= p.getBulan()%></td>
+                            <td>$<%= String.format("%.2f", p.getTotal())%></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+                <%
+                } else {
+                %>
+                <p>Tidak ada data profit.</p>
+                <%
+                    }
+                %>
+            </div>
         </div>
-
     </div>
 </div>
 

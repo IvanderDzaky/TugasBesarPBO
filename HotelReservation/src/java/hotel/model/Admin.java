@@ -2,6 +2,7 @@ package hotel.model;
 
 import hotel.helper.Fasilitas;
 import hotel.config.SqlConnect;
+import hotel.helper.Profit;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.sql.*;
@@ -305,7 +306,29 @@ public class Admin extends User {
             }
         }
     }
-    
-    
+
+    // Di class Admin (atau ProfitService), ubah method jadi:
+    public List<Profit> lihatProfit() {
+        List<Profit> profitList = new ArrayList<>();
+        try (
+                Connection conn = SqlConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(
+                "SELECT YEAR(check_out) AS tahun, MONTH(check_out) AS bulan, SUM(k.harga) AS total_profit "
+                + "FROM reservasi r "
+                + "JOIN kamar k ON r.id_kamar = k.id_kamar "
+                + "WHERE r.status = 'Lunas' "
+                + "GROUP BY YEAR(check_out), MONTH(check_out) "
+                + "ORDER BY tahun, bulan"
+        ); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                int tahun = rs.getInt("tahun");
+                int bulan = rs.getInt("bulan");
+                double total = rs.getDouble("total_profit");
+                profitList.add(new Profit(tahun, bulan, total));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return profitList;
+    }
 
 }

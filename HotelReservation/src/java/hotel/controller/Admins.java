@@ -1,6 +1,7 @@
 package hotel.controller;
 
 import hotel.helper.Fasilitas;
+import hotel.helper.Profit;
 import hotel.model.*;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -33,6 +34,7 @@ public class Admins extends HttpServlet {
                 tampilkanDaftarKamar(admin, request);
                 tampilkanDaftarFasilitas(admin, request);
                 tampilkanSemuaReservasi(admin, request);
+                lihatProfit(admin, request);
                 request.getRequestDispatcher("index.jsp?page=admin").forward(request, response);
                 return;
             }
@@ -103,6 +105,12 @@ public class Admins extends HttpServlet {
             throws SQLException {
         List<Reservasi> daftarReservasi = admin.lihatSemuaReservasi();
         request.setAttribute("reservasiList", daftarReservasi);
+    }
+
+    private void lihatProfit(Admin admin, HttpServletRequest request)
+            throws SQLException {
+        List<Profit> profitList = admin.lihatProfit();
+        request.setAttribute("profit", profitList);
     }
 
     private void handleUbahReservasi(Admin admin, HttpServletRequest request, HttpServletResponse response)
