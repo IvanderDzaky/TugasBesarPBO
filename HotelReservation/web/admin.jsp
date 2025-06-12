@@ -351,9 +351,11 @@
                     <input type="hidden" id="editIdReservasi" name="idReservasi">
                     <div class="form-group">
                         <select name="status" id="editStatus" class="form-control" required>
+                            <p>Status</p>
                             <option value="Dipesan">Dipesan</option>
                             <option value="Pending">Pending</option>
-                            <option value="Lunas">Lunas</option>
+                            <option value="Ditempati">Ditempati</option>
+                            <option value="Selesai">Selesai</option>
                             <option value="Dibatalkan">Dibatalkan</option>
                         </select>
                     </div>
@@ -486,7 +488,7 @@
 
         <!-- profit tab -->
         <div class="tab-pane fade" id="profit" role="tabpanel">
-             <h5>Profit</h5>
+            <h5>Profit</h5>
             <div class="d-flex justify-content-between align-items-center mb-3 w-100 px-3">
                 <%@ page import="java.util.List" %>
                 <%@ page import="hotel.helper.Profit" %>

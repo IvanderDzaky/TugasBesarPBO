@@ -309,7 +309,7 @@ public class Admin extends User {
                 "SELECT YEAR(check_out) AS tahun, MONTH(check_out) AS bulan, SUM(k.harga) AS total_profit "
                 + "FROM reservasi r "
                 + "JOIN kamar k ON r.id_kamar = k.id_kamar "
-                + "WHERE r.status = 'Lunas' "
+                + "WHERE r.status = 'Selesai' "
                 + "GROUP BY YEAR(check_out), MONTH(check_out) "
                 + "ORDER BY tahun, bulan"
         ); ResultSet rs = stmt.executeQuery()) {
